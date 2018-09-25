@@ -6,6 +6,7 @@ public class GameTile : MonoBehaviour {
 
     //public GameManager gameManager;
     public bool isWalkable;
+    private Character character;
     private GameManager gameManager;
 
 	// Use this for initialization
@@ -13,6 +14,14 @@ public class GameTile : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
+
+    public Character GetCharacter() {
+        return character;
+    }
+
+    public void SetCharacter(Character character) {
+        this.character = character;
+    }
 
     public Vector2 GetCoodinates() {
         return (Vector2)transform.position;
