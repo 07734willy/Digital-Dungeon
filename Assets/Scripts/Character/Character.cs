@@ -25,7 +25,7 @@ abstract public class Character : Physical {
         gameManager.AddCharacter(this);
     }
 
-    private void RefreshInventory() {
+    public void RefreshInventory() {
         inventory = gameObject.GetComponentsInChildren<Pickup>();
         Debug.Assert(inventoryCapacity >= 0);
         while (inventory.Length > inventoryCapacity) {
@@ -34,12 +34,16 @@ abstract public class Character : Physical {
         }
     }
 
-    virtual protected void Update() {
+    public void RefreshPosition() {
         GameTile tile = gameManager.GetTile(this.GetCoodinates());
         if (tile != null) {
             Debug.Assert(tile.GetCharacter() == null || tile.GetCharacter() == this);
             tile.SetCharacter(this);
         }
+    }
+
+    virtual protected void Update() {
+        RefreshPosition();
         RefreshInventory();
     }
 
@@ -55,5 +59,9 @@ abstract public class Character : Physical {
 
     public int SpareInventoryCapacity() {
         return inventoryCapacity - inventory.Length;
+    }
+
+    public void SetPendingAction(TurnAction action) {
+        this.pendingAction = action;
     }
 }

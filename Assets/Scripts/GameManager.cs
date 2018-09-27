@@ -9,10 +9,16 @@ public class GameManager : MonoBehaviour {
     private Dictionary<Vector2, GameTile> map;
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
+    private Player player;
 
     private void Awake() {
         this.map = new Dictionary<Vector2, GameTile>();
         this.characterQueue = new Queue<Character>();
+    }
+
+    private void Start() {
+        // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
+        this.player = GameObject.Find("Player").GetComponent<Player>();
     }
 
 
@@ -51,6 +57,10 @@ public class GameManager : MonoBehaviour {
             return map[coordinates];
         }
         return null;
+    }
+
+    public Player GetPlayer() {
+        return this.player;
     }
 
     public bool TileUnsetCharacter(Vector2 coordinates) {

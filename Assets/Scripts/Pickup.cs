@@ -13,13 +13,16 @@ public class Pickup : Physical {
         //gameManager.AddPickup(this);
     }
 
-    private void RefreshStatus() {
+    public void RefreshStatus() {
         // If it is not a child of another gameobject <- that is, not inside a character inventory
         if (transform.parent == null) {
             GameTile tile = gameManager.GetTile(this.GetCoodinates());
             if (tile != null) {
                 tile.AddPickup(this);
             }
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 	

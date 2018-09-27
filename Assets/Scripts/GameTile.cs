@@ -21,7 +21,7 @@ public class GameTile : Physical {
 	}
 
 
-    private void RefreshContents() {
+    public void RefreshContents() {
         if (character != null && character.GetCoodinates() != this.GetCoodinates()) {
             this.character = null;
         }
@@ -37,6 +37,24 @@ public class GameTile : Physical {
 
     private void Update() {
         RefreshContents();
+    }
+
+    private void OnMouseDown() {
+        Player player = gameManager.GetPlayer();
+        if (this.character != null && character != player) {
+            //attack
+        } else if (player.GetCoodinates() != this.GetCoodinates()) {
+            // pathfind, and MoveAction() towards it.
+        } else if (this.pickups.Count > 0) {
+            foreach (Pickup pickup in pickups) {
+                // Don't waste a turn trying to pickup if you can't
+                if (player.SpareInventoryCapacity() > 0) {
+                    player.SetPendingAction(new PickupAction(player, pickup));
+                }
+                // this is a nasty hack, but we can only (and want to) pick up one item per turn, so to retrieve one item from a hashset...we do this
+                break;
+            }
+        }
     }
 
     public Character GetCharacter() {
