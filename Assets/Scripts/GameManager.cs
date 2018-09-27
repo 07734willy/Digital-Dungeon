@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -45,13 +45,6 @@ public class GameManager : MonoBehaviour {
     public void AddCharacter (Character character) {
         characterQueue.Enqueue(character);
     }
-
-    /*public bool IsTileWalkable(Vector2 coordinate) {
-        if (!map.ContainsKey(coordinate)) {
-            return false;
-        }
-        return map[coordinate].isWalkable && (!map[coordinate].GetCharacter());
-    }*/
 
     public GameTile GetTile(Vector2 coordinates) {
         if (map.ContainsKey(coordinates)) {

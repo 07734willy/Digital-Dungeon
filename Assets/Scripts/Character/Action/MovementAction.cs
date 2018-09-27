@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,12 +20,12 @@ public class MovementAction : TurnAction {
             character.transform.position = Vector2.Lerp(coordinates, coordinates + movement, (Time.time - startTime) / duration);
             if (startTime + duration < Time.time) {
                 isComplete = true;
-                SnapToGrid();
+                character.SnapToGrid();
             }
         } else {
             character.transform.position = coordinates + movement;
             isComplete = true;
-            SnapToGrid();
+            character.SnapToGrid();
         }
     }
 
@@ -36,9 +36,5 @@ public class MovementAction : TurnAction {
         }
         this.startTime = Time.time;
         return true;
-    }
-
-    private void SnapToGrid() {
-        character.transform.position = new Vector2(Mathf.Round(character.transform.position.x), Mathf.Round(character.transform.position.y));
     }
 }

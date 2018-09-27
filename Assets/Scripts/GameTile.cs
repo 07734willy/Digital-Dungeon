@@ -1,28 +1,46 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTile : MonoBehaviour {
+public class GameTile : Physical {
 
     //public GameManager gameManager;
     public bool isWalkable;
     private Character character;
     private GameManager gameManager;
+    private HashSet<Pickup> pickups;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        this.pickups = new HashSet<Pickup>();
+    }
+
+    // Use this for initialization
+    void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
 
-    private void Update() {
+
+    private void RefreshContents() {
         if (character != null && character.GetCoodinates() != this.GetCoodinates()) {
             this.character = null;
         }
+        foreach (Pickup pickup in pickups) {
+            if (pickup == null || pickup.GetCoodinates() != this.GetCoodinates() || pickup.transform.parent != null) {
+                RemovePickup(pickup);
+                // This is because we can't modify the contents of a HashSet while iterating over it
+                RefreshContents();
+                break;
+            }
+        }
+    }
+
+    private void Update() {
+        RefreshContents();
     }
 
     public Character GetCharacter() {
-        this.Update();
+        RefreshContents();
         return character;
     }
 
@@ -30,13 +48,16 @@ public class GameTile : MonoBehaviour {
         this.character = character;
     }
 
-    public bool IsWalkable() {
-        return this.isWalkable && (character == null);
+    public void AddPickup(Pickup pickup) {
+        // Note- we rely on HashSet's unique poperty to ensure duplicates don't get inserted
+        this.pickups.Add(pickup);
     }
 
-    public Vector2 GetCoodinates() {
-        return (Vector2)transform.position;
-        // May need to round off the coordinates to prevent floating-point related errors later. Just in case:
-        //return new Vector2(Mathf.round(transform.position.x), Mathf.round(transform.position.y));
+    public bool RemovePickup(Pickup pickup) {
+        return this.pickups.Remove(pickup);
+    }
+
+    public bool IsWalkable() {
+        return this.isWalkable && (character == null);
     }
 }
