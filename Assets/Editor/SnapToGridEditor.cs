@@ -11,7 +11,7 @@ public class SnapToGridEditor : Editor {
         base.OnInspectorGUI();
 
         SnapToGrid actor = target as SnapToGrid;
-        if (actor.snapToGrid) {
+        if (actor.snapToGrid && !EditorApplication.isPlaying) {
             actor.transform.position = RoundTransform(actor.transform.position, actor.snapValue);
         }
     }

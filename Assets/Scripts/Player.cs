@@ -22,25 +22,12 @@ public class Player : Character {
             }
             if (movement != Vector2.zero) {
                 movement.Normalize();
-                pendingAction = new MovementAction(this, movement);
+                pendingAction = new MovementAction(this, movement, movementSpeed, false);
             }
         }
     }
 
     public override TurnAction RequestAction() {
-        /*TurnAction action;
-        if (lastAction.animating) {
-            action = new TurnAction {
-                action = TurnAction.ActionType.Animation
-            };
-            return action;
-        }
-        // We want to reset the pending action, so it doesn't loop
-        pendingAction.coordinates = GetCoodinates();
-        action = pendingAction;
-        pendingAction = new TurnAction();
-        pendingAction.action = TurnAction.ActionType.None;
-        return action;*/
         Debug.Assert(currentAction.isComplete);
         currentAction = pendingAction;
         pendingAction = new NullAction(this);

@@ -10,15 +10,11 @@ public class NullAction : TurnAction {
     }
 
     public override void Animate() {
-        /*Debug.LogError("Tried to animate NullAction");
-        throw new System.NotImplementedException();*/
         this.isComplete = true;
         return;
     }
 
     public override bool Execute() {
-        /*Debug.LogError("Tried to execute NullAction");
-        throw new System.NotImplementedException();*/
-        return true;
+        return false;
     }
 }

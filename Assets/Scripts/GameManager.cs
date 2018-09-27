@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,7 +15,9 @@ public class GameManager : MonoBehaviour {
         this.characterQueue = new Queue<Character>();
     }
 
+
     private void Update() {
+
         if (currentAction != null && !currentAction.isComplete) {
             currentAction.Animate();
             return;
@@ -43,25 +46,32 @@ public class GameManager : MonoBehaviour {
         characterQueue.Enqueue(character);
     }
 
-    public bool IsTileWalkable(Vector2 coordinate) {
+    /*public bool IsTileWalkable(Vector2 coordinate) {
         if (!map.ContainsKey(coordinate)) {
             return false;
         }
         return map[coordinate].isWalkable && (!map[coordinate].GetCharacter());
+    }*/
+
+    public GameTile GetTile(Vector2 coordinates) {
+        if (map.ContainsKey(coordinates)) {
+            return map[coordinates];
+        }
+        return null;
     }
 
-    public bool TileUnsetCharacter(Vector2 coordinate) {
-        return TileSetCharacter(coordinate, null);
+    public bool TileUnsetCharacter(Vector2 coordinates) {
+        return TileSetCharacter(coordinates, null);
     }
 
-    public bool TileSetCharacter(Vector2 coordinate, Character character) {
-        if (!map.ContainsKey(coordinate)) {
+    public bool TileSetCharacter(Vector2 coordinates, Character character) {
+        if (!map.ContainsKey(coordinates)) {
             return false;
         }
-        if (map[coordinate].GetCharacter() && character) {
+        if (map[coordinates].GetCharacter() && character) {
             return false;
         }
-        map[coordinate].SetCharacter(character);
+        map[coordinates].SetCharacter(character);
         return true;
     }
 }

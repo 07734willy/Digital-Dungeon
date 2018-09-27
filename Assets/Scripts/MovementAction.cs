@@ -7,30 +7,38 @@ public class MovementAction : TurnAction {
     public Vector2 movement;
     public Vector2 coordinates;
 
-    public MovementAction(Character character, Vector2 movement) {
+    public MovementAction(Character character, Vector2 movement, float movementSpeed, bool instant) {
         this.character = character;
         this.movement = movement;
         this.coordinates = character.GetCoodinates();
-        this.duration = 0.3f;
-        this.gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        this.duration = instant ? 0f : 1f / movementSpeed;
+        this.gameManager = character.GetGameManager();
     }
 
     public override void Animate() {
-        character.transform.position = Vector2.Lerp(coordinates, coordinates + movement, (Time.time - startTime) / duration);
-        if (startTime + duration < Time.time) {
+        if (this.duration > 0) {
+            character.transform.position = Vector2.Lerp(coordinates, coordinates + movement, (Time.time - startTime) / duration);
+            if (startTime + duration < Time.time) {
+                isComplete = true;
+                SnapToGrid();
+            }
+        } else {
+            character.transform.position = coordinates + movement;
             isComplete = true;
+            SnapToGrid();
         }
     }
 
     public override bool Execute() {
-        if (!gameManager.IsTileWalkable(character.GetCoodinates() + movement)) {
+        GameTile tile = gameManager.GetTile(character.GetCoodinates() + movement);
+        if (tile == null || !tile.IsWalkable()) {
             return false;
         }
-        if (!gameManager.TileSetCharacter(coordinates + movement, character)) {
-            return false;
-        }
-        gameManager.TileUnsetCharacter(coordinates);
         this.startTime = Time.time;
         return true;
+    }
+
+    private void SnapToGrid() {
+        character.transform.position = new Vector2(Mathf.Round(character.transform.position.x), Mathf.Round(character.transform.position.y));
     }
 }

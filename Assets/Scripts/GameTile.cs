@@ -15,12 +15,23 @@ public class GameTile : MonoBehaviour {
         gameManager.AddTile(this);
 	}
 
+    private void Update() {
+        if (character != null && character.GetCoodinates() != this.GetCoodinates()) {
+            this.character = null;
+        }
+    }
+
     public Character GetCharacter() {
+        this.Update();
         return character;
     }
 
     public void SetCharacter(Character character) {
         this.character = character;
+    }
+
+    public bool IsWalkable() {
+        return this.isWalkable && (character == null);
     }
 
     public Vector2 GetCoodinates() {

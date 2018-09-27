@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class Character : MonoBehaviour {
 
-    public float inputDelay = 0.2f;
+    public float movementSpeed = 3f;
     protected bool isPlayer;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
@@ -20,34 +20,11 @@ abstract public class Character : MonoBehaviour {
         gameManager.AddCharacter(this);
     }
 
-    /*public void SetAction(TurnAction action) {
-        lastAction = action;
-        lastAction.startTime = Time.time;
-        switch (lastAction.action) {
-            case TurnAction.ActionType.Movement:
-                lastAction.duration = 0.4f;
-                lastAction.animating = true;
-                break;
-            default:
-                break;
-        }
-    }*/
-
     virtual protected void Update() {
-        /*if (lastAction.animating) {
-            switch (lastAction.action) {
-                case TurnAction.ActionType.Movement:
-                    transform.position = Vector2.Lerp(lastAction.coordinates, lastAction.coordinates + lastAction.movement, (Time.time - lastAction.startTime) / lastAction.duration);
-                    break;
-                default:
-                    break;
-            }
-            if (lastAction.startTime + lastAction.duration < Time.time) {
-                lastAction.animating = false;
-            } else if (Time.time - lastAction.startTime < lastAction.duration * (1f - inputDelay)) {
-                pendingAction.action = TurnAction.ActionType.Animation;
-            }
-        }*/
+        GameTile tile = gameManager.GetTile(this.GetCoodinates());
+        if (tile != null && tile.GetCharacter() == null) {
+            tile.SetCharacter(this);
+        }
     }
 
     public Vector2 GetCoodinates() {
@@ -60,5 +37,9 @@ abstract public class Character : MonoBehaviour {
 
     public bool IsPlayer() {
         return this.isPlayer;
+    }
+
+    public GameManager GetGameManager() {
+        return gameManager;
     }
 }
