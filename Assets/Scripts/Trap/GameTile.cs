@@ -6,11 +6,11 @@ public class GameTile : Physical {
 
     //public GameManager gameManager;
     public bool isWalkable;
-    private Character character;
+    protected Character character;
     private GameManager gameManager;
     private HashSet<Pickup> pickups;
 
-    private void Awake() {
+    virtual protected void Awake() {
         this.pickups = new HashSet<Pickup>();
     }
 
@@ -62,7 +62,7 @@ public class GameTile : Physical {
         return character;
     }
 
-    public void SetCharacter(Character character) {
+    public virtual void SetCharacter(Character character) {
         this.character = character;
     }
 
