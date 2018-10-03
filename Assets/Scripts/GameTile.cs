@@ -22,11 +22,11 @@ public class GameTile : Physical {
 
 
     public void RefreshContents() {
-        if (character != null && character.GetCoodinates() != this.GetCoodinates()) {
+        if (character != null && character.GetCoordinates() != this.GetCoordinates()) {
             this.character = null;
         }
         foreach (Pickup pickup in pickups) {
-            if (pickup == null || pickup.GetCoodinates() != this.GetCoodinates() || pickup.transform.parent != null) {
+            if (pickup == null || pickup.GetCoordinates() != this.GetCoordinates() || pickup.transform.parent != null) {
                 RemovePickup(pickup);
                 // This is because we can't modify the contents of a HashSet while iterating over it
                 RefreshContents();
@@ -43,7 +43,7 @@ public class GameTile : Physical {
         Player player = gameManager.GetPlayer();
         if (this.character != null && character != player) {
             //attack
-        } else if (player.GetCoodinates() != this.GetCoodinates()) {
+        } else if (player.GetCoordinates() != this.GetCoordinates()) {
             // pathfind, and MoveAction() towards it.
         } else if (this.pickups.Count > 0) {
             foreach (Pickup pickup in pickups) {

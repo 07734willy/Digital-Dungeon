@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AddTile (GameTile gameTile) {
-        map.Add(gameTile.GetCoodinates(), gameTile);
+        map.Add(gameTile.GetCoordinates(), gameTile);
     }
 
     public void AddCharacter (Character character) {

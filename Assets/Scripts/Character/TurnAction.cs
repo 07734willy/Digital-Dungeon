@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,8 @@ abstract public class TurnAction {
     public float duration;
     protected Character character;
     protected GameManager gameManager;
+
+    abstract public bool Check();
 
     abstract public void Animate();
 

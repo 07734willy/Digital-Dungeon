@@ -35,7 +35,7 @@ abstract public class Character : Physical {
     }
 
     public void RefreshPosition() {
-        GameTile tile = gameManager.GetTile(this.GetCoodinates());
+        GameTile tile = gameManager.GetTile(this.GetCoordinates());
         if (tile != null) {
             Debug.Assert(tile.GetCharacter() == null || tile.GetCharacter() == this);
             tile.SetCharacter(this);

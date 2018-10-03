@@ -12,17 +12,24 @@ public class PickupAction : TurnAction {
         this.gameManager = character.GetGameManager();
     }
 
+    public override bool Check() {
+        character.RefreshInventory();
+        if (character.SpareInventoryCapacity() <= 0) {
+            return false;
+        }
+        return true;
+    }
+
     public override void Animate() {
         isComplete = true;
     }
 
     public override bool Execute() {
         //Item item = pickup.GetItem();
-        character.RefreshInventory();
-        if (character.SpareInventoryCapacity() <= 0) {
+        if (!Check()) {
             return false;
         }
-        gameManager.GetTile(pickup.GetCoodinates()).RemovePickup(pickup);
+        gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         pickup.transform.parent = character.transform;
         pickup.GetComponent<SpriteRenderer>().enabled = false;
         //pickup.transform.position = Vector2.zero;

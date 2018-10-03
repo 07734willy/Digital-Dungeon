@@ -4,34 +4,44 @@ using UnityEngine;
 
 public class MovementAction : TurnAction {
 
-    public Vector2 movement;
+    public Vector2 destination;
     public Vector2 coordinates;
 
-    public MovementAction(Character character, Vector2 movement, float movementSpeed, bool instant) {
+    public MovementAction(Character character, Vector2 destination, float movementSpeed, bool instant) {
         this.character = character;
-        this.movement = movement;
-        this.coordinates = character.GetCoodinates();
+        this.destination = destination;
+        this.coordinates = character.GetCoordinates();
         this.duration = instant ? 0f : 1f / movementSpeed;
         this.gameManager = character.GetGameManager();
     }
 
+    public override bool Check() {
+        if ((destination - this.coordinates).sqrMagnitude != 1) {
+            return false;
+        }
+        GameTile tile = gameManager.GetTile(destination);
+        if (tile == null || !tile.IsWalkable()) {
+            return false;
+        }
+        return true;
+    }
+
     public override void Animate() {
         if (this.duration > 0) {
-            character.transform.position = Vector2.Lerp(coordinates, coordinates + movement, (Time.time - startTime) / duration);
+            character.transform.position = Vector2.Lerp(coordinates, destination, (Time.time - startTime) / duration);
             if (startTime + duration < Time.time) {
                 isComplete = true;
                 character.SnapToGrid();
             }
         } else {
-            character.transform.position = coordinates + movement;
+            character.transform.position = destination;
             isComplete = true;
             character.SnapToGrid();
         }
     }
 
     public override bool Execute() {
-        GameTile tile = gameManager.GetTile(character.GetCoodinates() + movement);
-        if (tile == null || !tile.IsWalkable()) {
+        if (!Check()) {
             return false;
         }
         this.startTime = Time.time;

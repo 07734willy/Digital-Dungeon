@@ -8,7 +8,7 @@ public class Physical : MonoBehaviour {
         transform.position = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
     }
 
-    public Vector2 GetCoodinates() {
+    public Vector2 GetCoordinates() {
         return transform.position;
     }
 }

@@ -22,7 +22,7 @@ public class Player : Character {
             }
             if (movement != Vector2.zero) {
                 movement.Normalize();
-                pendingAction = new MovementAction(this, movement, movementSpeed, false);
+                pendingAction = new MovementAction(this, GetCoordinates() + movement, movementSpeed, false);
             }
         }
     }
