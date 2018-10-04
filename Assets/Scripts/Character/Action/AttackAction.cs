@@ -19,14 +19,11 @@ abstract public class AttackAction : TurnAction {
     }
 
     public override bool Execute() {
-        Debug.Log("att2");
         if (!Check()) {
             return false;
         }
-        Debug.Log("att22");
 
         if (Random.Range(0, 1000) < 1000 * accuracy) {
-            Debug.Log("att222");
             target.ReceiveDamage(this.damage);
         }
         this.startTime = Time.time;

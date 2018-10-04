@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character {
+
+    public Text dialogText;
+    public GameObject dialogBox;
 
     override protected void Awake() {
         base.Awake();
@@ -33,5 +37,22 @@ public class Player : Character {
         currentAction = pendingAction;
         pendingAction = new NullAction(this);
         return currentAction;
+    }
+
+    // Good
+    public void UseAbility1() {
+        Debug.Log("healing ablity used");
+        SetDialogMessage("dialog text updated");
+    }
+
+    // Good
+    public void SetDialogMessage(string message) {
+        this.dialogText.text = message;
+        ToggleDialogBox();
+    }
+
+    // Bad (show hide isntead)
+    public void ToggleDialogBox() {
+        dialogBox.SetActive(!dialogBox.activeSelf);
     }
 }
