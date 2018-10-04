@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackAction : TurnAction {
+abstract public class AttackAction : TurnAction {
 
-    public Vector2 target;
+    public Character target;
     public int damage;
     public float accuracy;
     public bool intant;
 
-    public AttackAction(Character character, Vector2 target, int damage, float accuracy, float attackSpeed, bool instant) {
+    public AttackAction(Character character, Character target, int damage, float accuracy, float attackSpeed, bool instant) {
         this.character = character;
         this.target = target;
         this.damage = damage;
@@ -18,18 +18,16 @@ public class AttackAction : TurnAction {
         this.gameManager = character.GetGameManager();
     }
 
-    public override bool Check() {
-        // TODO
-        return true;
-    }
-
-    public override void Animate() {
-        isComplete = true;
-    }
-
     public override bool Execute() {
+        Debug.Log("att2");
         if (!Check()) {
             return false;
+        }
+        Debug.Log("att22");
+
+        if (Random.Range(0, 1000) < 1000 * accuracy) {
+            Debug.Log("att222");
+            target.ReceiveDamage(this.damage);
         }
         this.startTime = Time.time;
         return true;

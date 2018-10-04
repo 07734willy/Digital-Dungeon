@@ -6,6 +6,10 @@ abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public int inventoryCapacity = 8;
+    public int health;
+    public int maxHealth = 100;
+    public float evasion = 0.1f;
+    public int armor = 0;
     protected bool isPlayer;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
@@ -18,6 +22,7 @@ abstract public class Character : Physical {
         this.pendingAction = new NullAction(this);
         //this.inventory = new List<Item>();
         this.inventory = this.gameObject.GetComponentsInChildren<Pickup>();
+        this.health = maxHealth;
     }
     
     void Start() {
@@ -63,5 +68,27 @@ abstract public class Character : Physical {
 
     public void SetPendingAction(TurnAction action) {
         this.pendingAction = action;
+    }
+
+    public void ReceiveDamage(int damage) {
+        if (Random.Range(0, 1000) < 1000 * evasion) {
+            return;
+        }
+        int baseArmor = 20;
+        Debug.Assert(armor + baseArmor > 0);
+        Debug.Log(damage / Mathf.Sqrt(armor + baseArmor));
+        health -= (int)(damage / Mathf.Sqrt(armor + baseArmor));
+
+        if (health <= 0) {
+            Kill();
+        }
+    }
+
+    public void Kill() {
+        if (this.isPlayer) {
+            Debug.LogError("Not yet implemented: death");
+        } else {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -28,6 +28,7 @@ public class Player : Character {
     }
 
     public override TurnAction RequestAction() {
+        SnapToGrid();
         Debug.Assert(currentAction.isComplete);
         currentAction = pendingAction;
         pendingAction = new NullAction(this);

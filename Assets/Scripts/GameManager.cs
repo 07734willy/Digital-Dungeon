@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour {
         }
 
         Character character = characterQueue.Peek();
+        if (character == null) {
+            characterQueue.Dequeue();
+            Update();
+            return;
+        }
         TurnAction action = character.RequestAction();
         if (action.Execute()) {
             characterQueue.Enqueue(characterQueue.Dequeue());
