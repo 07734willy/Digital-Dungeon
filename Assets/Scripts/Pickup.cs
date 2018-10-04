@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : Physical {
-
+    public bool stackable = false;
+    public int quantity = 1;
+    public int value = 0;
+    public bool isWeapon = false;
     protected GameManager gameManager;
-	protected Item item;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +33,7 @@ public class Pickup : Physical {
         RefreshStatus();
     }
 	
-	public Item GetItem() {
+	/*public Item GetItem() {
 		return this.item;
-	}
+	}*/
 }
