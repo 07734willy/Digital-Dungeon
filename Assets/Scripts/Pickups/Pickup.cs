@@ -11,6 +11,7 @@ public class Pickup : Physical {
     public bool isArmor;
     public bool isConsumable;
     protected GameManager gameManager;
+    protected Character character;
 
     // Use this for initialization
     void Start () {
@@ -20,18 +21,21 @@ public class Pickup : Physical {
 
     public void RefreshStatus() {
         // If it is not a child of another gameobject <- that is, not inside a character inventory
+        GameTile tile = gameManager.GetTile(this.GetCoordinates());
         if (transform.parent == null) {
-            GameTile tile = gameManager.GetTile(this.GetCoordinates());
             if (tile != null) {
                 tile.AddPickup(this);
             }
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
         } else {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            if (tile != null && tile.GetCharacter() != null) { 
+                this.character = tile.GetCharacter().GetComponent<Character>();
+            }
         }
     }
 
-    public virtual void Use() {
+    public virtual void Select() {
         return;
     }
 	

@@ -61,7 +61,8 @@ public class Player : Character {
     }
 
     public void UseAbility3() {
-
+        Debug.Log("teleport ability used");
+        this.pendingAction = new TeleportAbilityAction(this);
     }
 
     // Good

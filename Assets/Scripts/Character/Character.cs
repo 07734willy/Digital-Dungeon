@@ -5,6 +5,7 @@ using UnityEngine;
 abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
+    public bool instantTurn = false;
     public int inventoryCapacity = 8;
     public int health;
     public int maxHealth = 100;
@@ -99,7 +100,6 @@ abstract public class Character : Physical {
     public Weapon GetWeapon() {
         return this.equippedWeapon;
     }
-
 
     public void Kill() {
         if (this.isPlayer) {
