@@ -14,4 +14,22 @@ public class Weapon : Pickup {
     public int GetDamageDealt() {
         return Random.Range(0, 1000) < 1000 * accuracy ? this.damage : 0;
     }
+
+    public override void Use() {
+        if (IsEquipped()) {
+            transform.parent.GetComponent<Character>().SetWeapon(this);
+        }
+    }
+
+    public override void Update() {
+        base.Update();
+
+        if (IsEquipped()) {
+            Use();
+        }
+    }
+
+    public bool IsEquipped() {
+        return transform.parent != null;
+    }
 }

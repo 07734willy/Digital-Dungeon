@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : Physical {
+
     public bool stackable = false;
     public int quantity = 1;
     public int value = 0;
-    public bool isWeapon = false;
+    public bool isWeapon;
+    public bool isArmor;
+    public bool isConsumable;
     protected GameManager gameManager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //gameManager.AddPickup(this);
     }
@@ -27,13 +30,13 @@ public class Pickup : Physical {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-        RefreshStatus();
+
+    public virtual void Use() {
+        return;
     }
 	
-	/*public Item GetItem() {
-		return this.item;
-	}*/
+	// Update is called once per frame
+	public virtual void Update () {
+        RefreshStatus();
+    }
 }

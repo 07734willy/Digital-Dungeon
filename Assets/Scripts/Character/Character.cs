@@ -38,13 +38,13 @@ abstract public class Character : Physical {
             inventory[inventory.Length - 1].transform.parent = null;
             inventory = gameObject.GetComponentsInChildren<Pickup>();
         }
-        foreach (Pickup pickup in inventory) {
+        /*foreach (Pickup pickup in inventory) {
             if (pickup.isWeapon) {
                 this.equippedWeapon = (Weapon)pickup;
                 Debug.Log("weap equipped");
                 break;
             }
-        }
+        }*/
     }
 
     public void RefreshPosition() {
@@ -92,9 +92,14 @@ abstract public class Character : Physical {
         }
     }
 
-    public void EquipWeapon(Weapon weapon) {
+    public void SetWeapon(Weapon weapon) {
         this.equippedWeapon = weapon;
     }
+
+    public Weapon GetWeapon() {
+        return this.equippedWeapon;
+    }
+
 
     public void Kill() {
         if (this.isPlayer) {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MeleeAttackAction : AttackAction {
 
-    public MeleeAttackAction (Character character, Character target, int damage, float accuracy, float attackSpeed, bool instant) 
-        : base(character, target, damage, accuracy, attackSpeed, instant) {
+    public MeleeAttackAction (Character character, Character target, float attackSpeed, bool instant) 
+        : base(character, target, attackSpeed, instant) {
 
     }
 
@@ -20,5 +20,21 @@ public class MeleeAttackAction : AttackAction {
     public override void Animate() {
         isComplete = true;
         character.SnapToGrid();
+    }
+
+    public override bool Execute() {
+        if (!Check()) {
+            return false;
+        }
+
+        Weapon weapon = character.GetWeapon();
+        if (weapon == null) {
+            target.ReceiveDamage(30);
+        } else {
+            target.ReceiveDamage(weapon.GetDamageDealt());
+        }
+
+        this.startTime = Time.time;
+        return true;
     }
 }
