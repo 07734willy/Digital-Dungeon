@@ -10,9 +10,31 @@ public class Enemy : Character {
     }
 
     public override TurnAction RequestAction() {
+		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+		Vector2 enemyCoords = GetCoordinates();
+		int playerX, playerY, enemyX, enemyY;
+		playerX = (int)playerCoords.x;
+		playerY = (int)playerCoords.y;
+		enemyX = (int)enemyCoords.x;
+		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
 		if(getDistance() < 2){
-			
+			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY)){
+				if(enemyY > playerY){
+					return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
+				}
+				else {
+					return new MovementAction(this, GetCoordinates() + Vector2.up, movementSpeed, false);
+				}
+			}
+			else {
+				if(enemyX > playerX){
+					return new MovementAction(this, GetCoordinates() + Vector2.left, movementSpeed, false);
+				}
+				else {
+					return new MovementAction(this, GetCoordinates() + Vector2.right, movementSpeed, false);
+				}
+			}
 		}
 		return getRandomMovement();
     }
