@@ -32,6 +32,10 @@ public class PickupAction : TurnAction {
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         pickup.transform.parent = character.transform;
         pickup.GetComponent<SpriteRenderer>().enabled = false;
+        Dialog dialog = pickup.GetComponent<Dialog>();
+        if (dialog != null) {
+            gameManager.GetPlayer().SetDialogMessage(dialog.message);
+        }
         //pickup.transform.position = Vector2.zero;
         // might need to set transform.position to Vector2.zero <- I'm not sure
         this.startTime = Time.time;

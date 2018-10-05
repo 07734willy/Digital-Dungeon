@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Character {
 	public Sprite alertImage;
 	public Sprite engageImage;
+    public bool enableAI = true;
 	
     override protected void Awake() {
         base.Awake();
@@ -46,6 +47,10 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
+
+        if (!enableAI) {
+            return new WaitAction(this);
+        }
 
         if (getDistance() <= 4) {
             setAlertLevel(1);
