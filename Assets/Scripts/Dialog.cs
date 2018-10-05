@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Dialog : MonoBehaviour {
 
-    public List<string> messages;
+    public string message;
 
-    public void DisplayDialogMessage(string message) {
-        // Todo fill in
-    }
-
-	public List<string> GetDialogMessages() {
-        return messages;
+    public void DisplayDialogMessage() {
+        Player player = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer();
+        player.SetDialogMessage(message);
     }
 }
