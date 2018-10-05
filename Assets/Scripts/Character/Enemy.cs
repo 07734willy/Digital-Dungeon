@@ -3,12 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-
+	public Sprite alertImage;
+	public Sprite engageImage;
+	
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
     }
-
+	
+	public void setAlertLevel(int x){
+		SpriteRenderer renderer = null;
+		foreach(Transform child in this.transform){
+			if(child.name == "alertIcon"){
+				renderer = child.GetComponent<SpriteRenderer>();
+			}
+		}
+		switch (x) {
+			case 0:
+			renderer.sprite = null;
+				break;
+			case 1:
+			renderer.sprite = alertImage;
+				break;
+			case 2:
+			renderer.sprite = engageImage;
+				break;
+			default:
+			break;
+		}
+	}
+	
     public override TurnAction RequestAction() {
 		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 		Vector2 enemyCoords = GetCoordinates();
@@ -18,8 +42,14 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
-		if(getDistance() <= 2){
-			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+
+        if (getDistance() <= 4) {
+            setAlertLevel(1);
+            if (getDistance() <= 2.0001) {
+                setAlertLevel(2);
+                // Future combat stuff will go here
+            }
+            if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
 				if(enemyY > playerY){
 					return new MovementAction(this, GetCoordinates() + Vector2.down, this.movementSpeed, this.instantTurn);
 				}
