@@ -14,6 +14,7 @@ abstract public class Character : Physical {
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
+    protected Weapon equippedWeapon;
     protected Pickup[] inventory;
     protected GameManager gameManager;
 
@@ -37,6 +38,13 @@ abstract public class Character : Physical {
             inventory[inventory.Length - 1].transform.parent = null;
             inventory = gameObject.GetComponentsInChildren<Pickup>();
         }
+        /*foreach (Pickup pickup in inventory) {
+            if (pickup.isWeapon) {
+                this.equippedWeapon = (Weapon)pickup;
+                Debug.Log("weap equipped");
+                break;
+            }
+        }*/
     }
 
     public void RefreshPosition() {
@@ -76,18 +84,31 @@ abstract public class Character : Physical {
         }
         int baseArmor = 20;
         Debug.Assert(armor + baseArmor > 0);
-        Debug.Log(damage / Mathf.Sqrt(armor + baseArmor));
+        Debug.Log("Damage taken: " + damage / Mathf.Sqrt(armor + baseArmor));
         health -= (int)(damage / Mathf.Sqrt(armor + baseArmor));
 
         if (health <= 0) {
-            Kill();
+            this.Kill();
         }
     }
 
+    public void SetWeapon(Weapon weapon) {
+        this.equippedWeapon = weapon;
+    }
+
+    public Weapon GetWeapon() {
+        return this.equippedWeapon;
+    }
+
+
     public void Kill() {
         if (this.isPlayer) {
-            Debug.LogError("Not yet implemented: death");
+            Debug.LogError("Not yet implemented: player death");
         } else {
+            foreach (Transform child in this.transform) {
+                child.transform.position = this.transform.position;
+                child.SetParent(null);
+            }
             Destroy(this.gameObject);
         }
     }

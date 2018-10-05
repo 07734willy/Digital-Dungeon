@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,9 +38,9 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
-		if(getDistance() < 2){
-			setAlertLevel(1);
-			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY)){
+
+		if(getDistance() <= 2){
+			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
 				if(enemyY > playerY){
 					return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
 				}
@@ -63,12 +63,13 @@ public class Enemy : Character {
 	public int getDistance(){
 		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 		Vector2 enemyCoords = GetCoordinates();
-		int playerX, playerY, enemyX, enemyY;
+        return (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
+		/*int playerX, playerY, enemyX, enemyY;
 		playerX = (int)playerCoords.x;
 		playerY = (int)playerCoords.y;
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
-		return (int)Mathf.Abs(Mathf.Sqrt((enemyX - playerX) + (enemyY - playerY)));
+		return (int)Mathf.Abs(Mathf.Sqrt((enemyX - playerX) + (enemyY - playerY)));*/
 	}
 	
 	public TurnAction getRandomMovement(){

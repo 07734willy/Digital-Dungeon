@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -12,6 +12,12 @@ public class SnapToGridEditor : Editor {
 
         SnapToGrid actor = target as SnapToGrid;
         if (actor.snapToGrid && !EditorApplication.isPlaying) {
+            foreach (Transform transform in Selection.transforms) {
+                SnapToGrid snap = transform.gameObject.GetComponent<SnapToGrid>();
+                if (snap != null && snap.snapToGrid) {
+                    transform.position = RoundTransform(transform.position, snap.snapValue);
+                }
+            }
             actor.transform.position = RoundTransform(actor.transform.position, actor.snapValue);
         }
     }
