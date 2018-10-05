@@ -106,8 +106,10 @@ abstract public class Character : Physical {
             Debug.LogError("Not yet implemented: player death");
         } else {
             foreach (Transform child in this.transform) {
-                child.transform.position = this.transform.position;
-                child.SetParent(null);
+                if (child.GetComponent<Pickup>() != null) {
+                    child.transform.position = this.transform.position;
+                    child.SetParent(null);
+                }
             }
             Destroy(this.gameObject);
         }
