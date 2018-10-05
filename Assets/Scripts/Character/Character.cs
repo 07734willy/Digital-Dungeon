@@ -6,10 +6,15 @@ abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public int inventoryCapacity = 8;
+    public int health;
+    public int maxHealth = 100;
+    public float evasion = 0.1f;
+    public int armor = 0;
     protected bool isPlayer;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
+    protected Weapon equippedWeapon;
     protected Pickup[] inventory;
     protected GameManager gameManager;
 
@@ -18,6 +23,7 @@ abstract public class Character : Physical {
         this.pendingAction = new NullAction(this);
         //this.inventory = new List<Item>();
         this.inventory = this.gameObject.GetComponentsInChildren<Pickup>();
+        this.health = maxHealth;
     }
     
     void Start() {
@@ -32,6 +38,13 @@ abstract public class Character : Physical {
             inventory[inventory.Length - 1].transform.parent = null;
             inventory = gameObject.GetComponentsInChildren<Pickup>();
         }
+        /*foreach (Pickup pickup in inventory) {
+            if (pickup.isWeapon) {
+                this.equippedWeapon = (Weapon)pickup;
+                Debug.Log("weap equipped");
+                break;
+            }
+        }*/
     }
 
     public void RefreshPosition() {
@@ -63,5 +76,42 @@ abstract public class Character : Physical {
 
     public void SetPendingAction(TurnAction action) {
         this.pendingAction = action;
+    }
+
+    public void ReceiveDamage(int damage) {
+        if (Random.Range(0, 1000) < 1000 * evasion) {
+            return;
+        }
+        int baseArmor = 20;
+        Debug.Assert(armor + baseArmor > 0);
+        Debug.Log("Damage taken: " + damage / Mathf.Sqrt(armor + baseArmor));
+        health -= (int)(damage / Mathf.Sqrt(armor + baseArmor));
+
+        if (health <= 0) {
+            this.Kill();
+        }
+    }
+
+    public void SetWeapon(Weapon weapon) {
+        this.equippedWeapon = weapon;
+    }
+
+    public Weapon GetWeapon() {
+        return this.equippedWeapon;
+    }
+
+
+    public void Kill() {
+        if (this.isPlayer) {
+            Debug.LogError("Not yet implemented: player death");
+        } else {
+            foreach (Transform child in this.transform) {
+                if (child.GetComponent<Pickup>() != null) {
+                    child.transform.position = this.transform.position;
+                    child.SetParent(null);
+                }
+            }
+            Destroy(this.gameObject);
+        }
     }
 }

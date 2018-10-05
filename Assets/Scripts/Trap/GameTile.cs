@@ -43,6 +43,7 @@ public class GameTile : Physical {
         Player player = gameManager.GetPlayer();
         if (this.character != null && character != player) {
             //attack
+            player.SetPendingAction(new MeleeAttackAction(player, character, 3, true));
         } else if (player.GetCoordinates() != this.GetCoordinates()) {
             // pathfind, and MoveAction() towards it.
         } else if (this.pickups.Count > 0) {
