@@ -65,6 +65,10 @@ public class Player : Character {
         this.pendingAction = new TeleportAbilityAction(this);
     }
 
+    public void WaitTurn() {
+        this.pendingAction = new WaitAction(this);
+    }
+
     // Good
     public void SetDialogMessage(string message) {
         this.dialogText.text = message;
