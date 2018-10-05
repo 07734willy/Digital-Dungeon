@@ -12,24 +12,23 @@ public class TestTrap : GameTile {
     public override void SetCharacter(Character character) {	
         if(this.sprung == false && this.character != character){
             base.SetCharacter(character);
-        	Debug.Log("Trap time~");
             switch (trapType)
             {
                 case "Damage":
-                Debug.Log("Damage Trap");
-                character.ReceiveDamage(200);
+                character.ReceiveDamage(100);
                 this.sprung = true;
                 break; 
                 case "Resetting":
-                Debug.Log("Resetting Trap");
-                character.ReceiveDamage(100);
+                character.ReceiveDamage(40);
                 break;
-                case "Move":
-                Debug.Log("Move Trap");
-                Vector2 movement = Vector2.left; 
-                new MovementAction(character, character.GetCoordinates() + movement, character.movementSpeed ,false);
-                this.sprung = true;
+                case "Tutorial":
+                this.GetComponent<Dialog>().DisplayDialogMessage();
                 break;
+                //case "Move":
+                //Vector2 movement = Vector2.left; 
+                //new MovementAction(character, character.GetCoordinates() + movement, character.movementSpeed ,false);
+                //this.sprung = true;
+                //break;
                 default:
                 Debug.Log("Invalid Trap Type");
                 break;

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : Character {
 	public Sprite alertImage;
 	public Sprite engageImage;
-	
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
