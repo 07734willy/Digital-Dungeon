@@ -1,8 +1,10 @@
+
 # Ignore non-source Unity project files
 [Aa]ssets/AssetStoreTools*
 [Bb]uild/
 [Ll]ibrary/
 [Pp]ackages/
+[Pp]rojectSettings/
 [Oo]bj/
 [Tt]emp/
 [Uu]nityGenerated/

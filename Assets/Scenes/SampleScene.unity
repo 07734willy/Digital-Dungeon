@@ -161,8 +161,6 @@ MonoBehaviour:
   maxHealth: 100
   evasion: 0.1
   armor: 0
-  alertImage: {fileID: 0}
-  engageImage: {fileID: 0}
 --- !u!212 &2272873
 SpriteRenderer:
   m_ObjectHideFlags: 0
