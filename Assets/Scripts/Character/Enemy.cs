@@ -3,12 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-
+	public Sprite alertImage;
+	public Sprite engageImage;
+	
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
     }
-
+	
+	public void setAlertLevel(int x){
+		SpriteRenderer renderer = null;
+		foreach(Transform child in this.transform){
+			if(child.name == "alertIcon"){
+				renderer = child.GetComponent<SpriteRenderer>();
+			}
+		}
+		switch (x) {
+			case 0:
+				break;
+			case 1:
+			renderer.sprite = alertImage;
+				break;
+			default:
+				break;
+		}
+	}
+	
     public override TurnAction RequestAction() {
 		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 		Vector2 enemyCoords = GetCoordinates();
@@ -19,6 +39,7 @@ public class Enemy : Character {
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
 		if(getDistance() < 2){
+			setAlertLevel(1);
 			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY)){
 				if(enemyY > playerY){
 					return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
