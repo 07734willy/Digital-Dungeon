@@ -7,6 +7,8 @@
 [Oo]bj/
 [Tt]emp/
 [Uu]nityGenerated/
+ProjectSettings/*.asset
+ProjectSettings/*.txt
 
 # Ignore visual studio
 .vs/
