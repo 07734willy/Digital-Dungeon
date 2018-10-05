@@ -18,6 +18,10 @@ public class Enemy : Character {
 				renderer = child.GetComponent<SpriteRenderer>();
 			}
 		}
+        if (renderer == null) {
+            Debug.LogError("couldn't get alertIcon");
+            return;
+        }
 		switch (x) {
 			case 0:
 			renderer.sprite = null;
@@ -42,29 +46,29 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
-		 
-		 if(getDistance() <= 4){
-				setAlertLevel(1);
-				if(getDistance() <= 2.0001){
-					setAlertLevel(2);
-					// Future combat stuff will go here
+
+        if (getDistance() <= 4) {
+            setAlertLevel(1);
+            if (getDistance() <= 2.0001) {
+                setAlertLevel(2);
+                // Future combat stuff will go here
+            }
+            if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+				if(enemyY > playerY){
+					return new MovementAction(this, GetCoordinates() + Vector2.down, this.movementSpeed, this.instantTurn);
 				}
-					if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
-						if(enemyY > playerY){
-							return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
-						}
-						else {
-							return new MovementAction(this, GetCoordinates() + Vector2.up, movementSpeed, false);
-						}
-					}
-					else {
-						if(enemyX > playerX){
-							return new MovementAction(this, GetCoordinates() + Vector2.left, movementSpeed, false);
-						}
-						else {
-							return new MovementAction(this, GetCoordinates() + Vector2.right, movementSpeed, false);
-						}
-					}
+				else {
+					return new MovementAction(this, GetCoordinates() + Vector2.up, this.movementSpeed, this.instantTurn);
+				}
+			}
+			else {
+				if(enemyX > playerX){
+					return new MovementAction(this, GetCoordinates() + Vector2.left, this.movementSpeed, this.instantTurn);
+				}
+				else {
+					return new MovementAction(this, GetCoordinates() + Vector2.right, this.movementSpeed, this.instantTurn);
+				}
+			}
 		}
 		return getRandomMovement();
     }
@@ -99,6 +103,6 @@ public class Enemy : Character {
 				break;
 			
 		}
-		return new MovementAction(this, GetCoordinates() + movement, movementSpeed, false);
+		return new MovementAction(this, GetCoordinates() + movement, this.movementSpeed, this.instantTurn);
 	}
 }

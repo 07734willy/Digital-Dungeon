@@ -185,8 +185,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   isWalkable: 1
 --- !u!212 &5727024
+=======
+  movementSpeed: 3
+  inventoryCapacity: 8
+  health: 0
+  maxHealth: 100
+  evasion: 0.1
+  armor: 0
+--- !u!212 &2272873
+>>>>>>> master
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 212086435331112014, guid: 013971b06c3cfda47be29bfa38aac518,

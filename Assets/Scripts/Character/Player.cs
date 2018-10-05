@@ -16,6 +16,7 @@ public class Player : Character {
     // Update is called once per frame
     override protected void Update () {
         base.Update();
+        DisplayStats();
 
         if (currentAction.isComplete) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
@@ -39,11 +40,20 @@ public class Player : Character {
         }
     }
 
+    public void DisplayStats() {
+        GameObject.Find("UIHealthValue").GetComponent<Text>().text = this.health.ToString();
+        GameObject.Find("UIEvasionValue").GetComponent<Text>().text = (this.evasion*100).ToString();
+        GameObject.Find("UISpeedValue").GetComponent<Text>().text = this.movementSpeed.ToString();
+    }
+
     public override TurnAction RequestAction() {
         SnapToGrid();
         Debug.Assert(currentAction.isComplete);
         currentAction = pendingAction;
         pendingAction = new NullAction(this);
+        if (!(currentAction is NullAction)) {
+            HideDialogBox();
+        }
         return currentAction;
     }
 
@@ -61,17 +71,25 @@ public class Player : Character {
     }
 
     public void UseAbility3() {
+        Debug.Log("teleport ability used");
+        this.pendingAction = new TeleportAbilityAction(this);
+    }
 
+    public void WaitTurn() {
+        this.pendingAction = new WaitAction(this);
     }
 
     // Good
     public void SetDialogMessage(string message) {
         this.dialogText.text = message;
-        ToggleDialogBox();
+        ShowDialogBox();
     }
-
-    // Bad (show hide isntead)
-    public void ToggleDialogBox() {
-        dialogBox.SetActive(!dialogBox.activeSelf);
+    
+    public void ShowDialogBox() {
+        dialogBox.SetActive(true);
+    }
+    
+    public void HideDialogBox() {
+        dialogBox.SetActive(false);
     }
 }

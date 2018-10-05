@@ -15,9 +15,10 @@ public class Weapon : Pickup {
         return Random.Range(0, 1000) < 1000 * accuracy ? this.damage : 0;
     }
 
-    public override void Use() {
-        if (IsEquipped()) {
-            transform.parent.GetComponent<Character>().SetWeapon(this);
+    public override void Select() {
+        RefreshStatus();
+        if (IsEquipped() && this.character != null) {
+            character.SetWeapon(this);
         }
     }
 
@@ -25,7 +26,7 @@ public class Weapon : Pickup {
         base.Update();
 
         if (IsEquipped()) {
-            Use();
+            Select();
         }
     }
 

@@ -50,7 +50,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public void AddTile (GameTile gameTile) {
-        map.Add(gameTile.GetCoordinates(), gameTile);
+        if (!map.ContainsKey(gameTile.GetCoordinates())) { 
+            map.Add(gameTile.GetCoordinates(), gameTile);
+        } else {
+            Debug.LogError("Error: Duplicate Tile Placement at: " + gameTile.GetCoordinates());
+        }
     }
 
     public void AddCharacter (Character character) {
