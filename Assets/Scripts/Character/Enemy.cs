@@ -20,12 +20,16 @@ public class Enemy : Character {
 		}
 		switch (x) {
 			case 0:
+			renderer.sprite = null;
 				break;
 			case 1:
 			renderer.sprite = alertImage;
 				break;
-			default:
+			case 2:
+			renderer.sprite = engageImage;
 				break;
+			default:
+			break;
 		}
 	}
 	
@@ -38,24 +42,29 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
-
-		if(getDistance() <= 2){
-			if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
-				if(enemyY > playerY){
-					return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
+		 
+		 if(getDistance() <= 4){
+				setAlertLevel(1);
+				if(getDistance() <= 2.0001){
+					setAlertLevel(2);
+					// Future combat stuff will go here
 				}
-				else {
-					return new MovementAction(this, GetCoordinates() + Vector2.up, movementSpeed, false);
-				}
-			}
-			else {
-				if(enemyX > playerX){
-					return new MovementAction(this, GetCoordinates() + Vector2.left, movementSpeed, false);
-				}
-				else {
-					return new MovementAction(this, GetCoordinates() + Vector2.right, movementSpeed, false);
-				}
-			}
+					if(Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+						if(enemyY > playerY){
+							return new MovementAction(this, GetCoordinates() + Vector2.down, movementSpeed, false);
+						}
+						else {
+							return new MovementAction(this, GetCoordinates() + Vector2.up, movementSpeed, false);
+						}
+					}
+					else {
+						if(enemyX > playerX){
+							return new MovementAction(this, GetCoordinates() + Vector2.left, movementSpeed, false);
+						}
+						else {
+							return new MovementAction(this, GetCoordinates() + Vector2.right, movementSpeed, false);
+						}
+					}
 		}
 		return getRandomMovement();
     }
