@@ -3,10 +3,11 @@
 [Bb]uild/
 [Ll]ibrary/
 [Pp]ackages/
-[Pp]rojectSettings/
 [Oo]bj/
 [Tt]emp/
 [Uu]nityGenerated/
+
+[Pp]rojectSettings/ProjectVersion.txt
 
 # Ignore visual studio
 .vs/
