@@ -46,7 +46,6 @@ public class Enemy : Character {
 		enemyX = (int)enemyCoords.x;
 		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
-
         if (getDistance() <= 4) {
             setAlertLevel(1);
             if (getDistance() <= 2.0001) {
@@ -70,6 +69,7 @@ public class Enemy : Character {
 				}
 			}
 		}
+		setAlertLevel(0);
 		return getRandomMovement();
     }
 	
