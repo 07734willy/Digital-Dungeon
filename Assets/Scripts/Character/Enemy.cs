@@ -75,6 +75,7 @@ public class Enemy : Character {
 				}
 			}
 		}
+		setAlertLevel(0);
 		return getRandomMovement();
     }
 	
