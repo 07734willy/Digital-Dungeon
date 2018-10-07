@@ -5,7 +5,14 @@ using UnityEngine;
 public class Enemy : Character {
 	public Sprite alertImage;
 	public Sprite engageImage;
-	
+	public struct visitedNode {
+			public Vector2 visit;
+			public Vector2 visitedBy;
+			public visitedNode (Vector2 x, Vector2 y){
+				visit = x;
+				visitedBy=y;
+			}
+		}
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
@@ -36,38 +43,109 @@ public class Enemy : Character {
 			break;
 		}
 	}
+	public bool searchList(List<visitedNode> list, Vector2 x){
+		for(int i = 0; i < list.Count; i++){
+			if(list[i].visit == x){
+				return true;
+			}
+		}
+		return false;
+	}
+	public visitedNode searchListForNode(List<visitedNode> list, Vector2 x){
+		visitedNode z = new visitedNode(GetCoordinates(), GetCoordinates());
+		for(int i = 0; i < list.Count; i++){
+				if(list[i].visit == x){
+					return list[i];
+				}
+		}
+		return z;
+	}
 	
+	public Vector2 backTrack(List<visitedNode> list){
+		//The player coordinates are the end of the path we want, so find them in the list
+		visitedNode x = searchListForNode(list, this.gameManager.GetPlayer().GetCoordinates());
+		
+		//While the current visitedNode isn't one move away from our starting point, backtrack 
+		while(x.visitedBy != GetCoordinates()){
+			x = searchListForNode(list, x.visitedBy);
+		}
+		
+		//we are now on the tile that is one move away from the enemy on the shortest path to the player, return it
+		return x.visit;
+	}
+	
+	public Vector2 shortestPath(){
+		bool pathFound = false;
+		//list that holds all the visitedNode structs (tile currently being visited, which tile visited it)
+		List<visitedNode> visited = new List<visitedNode>();
+		//Queue to hold tiles that need to be searched
+		Queue<Vector2> searchingQueue = new Queue<Vector2>();
+		
+		//Add enemy tile to the queue to start the process
+		searchingQueue.Enqueue(GetCoordinates());
+		
+		//Add current game tile to the list of visited nodes to make sure the enemy's tile isn't processed again
+		visitedNode starter = new visitedNode(GetCoordinates(), GetCoordinates());
+		visited.Add(starter);
+		
+		while(pathFound == false){
+			//Grab next game tile to be processed
+			Vector2 current = searchingQueue.Dequeue();
+			
+			//Check to see if the current vector is the player's tile
+			if(current.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+				pathFound = true;
+			}
+			
+			//if not, Grab all neighboring tiles
+			GameTile up = gameManager.GetTile(current+Vector2.up);
+			GameTile down = gameManager.GetTile(current+Vector2.down);
+			GameTile right = gameManager.GetTile(current+Vector2.right);
+			GameTile left = gameManager.GetTile(current+Vector2.left);
+			
+			//For each neighbor, check to see if it can be walked on, and make sure it hasn't already been visited
+			//via the searchList function
+			if(up.isWalkable == true && up != null){
+				if(searchList(visited, current+Vector2.up) == false){
+					visitedNode z = new visitedNode(current+Vector2.up, current);
+					visited.Add(z);
+					searchingQueue.Enqueue(current+Vector2.up);
+				}
+			}
+			if(down.isWalkable == true && down != null){
+				if(searchList(visited, current+Vector2.down) == false){
+					visitedNode z = new visitedNode(current+Vector2.down, current);
+					visited.Add(z);
+					searchingQueue.Enqueue(current+Vector2.down);
+				}
+			}
+			if(right.isWalkable == true && right != null){
+				if(searchList(visited, current+Vector2.right) == false){
+					visitedNode z = new visitedNode(current+Vector2.right, current);
+					visited.Add(z);
+					searchingQueue.Enqueue(current+Vector2.right);
+				}
+			}
+			if(left.isWalkable == true && left != null){
+				if(searchList(visited, current+Vector2.left) == false){
+					visitedNode z = new visitedNode(current+Vector2.left, current);
+					visited.Add(z);
+					searchingQueue.Enqueue(current+Vector2.left);
+				}
+			}
+		}
+		
+		//The path has been found, now backtrack through the list to find what the next move is
+		return backTrack(visited);
+	}
     public override TurnAction RequestAction() {
-		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
-		Vector2 enemyCoords = GetCoordinates();
-		int playerX, playerY, enemyX, enemyY;
-		playerX = (int)playerCoords.x;
-		playerY = (int)playerCoords.y;
-		enemyX = (int)enemyCoords.x;
-		enemyY = (int)enemyCoords.y;
         Debug.Assert(currentAction.isComplete);
         if (getDistance() <= 4) {
-            setAlertLevel(1);
-            if (getDistance() <= 2.0001) {
-                setAlertLevel(2);
-                // Future combat stuff will go here
-            }
-            if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
-				if(enemyY > playerY){
-					return new MovementAction(this, GetCoordinates() + Vector2.down, this.movementSpeed, this.instantTurn);
-				}
-				else {
-					return new MovementAction(this, GetCoordinates() + Vector2.up, this.movementSpeed, this.instantTurn);
-				}
+			setAlertLevel(1);
+			if(getDistance() <= 2.0001){
+				setAlertLevel(2);
 			}
-			else {
-				if(enemyX > playerX){
-					return new MovementAction(this, GetCoordinates() + Vector2.left, this.movementSpeed, this.instantTurn);
-				}
-				else {
-					return new MovementAction(this, GetCoordinates() + Vector2.right, this.movementSpeed, this.instantTurn);
-				}
-			}
+			return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
 		}
 		setAlertLevel(0);
 		return getRandomMovement();
@@ -77,12 +155,6 @@ public class Enemy : Character {
 		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 		Vector2 enemyCoords = GetCoordinates();
         return (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
-		/*int playerX, playerY, enemyX, enemyY;
-		playerX = (int)playerCoords.x;
-		playerY = (int)playerCoords.y;
-		enemyX = (int)enemyCoords.x;
-		enemyY = (int)enemyCoords.y;
-		return (int)Mathf.Abs(Mathf.Sqrt((enemyX - playerX) + (enemyY - playerY)));*/
 	}
 	
 	public TurnAction getRandomMovement(){
