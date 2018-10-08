@@ -85,6 +85,7 @@ public class Enemy : Character {
 	}
 	
 	public TurnAction getRandomMovement(){
+		setAlertLevel(0);
 		int x = Random.Range(0,4);
 		Vector2 movement;
 		switch(x){
