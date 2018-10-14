@@ -43,7 +43,7 @@ abstract public class Character : Physical {
             inventory[inventory.Length - 1].transform.parent = null;
             inventory = gameObject.GetComponentsInChildren<Pickup>();
         }
-        /*foreach (Pickup pickup in inventory) {
+/*foreach (Pickup pickup in inventory) {
             if (pickup.isWeapon) {
                 this.equippedWeapon = (Weapon)pickup;
                 Debug.Log("weap equipped");
