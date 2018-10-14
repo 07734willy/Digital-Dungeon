@@ -122,6 +122,7 @@ abstract public class Character : Physical {
 				
 				//Increase base stats upon level up
 				this.gameManager.GetPlayer().maxHealth += 10;
+				this.gameManager.GetPlayer().health += 10;
 				this.gameManager.GetPlayer().armor += 1;
 				this.gameManager.GetPlayer().evasion += .1f;
 			}
