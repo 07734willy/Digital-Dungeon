@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-	public Sprite alertImage;
+    public static float EASY = 0.75f;
+    public static float NORMAL = 1.0f;
+    public static float HARD = 1.25f;
+    public static float EXTREME = 1.75f;
+    public float difficulty = NORMAL;
+    public Sprite alertImage;
 	public Sprite engageImage;
 	public struct visitedNode {
 			public Vector2 visit;
@@ -16,6 +21,10 @@ public class Enemy : Character {
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
+        this.maxHealth = (int)(this.maxHealth * difficulty);
+        this.health = this.maxHealth;
+        this.evasion = this.evasion / difficulty;
+        this.armor = (int)(this.armor * difficulty);
     }
 	
 	public void setAlertLevel(int x){
