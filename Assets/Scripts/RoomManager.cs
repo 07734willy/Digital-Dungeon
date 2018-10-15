@@ -30,6 +30,10 @@ public class RoomManager : MonoBehaviour {
         Debug.Assert(minOptionalCharacters <= maxOptionalCharacters && maxOptionalCharacters <= optionalCharacters.Length);
     }
 
+
+    /* This spawns all required Pickups / Characters, and somewhere between the min and max amount of the optional ones
+     * - this will not spawn multiple instances of the same pickup / character. To have multiple- add them into the
+     * initial array multiple times. Also, the  min <= max <= length_of_array, otherwise an assertion is failed */
     void spawnElements() {
         Debug.Assert(minOptionalPickups <= maxOptionalPickups && maxOptionalPickups <= optionalPickups.Length);
         Debug.Assert(minOptionalCharacters <= maxOptionalCharacters && maxOptionalCharacters <= optionalCharacters.Length);
