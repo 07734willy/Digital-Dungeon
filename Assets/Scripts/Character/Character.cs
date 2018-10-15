@@ -11,6 +11,10 @@ abstract public class Character : Physical {
     public int maxHealth = 100;
     public float evasion = 0.1f;
     public int armor = 0;
+	public int level = 1;
+	public int gold = 0;
+	public int totalExperience = 0;
+	public double expMilestone = 100;
     protected bool isPlayer;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
@@ -105,6 +109,23 @@ abstract public class Character : Physical {
         if (this.isPlayer) {
             Debug.LogError("Not yet implemented: player death");
         } else {
+			//Add experience to the player
+			this.gameManager.GetPlayer().totalExperience += 50;
+			
+			//Increase player's gold
+				this.gameManager.GetPlayer().gold += 50;
+			
+			//Level the player up if the milestone is reached, and adjust the milestone
+			if(this.gameManager.GetPlayer().totalExperience >= expMilestone){
+				this.gameManager.GetPlayer().level++;
+				this.gameManager.GetPlayer().expMilestone *= 1.5;
+				
+				//Increase base stats upon level up
+				this.gameManager.GetPlayer().maxHealth += 10;
+				this.gameManager.GetPlayer().armor += 1;
+				this.gameManager.GetPlayer().evasion += .1f;
+			}
+			Debug.LogError(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
                     child.transform.position = this.transform.position;
