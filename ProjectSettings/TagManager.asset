@@ -19,7 +19,7 @@ TagManager:
   - Tiles
   - Pickups
   - Characters
-  - 
+  - Inventory
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3762440725
+    locked: 0
+  - name: Inventory
+    uniqueID: 1990791017
     locked: 0
