@@ -589,6 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271646716412662}
+  - component: {fileID: 114935704897272566}
   m_Layer: 0
   m_Name: basic_room
   m_TagString: Untagged
@@ -4067,6 +4068,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 0
+--- !u!114 &114935704897272566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508565030899304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6917b926d3dedd4eb2600eafd9baea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPickups: []
+  optionalPickups: []
+  requiredCharacters: []
+  optionalCharacters: []
+  minOptionalPickups: 0
+  maxOptionalPickups: 0
+  minOptionalCharacters: 0
+  maxOptionalCharacters: 0
 --- !u!114 &114940898347008270
 MonoBehaviour:
   m_ObjectHideFlags: 1
