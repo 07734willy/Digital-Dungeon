@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
-    public int inventoryCapacity = 8;
+    public int inventoryCapacity = 16;
+	public int itemAmount = 0;
     public int health;
     public int maxHealth = 100;
     public float evasion = 0.1f;
@@ -20,7 +22,7 @@ abstract public class Character : Physical {
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
     protected Weapon equippedWeapon;
-    protected Pickup[] inventory;
+    protected Pickup[] inventory = new Pickup[16];
     protected GameManager gameManager;
 
     virtual protected void Awake() {
@@ -39,6 +41,18 @@ abstract public class Character : Physical {
     public void RefreshInventory() {
         inventory = gameObject.GetComponentsInChildren<Pickup>();
         Debug.Assert(inventoryCapacity >= 0);
+		int index = 0;
+		foreach(Pickup item in inventory){
+			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
+			if(gamex!=null){
+				gamex.GetComponent<Image>().sprite = item.itemSprite;
+				Image image = gamex.GetComponent<Image>();
+				var tempColor = image.color;
+				tempColor.a = 1f;
+				image.color = tempColor;
+			}
+			index++;
+		}
         while (inventory.Length > inventoryCapacity) {
             inventory[inventory.Length - 1].transform.parent = null;
             inventory = gameObject.GetComponentsInChildren<Pickup>();

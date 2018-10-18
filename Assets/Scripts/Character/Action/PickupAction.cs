@@ -29,6 +29,7 @@ public class PickupAction : TurnAction {
         if (!Check()) {
             return false;
         }
+		
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         pickup.transform.parent = character.transform;
         pickup.GetComponent<SpriteRenderer>().enabled = false;

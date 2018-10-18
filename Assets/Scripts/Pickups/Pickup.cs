@@ -10,12 +10,14 @@ public class Pickup : Physical {
     public bool isWeapon;
     public bool isArmor;
     public bool isConsumable;
+	public Sprite itemSprite;
     protected GameManager gameManager;
     protected Character character;
 
     // Use this for initialization
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		itemSprite = this.GetComponent<SpriteRenderer>().sprite;
         //gameManager.AddPickup(this);
     }
 
