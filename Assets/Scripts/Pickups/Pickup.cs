@@ -28,9 +28,9 @@ public class Pickup : Physical {
             if (tile != null) {
                 tile.AddPickup(this);
             }
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = true;
         } else {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
             if (tile != null && tile.GetCharacter() != null) { 
                 this.character = tile.GetCharacter().GetComponent<Character>();
             }
