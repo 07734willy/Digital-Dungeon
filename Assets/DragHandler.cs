@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
+using System.Text.RegularExpressions;
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     Camera mainCamera;
     float zAxis = 0;
     Vector3 clickOffset = Vector3.zero;
 	public static GameObject itemBeingDragged;
-	Vector3 startPosition;
-	Transform startParent;
+	public static Vector3 startPosition;
+	public static Transform startParent;
+	public Sprite image1;
+	public Sprite image2;
     // Use this for initialization
     void Start()
     {
         mainCamera = Camera.main;
         zAxis = transform.position.z;
     }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
 		startPosition = transform.position;
@@ -30,16 +32,10 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         transform.position = mainCamera.ScreenPointToWoldOnPlane(eventData.position, zAxis) + clickOffset;
     }
-
     public void OnEndDrag(PointerEventData eventData)
     {
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
-		//startParent.GetComponent<Image> = transform.parent.GetComponent<Image>;
-		
-		//transform.position = startPosition;
-		if(startParent == transform.parent){
-			transform.position = startPosition;
-		}
+		transform.position=startPosition;
     }
 }
 

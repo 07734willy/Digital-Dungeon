@@ -22,7 +22,8 @@ abstract public class Character : Physical {
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
     protected Weapon equippedWeapon;
-    protected Pickup[] inventory = new Pickup[16];
+    public Pickup[] inventory = new Pickup[16];
+	public int items = 0;
     protected GameManager gameManager;
 
     virtual protected void Awake() {
@@ -37,15 +38,18 @@ abstract public class Character : Physical {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddCharacter(this);
     }
-
+	public void setInventory(int index, Pickup b){
+		this.inventory[index] = b;
+	}
     public void RefreshInventory() {
         inventory = gameObject.GetComponentsInChildren<Pickup>();
-        Debug.Assert(inventoryCapacity >= 0);
 		int index = 0;
-		foreach(Pickup item in inventory){
+		
+		foreach(Pickup item in this.inventory){
 			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
 			if(gamex!=null){
-				gamex.GetComponent<Image>().sprite = item.itemSprite;
+				//Debug.Log(this.inventory[0].itemSprite.name);
+				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
 				Image image = gamex.GetComponent<Image>();
 				var tempColor = image.color;
 				tempColor.a = 1f;
@@ -65,7 +69,6 @@ abstract public class Character : Physical {
             }
         }*/
     }
-
     public void RefreshPosition() {
         GameTile tile = gameManager.GetTile(this.GetCoordinates());
         if (tile != null) {
