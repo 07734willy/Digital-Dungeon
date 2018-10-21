@@ -11,6 +11,11 @@ public class Player : Character {
     override protected void Awake() {
         base.Awake();
         this.isPlayer = true;
+        this.abilityLevel = new Dictionary<AbilityClass, int>() {
+            { AbilityClass.Spin, 0 },
+            { AbilityClass.Heal, 1 },
+            { AbilityClass.Teleport, 1 }
+        };
     }
 
     // Update is called once per frame

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 abstract public class Character : Physical {
+    public enum AbilityClass {
+        None,
+        Spin,
+        Heal,
+        Teleport
+    }
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
@@ -19,6 +25,7 @@ abstract public class Character : Physical {
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
+    protected Dictionary<AbilityClass, int> abilityLevel;
     protected Weapon equippedWeapon;
     protected Pickup[] inventory;
     protected GameManager gameManager;
@@ -103,6 +110,17 @@ abstract public class Character : Physical {
 
     public Weapon GetWeapon() {
         return this.equippedWeapon;
+    }
+
+    public void SetAbilityLevel(AbilityClass abilityClass, int level) {
+        this.abilityLevel[abilityClass] = level;
+    }
+
+    public int getAbilityLevel(AbilityClass abilityClass) {
+        if (!this.abilityLevel.ContainsKey(abilityClass)) {
+            return 0;
+        }
+        return this.abilityLevel[abilityClass];
     }
 
     public void Kill() {

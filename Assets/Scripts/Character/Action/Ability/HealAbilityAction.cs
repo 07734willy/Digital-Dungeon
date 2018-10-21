@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealAbilityAction : TurnAction {
+public class HealAbilityAction : AbilityAction {
 
     public HealAbilityAction(Character character) {
         this.character = character;
+        this.abilityClass = Character.AbilityClass.Heal;
     }
 
     public override bool Check() {
-       return true;
+        Debug.Assert(GetAbilityLevel() >= 0);
+        return GetAbilityLevel() > 0;
     }
 
     public override void Animate() {
@@ -22,7 +24,9 @@ public class HealAbilityAction : TurnAction {
             return false;
         }
 
-        character.health += 10;
+        int level = GetAbilityLevel();
+
+        character.health += (int)(10 * Mathf.Pow(1.5f, level - 1));
         if (character.health > character.maxHealth) {
             character.health = character.maxHealth;
         }

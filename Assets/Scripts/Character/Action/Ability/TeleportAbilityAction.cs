@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportAbilityAction : TurnAction {
+public class TeleportAbilityAction : AbilityAction {
 
     private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, 2 * Vector2.up, 2 * Vector2.down, 2 * Vector2.left, 2 * Vector2.right, 3 * Vector2.up, 3 * Vector2.down, 3 * Vector2.left, 3 * Vector2.right };
 
@@ -12,6 +12,7 @@ public class TeleportAbilityAction : TurnAction {
         this.gameManager = character.GetGameManager();
         this.character = character;
         this.target = GetTarget();
+        this.abilityClass = Character.AbilityClass.Teleport;
         /*this.duration = instant ? 0f : 1f / attackSpeed;*/
     }
 
@@ -33,7 +34,8 @@ public class TeleportAbilityAction : TurnAction {
     }
 
     public override bool Check() {
-        return GetTarget() != null;
+        Debug.Assert(GetAbilityLevel() >= 0);
+        return GetTarget() != null && GetAbilityLevel() > 0;
     }
 
     public override void Animate() {
