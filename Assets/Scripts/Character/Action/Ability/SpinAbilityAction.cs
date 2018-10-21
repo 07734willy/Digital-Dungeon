@@ -47,7 +47,7 @@ public class SpinAbilityAction : AbilityAction {
         int level = GetAbilityLevel();
 
         foreach (Character target in this.targets) {
-            target.ReceiveDamage((int)(15 * Mathf.Pow(1.5f, level-1)));
+            target.ReceiveDamage((int)(45 * Mathf.Pow(1.5f, level-1)));
         }
 
         this.startTime = Time.time;

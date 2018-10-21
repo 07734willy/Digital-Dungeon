@@ -7,7 +7,10 @@ abstract public class Character : Physical {
         None,
         Spin,
         Heal,
-        Teleport
+        Teleport,
+        Fury,
+        Equilibrium,
+        Push
     }
 
     public float movementSpeed = 3f;
@@ -104,6 +107,13 @@ abstract public class Character : Physical {
         }
     }
 
+    public void Heal(int heal) {
+        this.health += heal;
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth;
+        }
+    }
+
     public void SetWeapon(Weapon weapon) {
         this.equippedWeapon = weapon;
     }
@@ -143,7 +153,7 @@ abstract public class Character : Physical {
 				this.gameManager.GetPlayer().armor += 1;
 				this.gameManager.GetPlayer().evasion += .1f;
 			}
-			Debug.LogError(this.gameManager.GetPlayer().gold);
+			Debug.Log(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
                     child.transform.position = this.transform.position;

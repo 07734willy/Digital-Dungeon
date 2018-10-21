@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbilityAction : TurnAction {
 
-    protected Character.AbilityClass abilityClass = Character.AbilityClass.None;
+    protected Character.AbilityClass abilityClass;
 
 
     protected int GetAbilityLevel() {

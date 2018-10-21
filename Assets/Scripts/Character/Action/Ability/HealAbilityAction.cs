@@ -26,10 +26,7 @@ public class HealAbilityAction : AbilityAction {
 
         int level = GetAbilityLevel();
 
-        character.health += (int)(10 * Mathf.Pow(1.5f, level - 1));
-        if (character.health > character.maxHealth) {
-            character.health = character.maxHealth;
-        }
+        character.Heal((int)(10 * Mathf.Pow(1.5f, level - 1)));
 
         this.startTime = Time.time;
         return true;

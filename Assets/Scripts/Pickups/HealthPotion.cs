@@ -9,10 +9,7 @@ public class HealthPotion : Consumable {
     public override void Select() {
         RefreshStatus();
         if (IsEquipped()) {
-            character.health += healValue;
-            if (character.health > character.maxHealth) {
-                character.health = character.maxHealth;
-            }
+            character.Heal(healValue);
             Destroy(this.gameObject);
         }
         character.RefreshInventory();
