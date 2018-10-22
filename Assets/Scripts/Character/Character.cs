@@ -83,8 +83,9 @@ abstract public class Character : Physical {
         this.pendingAction = action;
     }
 
-    public void ReceiveDamage(int damage) {
+    public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
+			Debug.Log("Evaded damage!");
             return;
         }
         int baseArmor = 20;

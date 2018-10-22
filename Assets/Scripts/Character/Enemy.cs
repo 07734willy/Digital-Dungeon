@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-    public static float EASY = 0.75f;
-    public static float NORMAL = 1.0f;
-    public static float HARD = 1.25f;
-    public static float EXTREME = 1.75f;
-    public float difficulty = NORMAL;
     public Sprite alertImage;
 	public Sprite engageImage;
 	public struct visitedNode {
@@ -21,10 +16,6 @@ public class Enemy : Character {
     override protected void Awake() {
         base.Awake();
         this.isPlayer = false;
-        this.maxHealth = (int)(this.maxHealth * difficulty);
-        this.health = this.maxHealth;
-        this.evasion = this.evasion / difficulty;
-        this.armor = (int)(this.armor * difficulty);
     }
 	
 	public void setAlertLevel(int x){
@@ -185,5 +176,22 @@ public class Enemy : Character {
 			
 		}
 		return new MovementAction(this, GetCoordinates() + movement, this.movementSpeed, this.instantTurn);
+	}
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * (1 / multiplier));
+		base.ReceiveDamage(damage);
 	}
 }
