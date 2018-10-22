@@ -1,12 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TrapTile : GameTile {
     public int damage = 0;
     public bool resetting = true;
 	private bool sprung;
     public string trapType;
+    public string newLevel;
 
     override protected void Awake() {
         base.Awake();
@@ -30,6 +32,10 @@ public class TrapTile : GameTile {
 
             if (!resetting) {
                 this.sprung = true;
+            }
+
+            if (newLevel != null){
+            	SceneManager.LoadScene(newLevel);
             }
         }
     }
