@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TrapTile : GameTile {
     public int damage = 0;
@@ -9,14 +8,15 @@ public class TrapTile : GameTile {
 	private bool sprung;
     public string trapType;
     public string newLevel;
+    private GameManager curGm;
 
     override protected void Awake() {
         base.Awake();
         this.sprung = false;
+        curGm = FindObjectOfType<GameManager>();
     }
 
     public override void SetCharacter(Character character) {
-        base.SetCharacter(character);
 
         if (!this.sprung && this.character == null) {
             base.SetCharacter(character);
@@ -35,7 +35,8 @@ public class TrapTile : GameTile {
             }
 
             if (newLevel != null){
-            	SceneManager.LoadScene(newLevel);
+            	curGm.loadNewLevel(newLevel);
+                Debug.Log("weee");
             }
         }
     }
