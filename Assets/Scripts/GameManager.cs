@@ -35,16 +35,23 @@ public class GameManager : MonoBehaviour {
             Update();
             return;
         }
+        character.FinishActions();
         TurnAction action = character.RequestAction();
         if (action.Execute()) {
-            characterQueue.Enqueue(characterQueue.Dequeue());
+            if (action.consumeTurn) { 
+                characterQueue.Enqueue(characterQueue.Dequeue());
+            }
+            character.IncrementTurnNumber();
             currentAction = action;
             currentAction.isComplete = false;
             currentAction.Animate();
         } else {
             action.isComplete = true;
             if (!(character.IsPlayer())) {
-                characterQueue.Enqueue(characterQueue.Dequeue());
+                if (action.consumeTurn) {
+                    characterQueue.Enqueue(characterQueue.Dequeue());
+                }
+                character.IncrementTurnNumber();
             }
         }
     }

@@ -11,7 +11,7 @@ public class HealAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetAbilityLevel() > 0;
+        return GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -27,6 +27,9 @@ public class HealAbilityAction : AbilityAction {
         int level = GetAbilityLevel();
 
         character.Heal((int)(10 * Mathf.Pow(1.5f, level - 1)));
+
+        character.AddActionFinisher(new HealAbilityFinisher(character, 2));
+        character.SetOnCooldown(Character.AbilityClass.Heal, true);
 
         this.startTime = Time.time;
         return true;

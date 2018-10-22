@@ -25,10 +25,13 @@ abstract public class Character : Physical {
 	public int totalExperience = 0;
 	public double expMilestone = 100;
     protected bool isPlayer;
+    protected int turnNumber = 0;
+    protected Dictionary<int, List<ActionFinisher>> actionFinishers;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
     protected Dictionary<AbilityClass, int> abilityLevel;
+    protected Dictionary<AbilityClass, bool> onCooldown;
     protected Weapon equippedWeapon;
     protected Pickup[] inventory;
     protected GameManager gameManager;
@@ -39,6 +42,8 @@ abstract public class Character : Physical {
         //this.inventory = new List<Item>();
         this.inventory = this.gameObject.GetComponentsInChildren<Pickup>();
         this.health = maxHealth;
+        this.actionFinishers = new Dictionary<int, List<ActionFinisher>>();
+        this.onCooldown = new Dictionary<AbilityClass, bool>();
     }
     
     void Start() {
@@ -75,10 +80,33 @@ abstract public class Character : Physical {
         RefreshInventory();
     }
 
+    public void AddActionFinisher(ActionFinisher finisher) {
+        if (!this.actionFinishers.ContainsKey(finisher.finishTurn)) {
+            this.actionFinishers[finisher.finishTurn] = new List<ActionFinisher>();
+        }
+        this.actionFinishers[finisher.finishTurn].Add(finisher);
+    }
+
+    public void FinishActions() {
+        if (this.actionFinishers.ContainsKey(this.turnNumber)) {
+            foreach (ActionFinisher finisher in this.actionFinishers[this.turnNumber]) {
+                finisher.Execute();
+            }
+        }
+    }
+
     abstract public TurnAction RequestAction();
 
     public bool IsPlayer() {
         return this.isPlayer;
+    }
+
+    public int GetTurnNumber() {
+        return turnNumber;
+    }
+
+    public void IncrementTurnNumber() {
+        this.turnNumber += 1;
     }
 
     public GameManager GetGameManager() {
@@ -91,6 +119,15 @@ abstract public class Character : Physical {
 
     public void SetPendingAction(TurnAction action) {
         this.pendingAction = action;
+    }
+
+    public void SetOnCooldown(AbilityClass abilityClass, bool value) {
+        this.onCooldown[abilityClass] = value;
+    }
+
+    public bool IsOnCooldown(AbilityClass abilityClass) {
+        bool value;
+        return this.onCooldown.TryGetValue(abilityClass, out value) ? value : false;
     }
 
     public void ReceiveDamage(int damage) {
