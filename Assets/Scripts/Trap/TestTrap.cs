@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapTile : GameTile {
+
     public int damage = 0;
     public bool resetting = true;
 	private bool sprung;

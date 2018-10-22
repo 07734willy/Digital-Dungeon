@@ -120,9 +120,14 @@ MonoBehaviour:
   instantTurn: 0
   inventoryCapacity: 8
   health: 0
-  maxHealth: 100
-  evasion: 0.1
+  maxHealth: 0
+  evasion: Infinity
   armor: 0
+  level: 1
+  gold: 0
+  totalExperience: 0
+  expMilestone: 100
+  difficulty: 0
   alertImage: {fileID: 21300000, guid: 7a34004381482ae4fa0b11f40c1b7e37, type: 3}
   engageImage: {fileID: 21300000, guid: 04b1119f79a3abe4f9587f659ebb3333, type: 3}
 --- !u!114 &114436858515708606
@@ -151,7 +156,7 @@ MonoBehaviour:
   stackable: 0
   quantity: 1
   value: 0
-  isWeapon: 0
+  isWeapon: 1
   isArmor: 0
   isConsumable: 0
   damage: 100
@@ -234,7 +239,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1166433539833504}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

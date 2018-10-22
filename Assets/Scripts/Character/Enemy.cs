@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-	public Sprite alertImage;
+    public Sprite alertImage;
 	public Sprite engageImage;
 	public struct visitedNode {
 			public Vector2 visit;
@@ -176,5 +176,22 @@ public class Enemy : Character {
 			
 		}
 		return new MovementAction(this, GetCoordinates() + movement, this.movementSpeed, this.instantTurn);
+	}
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * (1 / multiplier));
+		base.ReceiveDamage(damage);
 	}
 }

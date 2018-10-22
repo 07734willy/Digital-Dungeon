@@ -118,4 +118,21 @@ public class Player : Character {
     public void HideDialogBox() {
         dialogBox.SetActive(false);
     }
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * multiplier);
+		base.ReceiveDamage(damage);
+	}
 }
