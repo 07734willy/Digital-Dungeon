@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +8,16 @@ public class TrapTile : GameTile {
     public bool resetting = true;
 	private bool sprung;
     public string trapType;
+    public string newLevel;
+    private GameManager curGm;
 
     override protected void Awake() {
         base.Awake();
         this.sprung = false;
+        curGm = FindObjectOfType<GameManager>();
     }
 
     public override void SetCharacter(Character character) {
-        base.SetCharacter(character);
 
         if (!this.sprung && this.character == null) {
             base.SetCharacter(character);
@@ -31,6 +33,11 @@ public class TrapTile : GameTile {
 
             if (!resetting) {
                 this.sprung = true;
+            }
+
+            if (newLevel != null){
+            	curGm.loadNewLevel(newLevel);
+                Debug.Log("weee");
             }
         }
     }
