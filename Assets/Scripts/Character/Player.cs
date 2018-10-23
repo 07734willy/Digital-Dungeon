@@ -11,6 +11,11 @@ public class Player : Character {
     override protected void Awake() {
         base.Awake();
         this.isPlayer = true;
+        this.abilityLevel = new Dictionary<AbilityClass, int>() {
+            { AbilityClass.Spin, 1 },
+            { AbilityClass.Heal, 1 },
+            { AbilityClass.Teleport, 1 }
+        };
     }
 
     // Update is called once per frame
@@ -25,6 +30,12 @@ public class Player : Character {
                 UseAbility2();
             } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
                 UseAbility3();
+            } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+                UseAbility4();
+            } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+                UseAbility5();
+            } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+                UseAbility6();
             } else {
                 Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -75,6 +86,21 @@ public class Player : Character {
         this.pendingAction = new TeleportAbilityAction(this);
     }
 
+    public void UseAbility4() {
+        Debug.Log("fury ability used");
+        this.pendingAction = new FuryAbilityAction(this);
+    }
+
+    public void UseAbility5() {
+        Debug.Log("equilibrium ability used");
+        this.pendingAction = new EquilibriumAbilityAction(this);
+    }
+
+    public void UseAbility6() {
+        Debug.Log("push ability used");
+        this.pendingAction = new PushAbilityAction(this);
+    }
+
     public void WaitTurn() {
         this.pendingAction = new WaitAction(this);
     }
@@ -92,4 +118,21 @@ public class Player : Character {
     public void HideDialogBox() {
         dialogBox.SetActive(false);
     }
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * multiplier);
+		base.ReceiveDamage(damage);
+	}
 }

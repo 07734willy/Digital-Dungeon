@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 abstract public class Character : Physical {
+    public enum AbilityClass {
+        None,
+        Spin,
+        Heal,
+        Teleport,
+        Fury,
+        Equilibrium,
+        Push
+    }
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
@@ -19,6 +28,7 @@ abstract public class Character : Physical {
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
+    protected Dictionary<AbilityClass, int> abilityLevel;
     protected Weapon equippedWeapon;
     protected Pickup[] inventory;
     protected GameManager gameManager;
@@ -83,8 +93,9 @@ abstract public class Character : Physical {
         this.pendingAction = action;
     }
 
-    public void ReceiveDamage(int damage) {
+    public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
+			Debug.Log("Evaded damage!");
             return;
         }
         int baseArmor = 20;
@@ -97,12 +108,30 @@ abstract public class Character : Physical {
         }
     }
 
+    public void Heal(int heal) {
+        this.health += heal;
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth;
+        }
+    }
+
     public void SetWeapon(Weapon weapon) {
         this.equippedWeapon = weapon;
     }
 
     public Weapon GetWeapon() {
         return this.equippedWeapon;
+    }
+
+    public void SetAbilityLevel(AbilityClass abilityClass, int level) {
+        this.abilityLevel[abilityClass] = level;
+    }
+
+    public int getAbilityLevel(AbilityClass abilityClass) {
+        if (!this.abilityLevel.ContainsKey(abilityClass)) {
+            return 0;
+        }
+        return this.abilityLevel[abilityClass];
     }
 
     public void Kill() {
@@ -126,7 +155,7 @@ abstract public class Character : Physical {
 				this.gameManager.GetPlayer().armor += 1;
 				this.gameManager.GetPlayer().evasion += .1f;
 			}
-			Debug.LogError(this.gameManager.GetPlayer().gold);
+			Debug.Log(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
                     child.transform.position = this.transform.position;

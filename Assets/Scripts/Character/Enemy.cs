@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-	public Sprite alertImage;
+    public Sprite alertImage;
 	public Sprite engageImage;
 	public struct visitedNode {
 			public Vector2 visit;
 			public Vector2 visitedBy;
 			public visitedNode (Vector2 x, Vector2 y){
 				visit = x;
-				visitedBy=y;
+				visitedBy = y;
 			}
 		}
     override protected void Awake() {
@@ -98,39 +98,39 @@ public class Enemy : Character {
 			}
 			
 			//if not, Grab all neighboring tiles
-			GameTile up = gameManager.GetTile(current+Vector2.up);
-			GameTile down = gameManager.GetTile(current+Vector2.down);
-			GameTile right = gameManager.GetTile(current+Vector2.right);
-			GameTile left = gameManager.GetTile(current+Vector2.left);
+			GameTile up =    gameManager.GetTile(current + Vector2.up);
+			GameTile down =  gameManager.GetTile(current + Vector2.down);
+			GameTile right = gameManager.GetTile(current + Vector2.right);
+			GameTile left =  gameManager.GetTile(current + Vector2.left);
 			
 			//For each neighbor, check to see if it can be walked on, and make sure it hasn't already been visited
 			//via the searchList function
-			if(up.isWalkable == true && up != null){
-				if(searchList(visited, current+Vector2.up) == false){
-					visitedNode z = new visitedNode(current+Vector2.up, current);
+			if(up != null && up.isWalkable == true){
+				if(searchList(visited, current + Vector2.up) == false){
+					visitedNode z = new visitedNode(current + Vector2.up, current);
 					visited.Add(z);
 					searchingQueue.Enqueue(current+Vector2.up);
 				}
 			}
-			if(down.isWalkable == true && down != null){
-				if(searchList(visited, current+Vector2.down) == false){
-					visitedNode z = new visitedNode(current+Vector2.down, current);
+			if(down != null && down.isWalkable == true){
+				if(searchList(visited, current + Vector2.down) == false){
+					visitedNode z = new visitedNode(current + Vector2.down, current);
 					visited.Add(z);
 					searchingQueue.Enqueue(current+Vector2.down);
 				}
 			}
-			if(right.isWalkable == true && right != null){
-				if(searchList(visited, current+Vector2.right) == false){
-					visitedNode z = new visitedNode(current+Vector2.right, current);
+			if(right != null && right.isWalkable == true){
+				if(searchList(visited, current + Vector2.right) == false){
+					visitedNode z = new visitedNode(current + Vector2.right, current);
 					visited.Add(z);
 					searchingQueue.Enqueue(current+Vector2.right);
 				}
 			}
-			if(left.isWalkable == true && left != null){
-				if(searchList(visited, current+Vector2.left) == false){
-					visitedNode z = new visitedNode(current+Vector2.left, current);
+			if(left != null && left.isWalkable == true){
+				if(searchList(visited, current + Vector2.left) == false){
+					visitedNode z = new visitedNode(current + Vector2.left, current);
 					visited.Add(z);
-					searchingQueue.Enqueue(current+Vector2.left);
+					searchingQueue.Enqueue(current + Vector2.left);
 				}
 			}
 		}
@@ -176,5 +176,22 @@ public class Enemy : Character {
 			
 		}
 		return new MovementAction(this, GetCoordinates() + movement, this.movementSpeed, this.instantTurn);
+	}
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * (1 / multiplier));
+		base.ReceiveDamage(damage);
 	}
 }

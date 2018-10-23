@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotion : Consumable {
+public class SkillBook : Consumable {
 
-    public int healValue = 30;
+    public Character.AbilityClass abilityClass = Character.AbilityClass.Spin;
 
     public override void Select() {
         RefreshStatus();
         if (IsEquipped()) {
-            character.Heal(healValue);
+            character.SetAbilityLevel(abilityClass, character.getAbilityLevel(abilityClass) + 1);
             Destroy(this.gameObject);
         }
         character.RefreshInventory();

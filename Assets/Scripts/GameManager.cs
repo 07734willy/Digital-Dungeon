@@ -6,11 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+	public enum Difficulty{
+		Easy, 
+		Normal, 
+		Hard, 
+		Extreme
+	};
+	
+	public Difficulty difficulty;
     private Dictionary<Vector2, GameTile> map;
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
     private Player player;
-
+	
     private void Awake() {
         this.map = new Dictionary<Vector2, GameTile>();
         this.characterQueue = new Queue<Character>();
@@ -85,5 +93,9 @@ public class GameManager : MonoBehaviour {
         }
         map[coordinates].SetCharacter(character);
         return true;
+    }
+
+    public void loadNewLevel(string levelName){
+        SceneManager.LoadScene(levelName);
     }
 }
