@@ -31,7 +31,8 @@ public class PickupAction : TurnAction {
         }
 		
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
-        pickup.transform.parent = character.transform;
+        //pickup.transform.parent = character.transform;
+		pickup.transform.parent = GameObject.Find("InventoryInven").transform;
         pickup.GetComponent<SpriteRenderer>().enabled = false;
         Dialog dialog = pickup.GetComponent<Dialog>();
         if (dialog != null) {

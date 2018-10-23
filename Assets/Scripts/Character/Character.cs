@@ -23,6 +23,8 @@ abstract public class Character : Physical {
     //protected List<Item> inventory;
     protected Weapon equippedWeapon;
     public Pickup[] inventory = new Pickup[16];
+	public Pickup[] equipped = new Pickup[4];
+	public int itemsEquipped = 0;
 	public int items = 0;
     protected GameManager gameManager;
 
@@ -42,9 +44,41 @@ abstract public class Character : Physical {
 		this.inventory[index] = b;
 	}
     public void RefreshInventory() {
-        inventory = gameObject.GetComponentsInChildren<Pickup>();
+		inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
+		equipped = GameObject.Find("EquippedInven").GetComponentsInChildren<Pickup>();
+		for(int j = 0; j < 16; j++){
+			GameObject gamex = GameObject.Find("equippedImage ("+j.ToString()+")");
+			if(gamex!=null){
+				gamex.GetComponent<Image>().sprite = null;
+				Image image = gamex.GetComponent<Image>();
+				var tempColor = image.color;
+				tempColor.a = 0f;
+				image.color = tempColor;
+			}
+		}
+		for(int j = 0; j < 16; j++){
+			GameObject gamex = GameObject.Find("Image ("+j.ToString()+")");
+			if(gamex!=null){
+				gamex.GetComponent<Image>().sprite = null;
+				Image image = gamex.GetComponent<Image>();
+				var tempColor = image.color;
+				tempColor.a = 0f;
+				image.color = tempColor;
+			}
+		}
 		int index = 0;
-		
+		int eqIndex = 0;
+		foreach(Pickup item in this.equipped){
+			GameObject gamex = GameObject.Find("equippedImage ("+eqIndex.ToString()+")");
+			if(gamex!=null){
+				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+				Image image = gamex.GetComponent<Image>();
+				var tempColor = image.color;
+				tempColor.a = 1f;
+				image.color = tempColor;
+			}
+			eqIndex++;
+		}
 		foreach(Pickup item in this.inventory){
 			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
 			if(gamex!=null){

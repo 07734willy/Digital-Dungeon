@@ -22,6 +22,13 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
 		startPosition = transform.position;
 		startParent = transform.parent;
+		//Set whatever is clicked as last sibling so it won't be hidden behind other squares
+		if(startParent.parent.parent.name == "Inventory"){
+			GameObject.Find("Inventory").transform.SetAsLastSibling();
+		}
+		else{
+			GameObject.Find("Equipped").transform.SetAsLastSibling();
+		}
 		startParent.SetAsLastSibling();
 		itemBeingDragged = gameObject;
         clickOffset = transform.position - mainCamera.ScreenPointToWoldOnPlane(eventData.position, zAxis);
@@ -36,7 +43,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
 		transform.position=startPosition;
-    }
+	}
 }
 
 public static class extensionMethod
