@@ -61,6 +61,33 @@ public class Enemy : Character {
 		return z;
 	}
 	
+	public Vector2 easyPath(){
+		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+		Vector2 enemyCoords = GetCoordinates();
+		int playerX, playerY, enemyX, enemyY;
+		playerX = (int)playerCoords.x;
+		playerY = (int)playerCoords.y;
+		enemyX = (int)enemyCoords.x;
+		enemyY = (int)enemyCoords.y;
+        Debug.Assert(currentAction.isComplete);
+        if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+			if(enemyY > playerY){
+				return GetCoordinates() + Vector2.down;
+			}
+			else {
+				return GetCoordinates() + Vector2.up;
+			}
+		}
+		else {
+			if(enemyX > playerX){
+				return GetCoordinates() + Vector2.left;
+			}	
+			else {
+				return GetCoordinates() + Vector2.right;
+			}
+		}
+	}
+	
 	public Vector2 backTrack(List<visitedNode> list){
 		//The player coordinates are the end of the path we want, so find them in the list
 		visitedNode x = searchListForNode(list, this.gameManager.GetPlayer().GetCoordinates());
@@ -138,6 +165,7 @@ public class Enemy : Character {
 		//The path has been found, now backtrack through the list to find what the next move is
 		return backTrack(visited);
 	}
+	
     public override TurnAction RequestAction() {
         Debug.Assert(currentAction.isComplete);
         if (getDistance() <= 4) {
@@ -145,7 +173,16 @@ public class Enemy : Character {
 			if(getDistance() <= 2.0001){
 				setAlertLevel(2);
 			}
-			return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+			switch (gameManager.difficulty)
+			{
+				case GameManager.Difficulty.Easy:
+					return new MovementAction(this, easyPath(), this.movementSpeed, this.instantTurn);	
+					break;
+				default:
+					return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+					break;
+			}
+			
 		}
 		setAlertLevel(0);
 		return getRandomMovement();
