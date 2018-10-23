@@ -108,6 +108,7 @@ abstract public class Character : Physical {
     public void Kill() {
         if (this.isPlayer) {
             Debug.LogError("Not yet implemented: player death");
+            Application.LoadLevel("DeathScene");
         } else {
 			//Add experience to the player
 			this.gameManager.GetPlayer().totalExperience += 50;
