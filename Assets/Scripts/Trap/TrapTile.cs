@@ -5,11 +5,13 @@ using UnityEngine;
 public class TrapTile : GameTile {
 
     public int damage = 0;
-    public bool resetting = true;
+    public bool resetting = false;
 	private bool sprung;
     public string trapType;
     public string newLevel;
     private GameManager curGm;
+    public GameTile spawnLocation;
+    public GameObject whatToSpawn;
 
     override protected void Awake() {
         base.Awake();
@@ -36,8 +38,13 @@ public class TrapTile : GameTile {
             }
 
             if (newLevel != null){
-            	curGm.loadNewLevel(newLevel);
-                Debug.Log("weee");
+            	curGm.LoadNewLevel(newLevel);
+            }
+
+            if(spawnLocation != null){
+            	if(spawnLocation.GetCharacter() == null && spawnLocation.IsWalkable()){
+            		Instantiate(whatToSpawn, spawnLocation.GetCoordinates(), Quaternion.identity);
+            	}
             }
         }
     }
