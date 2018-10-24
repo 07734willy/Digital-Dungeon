@@ -9,6 +9,9 @@ public class DoorTile : GameTile {
 	public Sprite openSprite;
 	private bool isOpen;
 	public bool isLockedDoor = false;
+	//temp for testing dialog DELETE THIS 
+	public bool playerHasKey = false;
+	//DELETE THIS DELETE THIS
 
 	override protected void Awake() {
 		base.Awake();
@@ -21,10 +24,15 @@ public class DoorTile : GameTile {
 		this.curPlayer = curGm.GetPlayer();
 		if((this.GetCoordinates() - curPlayer.GetCoordinates()).magnitude == 1 && this.isOpen == false){
 			if(this.isLockedDoor){
-				Debug.Log("Locked!");
-				this.OpenDoor();
+				//need inventory, temp "has key to test dialog"
+				if(this.playerHasKey){
+					curPlayer.SetDialogMessage("Key used! Door unlocked.");
+					this.OpenDoor();
+				}else{
+					curPlayer.SetDialogMessage("Door is locked! Find a Key.");
+				}
 			}else{
-				Debug.Log("Not Locked!");
+				curPlayer.SetDialogMessage("Door opened!");
 				this.OpenDoor();
 			}
 		}
@@ -36,6 +44,10 @@ public class DoorTile : GameTile {
 		SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
 		renderer.sprite = openSprite;
 		this.isOpen = true;
-		Debug.Log("Hello");
 	}
+
+	public bool IsOpen(){
+		return this.isOpen;
+	}
+
 }

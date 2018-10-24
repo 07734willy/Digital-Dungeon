@@ -7,8 +7,7 @@ public class TrapTile : GameTile {
     public int damage = 0;
     public bool resetting = false;
 	private bool sprung;
-    public string trapType;
-    public string newLevel;
+    public string newLevel = null;
     private GameManager curGm;
     public GameTile spawnLocation;
     public GameObject whatToSpawn;
