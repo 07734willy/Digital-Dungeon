@@ -557,6 +557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 0
   openSprite: {fileID: 21300000, guid: 75799347a6c326142beda2f3a63aa09c, type: 3}
+  isLockedDoor: 1
+  playerHasKey: 0
 --- !u!1001 &174290887
 Prefab:
   m_ObjectHideFlags: 0
@@ -1022,7 +1024,14 @@ Prefab:
       propertyPath: m_Name
       value: Floor (15)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 212125171337902038, guid: 47d742d6514581047babf468972ec437,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 49e90979b53e74d4ea5cc460bf338471,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114275075288790804, guid: 47d742d6514581047babf468972ec437, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 47d742d6514581047babf468972ec437, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &426930193
@@ -1148,6 +1157,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 6e163a0b2cc66fb4f98b9153ceafbad9,
         type: 3}
+    - target: {fileID: 1409306061049954, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
+      propertyPath: m_Name
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
@@ -1276,6 +1289,40 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d742d6514581047babf468972ec437, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &606147768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1827312474463490, guid: 47d742d6514581047babf468972ec437,
+    type: 2}
+  m_PrefabInternal: {fileID: 408750145}
+--- !u!114 &606147769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606147768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0534a7faa8bd8e94db9e823d6cec18e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWalkable: 1
+  damage: 0
+  resetting: 1
+  newLevel: 
+  spawnLocation: {fileID: 0}
+  whatToSpawn: {fileID: 0}
+--- !u!114 &606147774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606147768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368ee79e271cca747aebca8e9b03621c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Hey!
 --- !u!1001 &657624221
 Prefab:
   m_ObjectHideFlags: 0
@@ -1742,7 +1789,6 @@ MonoBehaviour:
   isWalkable: 1
   damage: 0
   resetting: 1
-  trapType: 
   newLevel: Level 1
   spawnLocation: {fileID: 0}
   whatToSpawn: {fileID: 0}
