@@ -151,9 +151,19 @@ public class Enemy : Character {
 			if(getDistance() <= 2.0001){
 				setAlertLevel(2);
 			}
+			/* Implement condition for ranged attack here */
+			
+			/* If not within range for ranged attack, get path movement */
 			if(shortestPath().Equals(Vector2.zero)==false){
 				return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
 			}
+			
+			/* If too close for path movement, enemy is within distance of a melee attack */
+			if(getDistance() <= 1.0001){
+				return new MeleeAttackAction(this, this.gameManager.GetPlayer(), this.movementSpeed, this.instantTurn);
+			}
+			
+			/* Just wait */
 			return new WaitAction(this);
 		}
 		setAlertLevel(0);
