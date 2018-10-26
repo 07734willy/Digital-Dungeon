@@ -38,6 +38,7 @@ public class PickupAction : TurnAction {
         if (dialog != null) {
             gameManager.GetPlayer().SetDialogMessage(dialog.message);
         }
+	pickup.setCharacter(this.character);
         //pickup.transform.position = Vector2.zero;
         // might need to set transform.position to Vector2.zero <- I'm not sure
         this.startTime = Time.time;

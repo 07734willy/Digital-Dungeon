@@ -31,12 +31,14 @@ public class Pickup : Physical {
             //gameObject.GetComponent<SpriteRenderer>().enabled = true;
         } else {
             //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            if (tile != null && tile.GetCharacter() != null) { 
+            /*if (tile != null && tile.GetCharacter() != null) { 
                 this.character = tile.GetCharacter().GetComponent<Character>();
-            }
+            }*/
         }
     }
-
+	public void setCharacter (Character character){
+		this.character = character;
+	}
     public virtual void Select() {
         return;
     }

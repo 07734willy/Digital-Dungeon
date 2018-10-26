@@ -27,12 +27,19 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
 			Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
 			b.transform.SetParent(GameObject.Find("EquippedInven").transform);
+			if(b.gameObject.GetComponent<Pickup>().isWeapon){
+Debug.Log("SUP2");
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(b.gameObject.GetComponent<Weapon>());
+			}
 			
 		}
 		else if(DragHandler.startParent.parent.parent.name == "Equipped" && item.transform.parent.parent.parent.name == "Inventory"){
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
 			Transform b = GameObject.Find("EquippedInven").transform.GetChild(startIndex);
 			b.transform.SetParent(GameObject.Find("InventoryInven").transform);
+			if(b.gameObject.GetComponent<Pickup>().isWeapon){
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(null);
+			}
 			
 		}
 		//Restore original parent and starting position

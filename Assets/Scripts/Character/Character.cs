@@ -149,6 +149,7 @@ abstract public class Character : Physical {
     }
 
     public void SetWeapon(Weapon weapon) {
+	//Debug.Log("Weapon set");
         this.equippedWeapon = weapon;
     }
 

@@ -70,7 +70,10 @@ public class Enemy : Character {
 			x = searchListForNode(list, x.visitedBy);
 		}
 		
-		//we are now on the tile that is one move away from the enemy on the shortest path to the player, return it
+		//we are now on the tile that is one move away from the enemy on the shortest path to the player, return it if it is not the players coords
+		if(x.visit.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+			return Vector2.zero;
+		}
 		return x.visit;
 	}
 	
@@ -90,6 +93,9 @@ public class Enemy : Character {
 		
 		while(pathFound == false){
 			//Grab next game tile to be processed
+			if(searchingQueue.Count == 0){
+				return Vector2.zero;
+			}
 			Vector2 current = searchingQueue.Dequeue();
 			
 			//Check to see if the current vector is the player's tile
@@ -145,7 +151,10 @@ public class Enemy : Character {
 			if(getDistance() <= 2.0001){
 				setAlertLevel(2);
 			}
-			return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+			if(shortestPath().Equals(Vector2.zero)==false){
+				return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+			}
+			return new WaitAction(this);
 		}
 		setAlertLevel(0);
 		return getRandomMovement();

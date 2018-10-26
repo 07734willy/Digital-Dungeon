@@ -31,6 +31,6 @@ public class Weapon : Pickup {
     }
 
     public bool IsEquipped() {
-        return transform.parent != null;
+        return transform.parent != null && transform.parent.name != "InventoryInven";
     }
 }
