@@ -177,10 +177,8 @@ public class Enemy : Character {
 			{
 				case GameManager.Difficulty.Easy:
 					return new MovementAction(this, easyPath(), this.movementSpeed, this.instantTurn);	
-					break;
 				default:
 					return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
-					break;
 			}
 			
 		}
