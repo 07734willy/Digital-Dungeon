@@ -1,15 +1,20 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapTile : GameTile {
 
     public int damage = 0;
-    public bool resetting = true;
+    public bool resetting = false;
 	private bool sprung;
     public string trapType;
     public string newLevel;
     private GameManager curGm;
+    public GameTile spawnLocation;
+    public GameObject whatToSpawnEasy;
+	public GameObject whatToSpawnNormal;
+	public GameObject whatToSpawnHard;
+	public GameObject whatToSpawnExtreme;
 
     override protected void Awake() {
         base.Awake();
@@ -36,8 +41,27 @@ public class TrapTile : GameTile {
             }
 
             if (newLevel != null){
-            	curGm.loadNewLevel(newLevel);
-                Debug.Log("weee");
+            	curGm.LoadNewLevel(newLevel);
+            }
+
+            if(spawnLocation != null){
+            	if(spawnLocation.GetCharacter() == null && spawnLocation.IsWalkable()){
+            		switch (curGm.difficulty)
+					{
+						case GameManager.Difficulty.Easy:
+							Instantiate(whatToSpawnEasy, spawnLocation.GetCoordinates(), Quaternion.identity);
+							break;
+						case GameManager.Difficulty.Hard: 
+							Instantiate(whatToSpawnHard, spawnLocation.GetCoordinates(), Quaternion.identity);
+							break;
+						case GameManager.Difficulty.Extreme: 
+							Instantiate(whatToSpawnExtreme, spawnLocation.GetCoordinates(), Quaternion.identity);
+							break;
+						default: 
+							Instantiate(whatToSpawnNormal, spawnLocation.GetCoordinates(), Quaternion.identity);
+							break;
+					}
+            	}
             }
         }
     }
