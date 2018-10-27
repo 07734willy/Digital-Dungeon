@@ -38,10 +38,25 @@ public class GameTile : Physical {
     private void Update() {
         RefreshContents();
     }
-
     private void OnMouseDown() {
         Player player = gameManager.GetPlayer();
-        if (this.character != null && character != player) {
+		if(this.character != null && character != player && (player.GetCoordinates() - character.GetCoordinates()).magnitude > 1) {
+			if(this.gameManager.GetPlayer().rangedWeapon != null){
+				Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+				Vector2 enemyCoords = this.character.GetCoordinates();
+				int difference = (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
+				if(difference <= this.gameManager.GetPlayer().rangedWeapon.range){
+					if(this.gameManager.GetPlayer().checkPlayerRangedAttack(this.character)){
+						player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+					}
+				}
+				else {
+					Debug.Log("Out of range!");
+				}
+			}
+			//player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+		}
+        else if (this.character != null && character != player) {
             //attack
             player.SetPendingAction(new MeleeAttackAction(player, character, player.movementSpeed, player.instantTurn));
         } else if (player.GetCoordinates() != this.GetCoordinates()) {

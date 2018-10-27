@@ -28,6 +28,7 @@ public class MeleeAttackAction : AttackAction {
         }
 
         Weapon weapon = character.GetWeapon();
+		Debug.Log(weapon);
         if (weapon == null) {
             target.ReceiveDamage(30);
         } else {

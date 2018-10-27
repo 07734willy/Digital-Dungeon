@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Weapon : Pickup {
     public int damage = 100;
     public float accuracy = 1f;
-
+	public bool isRanged;
+	public int range;
     public void Awake() {
         this.isWeapon = true;
     }
@@ -17,9 +18,12 @@ public class Weapon : Pickup {
 
     public override void Select() {
         RefreshStatus();
-        if (IsEquipped() && this.character != null) {
+        if (IsEquipped() && this.character != null && !this.isRanged) {
             character.SetWeapon(this);
         }
+		else if(IsEquipped() && this.character != null && this.isRanged){
+			character.rangedWeapon = this;
+		}
     }
 
     public override void Update() {

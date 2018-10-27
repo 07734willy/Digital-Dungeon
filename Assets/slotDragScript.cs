@@ -28,17 +28,30 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 			Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
 			b.transform.SetParent(GameObject.Find("EquippedInven").transform);
 			if(b.gameObject.GetComponent<Pickup>().isWeapon){
-Debug.Log("SUP2");
-				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(b.gameObject.GetComponent<Weapon>());
+				if(b.gameObject.GetComponent<Weapon>().isRanged){
+					Debug.Log("Ranged equipped");
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().rangedWeapon = b.gameObject.GetComponent<Weapon>();
+				}
+				else{
+					Debug.Log("Melee equipped");
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(b.gameObject.GetComponent<Weapon>());
+				}
 			}
-			
+			Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetWeapon());
 		}
 		else if(DragHandler.startParent.parent.parent.name == "Equipped" && item.transform.parent.parent.parent.name == "Inventory"){
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
 			Transform b = GameObject.Find("EquippedInven").transform.GetChild(startIndex);
 			b.transform.SetParent(GameObject.Find("InventoryInven").transform);
 			if(b.gameObject.GetComponent<Pickup>().isWeapon){
-				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(null);
+				if(b.gameObject.GetComponent<Weapon>().isRanged){
+					Debug.Log("Ranged unequipped");
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().rangedWeapon = null;
+				}
+				else {
+					Debug.Log("Melee unequipped");
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(null);
+				}
 			}
 			
 		}
