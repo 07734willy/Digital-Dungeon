@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportAbilityAction : AbilityAction {
+public class EquilibriumAbilityAction : AbilityAction {
 
-    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, 2 * Vector2.up, 2 * Vector2.down, 2 * Vector2.left, 2 * Vector2.right, 3 * Vector2.up, 3 * Vector2.down, 3 * Vector2.left, 3 * Vector2.right };
+    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, Vector2.up + Vector2.right, Vector2.up + Vector2.left, Vector2.down + Vector2.right, Vector2.down + Vector2.left };
 
     private Character target;
 
-    public TeleportAbilityAction(Character character) {
+    public EquilibriumAbilityAction(Character character) {
         this.gameManager = character.GetGameManager();
         this.character = character;
         this.target = GetTarget();
-        this.abilityClass = Character.AbilityClass.Teleport;
+        this.abilityClass = Character.AbilityClass.Equilibrium;
         /*this.duration = instant ? 0f : 1f / attackSpeed;*/
     }
 
@@ -40,7 +40,6 @@ public class TeleportAbilityAction : AbilityAction {
 
     public override void Animate() {
         isComplete = true;
-        character.SnapToGrid();
     }
 
     public override bool Execute() {
@@ -48,9 +47,14 @@ public class TeleportAbilityAction : AbilityAction {
             return false;
         }
 
-        Vector2 temp = character.transform.position;
-        character.transform.position = target.transform.position;
-        target.transform.position = temp;
+        int level = GetAbilityLevel();
+
+        Character characterA = target.health >= character.health ? target : character;
+        Character characterB = target.health >= character.health ? character : target;
+
+        int healthVal = (int)((characterA.health - characterB.health) * level / 4);
+        characterA.ReceiveDamage(healthVal);
+        characterB.Heal(healthVal);
 
         this.startTime = Time.time;
         return true;

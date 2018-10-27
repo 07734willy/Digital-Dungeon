@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportAbilityAction : AbilityAction {
+public class PushAbilityAction : AbilityAction {
 
-    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, 2 * Vector2.up, 2 * Vector2.down, 2 * Vector2.left, 2 * Vector2.right, 3 * Vector2.up, 3 * Vector2.down, 3 * Vector2.left, 3 * Vector2.right };
+    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
     private Character target;
+    private MovementAction action;
 
-    public TeleportAbilityAction(Character character) {
+    public PushAbilityAction(Character character) {
         this.gameManager = character.GetGameManager();
         this.character = character;
         this.target = GetTarget();
-        this.abilityClass = Character.AbilityClass.Teleport;
+        this.abilityClass = Character.AbilityClass.Push;
         /*this.duration = instant ? 0f : 1f / attackSpeed;*/
     }
-
+    
     public Character GetTarget() {
         List<Character> targets = new List<Character>();
         foreach (Vector2 rangeCoords in attackShape) {
@@ -39,8 +40,12 @@ public class TeleportAbilityAction : AbilityAction {
     }
 
     public override void Animate() {
-        isComplete = true;
-        character.SnapToGrid();
+        this.isComplete = true;
+        if (this.action != null) {
+            this.action.Animate();
+            this.isComplete = this.action.isComplete;
+        }
+
     }
 
     public override bool Execute() {
@@ -48,9 +53,19 @@ public class TeleportAbilityAction : AbilityAction {
             return false;
         }
 
-        Vector2 temp = character.transform.position;
-        character.transform.position = target.transform.position;
-        target.transform.position = temp;
+        int level = GetAbilityLevel();
+
+        Vector2 direction = target.GetCoordinates() - character.GetCoordinates();
+        Vector2 destination = target.GetCoordinates();
+        int i;
+        for (i = 0; i < level + 1 && this.gameManager.GetTile(destination + direction).IsWalkable(); i++) {
+            destination += direction;
+        }
+
+        if (destination != target.GetCoordinates()) {
+            this.action = new MovementAction(target, destination, character.movementSpeed, false);
+            this.action.Execute();
+        }
 
         this.startTime = Time.time;
         return true;

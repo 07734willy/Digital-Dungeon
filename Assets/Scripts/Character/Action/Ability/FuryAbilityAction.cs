@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportAbilityAction : AbilityAction {
+public class FuryAbilityAction : AbilityAction {
 
-    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, 2 * Vector2.up, 2 * Vector2.down, 2 * Vector2.left, 2 * Vector2.right, 3 * Vector2.up, 3 * Vector2.down, 3 * Vector2.left, 3 * Vector2.right };
+    private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right, Vector2.up + Vector2.right, Vector2.up + Vector2.left, Vector2.down + Vector2.right, Vector2.down + Vector2.left };
 
-    private Character target;
+    private List<Character> targets;
 
-    public TeleportAbilityAction(Character character) {
+    public FuryAbilityAction(Character character) {
         this.gameManager = character.GetGameManager();
         this.character = character;
-        this.target = GetTarget();
-        this.abilityClass = Character.AbilityClass.Teleport;
+        this.targets = GetTargets();
+        this.abilityClass = Character.AbilityClass.Fury;
         /*this.duration = instant ? 0f : 1f / attackSpeed;*/
     }
 
-    public Character GetTarget() {
+    public List<Character> GetTargets() {
         List<Character> targets = new List<Character>();
         foreach (Vector2 rangeCoords in attackShape) {
             GameTile tile = gameManager.GetTile(character.GetCoordinates() + rangeCoords);
@@ -26,16 +26,12 @@ public class TeleportAbilityAction : AbilityAction {
                 targets.Add(target);
             }
         }
-        if (targets.Count < 1) {
-            return null;
-        }
-        int index = Random.Range(0, targets.Count);
-        return targets[index];
+        return targets;
     }
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetTarget() != null && GetAbilityLevel() > 0;
+        return GetAbilityLevel() > 0;
     }
 
     public override void Animate() {
@@ -48,9 +44,13 @@ public class TeleportAbilityAction : AbilityAction {
             return false;
         }
 
-        Vector2 temp = character.transform.position;
-        character.transform.position = target.transform.position;
-        target.transform.position = temp;
+        int level = GetAbilityLevel();
+
+        int randVal = Random.Range(0, 8);
+
+        if (randVal < targets.Count) {
+            targets[randVal].ReceiveDamage((int)(145 * Mathf.Pow(1.5f, level - 1)));
+        }
 
         this.startTime = Time.time;
         return true;

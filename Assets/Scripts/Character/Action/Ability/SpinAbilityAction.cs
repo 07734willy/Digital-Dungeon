@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinAbilityAction : TurnAction {
+public class SpinAbilityAction : AbilityAction {
 
     private readonly Vector2[] attackShape = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
@@ -12,6 +12,7 @@ public class SpinAbilityAction : TurnAction {
         this.gameManager = character.GetGameManager();
         this.character = character;
         this.targets = GetTargets();
+        this.abilityClass = Character.AbilityClass.Spin;
         /*this.duration = instant ? 0f : 1f / attackSpeed;*/
     }
 
@@ -29,7 +30,8 @@ public class SpinAbilityAction : TurnAction {
     }
 
     public override bool Check() {
-        return true;
+        Debug.Assert(GetAbilityLevel() >= 0);
+        return GetAbilityLevel() > 0;
     }
 
     public override void Animate() {
@@ -42,8 +44,10 @@ public class SpinAbilityAction : TurnAction {
             return false;
         }
 
+        int level = GetAbilityLevel();
+
         foreach (Character target in this.targets) {
-            target.ReceiveDamage(15);
+            target.ReceiveDamage((int)(45 * Mathf.Pow(1.5f, level-1)));
         }
 
         this.startTime = Time.time;
