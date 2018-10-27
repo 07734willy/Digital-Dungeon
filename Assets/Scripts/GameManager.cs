@@ -94,4 +94,8 @@ public class GameManager : MonoBehaviour {
         map[coordinates].SetCharacter(character);
         return true;
     }
+
+    public void loadNewLevel(string levelName){
+        SceneManager.LoadScene(levelName);
+    }
 }

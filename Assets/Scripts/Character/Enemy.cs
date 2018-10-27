@@ -63,6 +63,34 @@ public class Enemy : Character {
 		return z;
 	}
 	//Goes back through the list of nodes starting from the player's tile to get the first tile from the enemy in the shortest path to the player
+	
+	public Vector2 easyPath(){
+		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+		Vector2 enemyCoords = GetCoordinates();
+		int playerX, playerY, enemyX, enemyY;
+		playerX = (int)playerCoords.x;
+		playerY = (int)playerCoords.y;
+		enemyX = (int)enemyCoords.x;
+		enemyY = (int)enemyCoords.y;
+        Debug.Assert(currentAction.isComplete);
+        if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+			if(enemyY > playerY){
+				return GetCoordinates() + Vector2.down;
+			}
+			else {
+				return GetCoordinates() + Vector2.up;
+			}
+		}
+		else {
+			if(enemyX > playerX){
+				return GetCoordinates() + Vector2.left;
+			}	
+			else {
+				return GetCoordinates() + Vector2.right;
+			}
+		}
+	}
+
 	public Vector2 backTrack(List<visitedNode> list){
 		//The player coordinates are the end of the path we want, so find them in the list
 		visitedNode x = searchListForNode(list, this.gameManager.GetPlayer().GetCoordinates());
@@ -147,6 +175,7 @@ public class Enemy : Character {
 		//The path has been found, now backtrack through the list to find what the next move is
 		return backTrack(visited);
 	}
+	
     public override TurnAction RequestAction() {
         Debug.Assert(currentAction.isComplete);
         //Get the overall distance to determine which pathfinding to use
@@ -168,7 +197,13 @@ public class Enemy : Character {
 			}
 			/* If not within range for ranged attack, get path movement */
 			if(shortestPath().Equals(Vector2.zero)==false){
-				return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+				switch (gameManager.difficulty)
+				{
+					case GameManager.Difficulty.Easy:
+						return new MovementAction(this, easyPath(), this.movementSpeed, this.instantTurn);	
+					default:
+						return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+				}
 			}
 			
 			/* If too close for path movement, enemy is within distance of a melee attack */
