@@ -7,14 +7,14 @@ public class TrapTile : GameTile {
     public int damage = 0;
     public bool resetting = false;
 	private bool sprung;
-    public string trapType;
-    public string newLevel;
+    public string newLevel = null;
     private GameManager curGm;
     public GameTile spawnLocation;
     public GameObject whatToSpawnEasy;
 	public GameObject whatToSpawnNormal;
 	public GameObject whatToSpawnHard;
 	public GameObject whatToSpawnExtreme;
+    public GameObject whatToSpawn;
 
     override protected void Awake() {
         base.Awake();
@@ -61,6 +61,7 @@ public class TrapTile : GameTile {
 							Instantiate(whatToSpawnNormal, spawnLocation.GetCoordinates(), Quaternion.identity);
 							break;
 					}
+            		Instantiate(whatToSpawn, spawnLocation.GetCoordinates(), Quaternion.identity);
             	}
             }
         }

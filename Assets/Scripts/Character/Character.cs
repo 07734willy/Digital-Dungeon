@@ -24,6 +24,7 @@ abstract public class Character : Physical {
     public int armor = 0;
 	public int level = 1;
 	public int gold = 0;
+    public int keys = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
     protected bool isPlayer;

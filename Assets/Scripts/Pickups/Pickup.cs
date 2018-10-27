@@ -11,6 +11,7 @@ public class Pickup : Physical {
     public bool isArmor;
     public bool isConsumable;
 	public Sprite itemSprite;
+    public bool isConsumeNow;
     protected GameManager gameManager;
     protected Character character;
 
