@@ -19,4 +19,5 @@ public class Consumable : Pickup {
     public bool IsEquipped() {
         return transform.parent != null;
     }
+
 }

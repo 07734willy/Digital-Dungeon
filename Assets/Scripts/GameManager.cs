@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
         return true;
     }
 
-    public void loadNewLevel(string levelName){
+    public void LoadNewLevel(string levelName){
         SceneManager.LoadScene(levelName);
     }
 }

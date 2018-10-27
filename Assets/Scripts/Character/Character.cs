@@ -24,6 +24,7 @@ abstract public class Character : Physical {
     public int armor = 0;
 	public int level = 1;
 	public int gold = 0;
+    public int keys = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
     protected bool isPlayer;
@@ -300,7 +301,6 @@ abstract public class Character : Physical {
 		
 return true;
 	}
-	
     public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
 			Debug.Log("Evaded damage!");

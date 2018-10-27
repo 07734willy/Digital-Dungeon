@@ -10,7 +10,8 @@ public class Pickup : Physical {
     public bool isWeapon;
     public bool isArmor;
     public bool isConsumable;
-	public Sprite itemSprite;
+    public bool isConsumeNow;
+    public Sprite itemSprite;
     protected GameManager gameManager;
     protected Character character;
 
