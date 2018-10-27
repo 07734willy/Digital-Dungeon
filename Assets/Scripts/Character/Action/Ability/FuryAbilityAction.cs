@@ -31,7 +31,7 @@ public class FuryAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetAbilityLevel() > 0;
+        return GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -51,6 +51,9 @@ public class FuryAbilityAction : AbilityAction {
         if (randVal < targets.Count) {
             targets[randVal].ReceiveDamage((int)(145 * Mathf.Pow(1.5f, level - 1)));
         }
+
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;

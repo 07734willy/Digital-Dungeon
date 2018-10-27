@@ -35,7 +35,7 @@ public class EquilibriumAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetTarget() != null && GetAbilityLevel() > 0;
+        return GetTarget() != null && GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -55,6 +55,9 @@ public class EquilibriumAbilityAction : AbilityAction {
         int healthVal = (int)((characterA.health - characterB.health) * level / 4);
         characterA.ReceiveDamage(healthVal);
         characterB.Heal(healthVal);
+
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;

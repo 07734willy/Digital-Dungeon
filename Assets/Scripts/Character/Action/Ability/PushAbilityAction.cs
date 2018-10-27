@@ -36,7 +36,7 @@ public class PushAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetTarget() != null && GetAbilityLevel() > 0;
+        return GetTarget() != null && GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -66,6 +66,9 @@ public class PushAbilityAction : AbilityAction {
             this.action = new MovementAction(target, destination, character.movementSpeed, false);
             this.action.Execute();
         }
+
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;

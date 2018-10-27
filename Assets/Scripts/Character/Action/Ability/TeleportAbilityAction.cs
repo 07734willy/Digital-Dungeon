@@ -35,7 +35,7 @@ public class TeleportAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetTarget() != null && GetAbilityLevel() > 0;
+        return GetTarget() != null && GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -51,6 +51,9 @@ public class TeleportAbilityAction : AbilityAction {
         Vector2 temp = character.transform.position;
         character.transform.position = target.transform.position;
         target.transform.position = temp;
+
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;

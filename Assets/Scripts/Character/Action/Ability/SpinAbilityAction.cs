@@ -31,7 +31,7 @@ public class SpinAbilityAction : AbilityAction {
 
     public override bool Check() {
         Debug.Assert(GetAbilityLevel() >= 0);
-        return GetAbilityLevel() > 0;
+        return GetAbilityLevel() > 0 && !character.IsOnCooldown(abilityClass);
     }
 
     public override void Animate() {
@@ -49,6 +49,9 @@ public class SpinAbilityAction : AbilityAction {
         foreach (Character target in this.targets) {
             target.ReceiveDamage((int)(45 * Mathf.Pow(1.5f, level-1)));
         }
+        
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;

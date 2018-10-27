@@ -28,8 +28,8 @@ public class HealAbilityAction : AbilityAction {
 
         character.Heal((int)(10 * Mathf.Pow(1.5f, level - 1)));
 
-        character.AddActionFinisher(new HealAbilityFinisher(character, 2));
-        character.SetOnCooldown(Character.AbilityClass.Heal, true);
+        character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
+        character.SetOnCooldown(this.abilityClass, true);
 
         this.startTime = Time.time;
         return true;
