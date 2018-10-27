@@ -20,7 +20,7 @@ TagManager:
   - Pickups
   - Characters
   - Inventory
-  - 
+  - InventoryItem
   - 
   - 
   - 
@@ -58,4 +58,7 @@ TagManager:
     locked: 0
   - name: Inventory
     uniqueID: 1990791017
+    locked: 0
+  - name: itemBeingDragged
+    uniqueID: 4080341725
     locked: 0

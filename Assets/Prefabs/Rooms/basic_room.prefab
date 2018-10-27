@@ -718,11 +718,22 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+=======
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   - component: {fileID: 4890253349996062}
   - component: {fileID: 212025245737758918}
   - component: {fileID: 61636037693215672}
   - component: {fileID: 114491178006016240}
   - component: {fileID: 114610556930105126}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+=======
+=======
+  - component: {fileID: 4085041872186732}
+  - component: {fileID: 114548784769072302}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Layer: 8
   m_Name: Wall (63)
   m_TagString: Obstacle
@@ -2956,6 +2967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 0
 --- !u!114 &114048124522691258
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+=======
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2969,122 +2982,210 @@ MonoBehaviour:
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114054954498638964
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1521520749332688}
+=======
   m_GameObject: {fileID: 1023846339890340}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114054954498638964
+=======
   isWalkable: 0
 --- !u!114 &114057128072928176
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1023846339890340}
+=======
   m_GameObject: {fileID: 1254432767359972}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 0
+--- !u!114 &114057128072928176
+=======
   isWalkable: 1
 --- !u!114 &114060312987523492
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1254432767359972}
+=======
   m_GameObject: {fileID: 1767060268774020}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114060312987523492
+=======
 --- !u!114 &114062882080344254
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1767060268774020}
+=======
   m_GameObject: {fileID: 1530624564570744}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114062882080344254
+=======
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114068190970421086
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1530624564570744}
+=======
   m_GameObject: {fileID: 1460031095192008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isWalkable: 1
---- !u!114 &114079912718427992
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1065260097670790}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114068190970421086
+=======
+  isWalkable: 1
+--- !u!114 &114079912718427992
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1460031095192008}
+=======
+  m_GameObject: {fileID: 1065260097670790}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114079912718427992
+=======
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114083775104002954
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1065260097670790}
+=======
   m_GameObject: {fileID: 1758026154109566}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114083775104002954
+=======
   isWalkable: 0
 --- !u!114 &114093900913614788
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1758026154109566}
+=======
   m_GameObject: {fileID: 1428248986768470}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 0
+--- !u!114 &114093900913614788
+=======
   isWalkable: 1
 --- !u!114 &114115440982946544
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1428248986768470}
+=======
   m_GameObject: {fileID: 1945151679053654}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114115440982946544
+=======
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114115728081009878
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1945151679053654}
+=======
   m_GameObject: {fileID: 1279831747007216}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
@@ -3092,29 +3193,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapToGrid: 1
   snapValue: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114115728081009878
+=======
 --- !u!114 &114125021544021144
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1279831747007216}
+=======
   m_GameObject: {fileID: 1511912569426242}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114125021544021144
+=======
+  isWalkable: 0
+--- !u!114 &114139125108153260
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1511912569426242}
+=======
+  m_GameObject: {fileID: 1834791402829676}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 0
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
 --- !u!114 &114139125108153260
+=======
+--- !u!114 &114156752686456770
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
   m_GameObject: {fileID: 1834791402829676}
+=======
+  m_GameObject: {fileID: 1155654673244904}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
   isWalkable: 0
 --- !u!114 &114156752686456770
 MonoBehaviour:
@@ -3127,6 +3267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   isWalkable: 1
 --- !u!114 &114168022855356762
 MonoBehaviour:
@@ -3501,6 +3643,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1821412405390918}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+=======
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
@@ -3513,23 +3657,36 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267401022299190}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114609114123790436
+=======
 --- !u!114 &114610556930105126
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1267401022299190}
+=======
   m_GameObject: {fileID: 1752329559005372}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114610556930105126
+=======
   isWalkable: 0
 --- !u!114 &114615396968328296
 MonoBehaviour:
@@ -3545,23 +3702,36 @@ MonoBehaviour:
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114616773537498206
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1752329559005372}
+=======
   m_GameObject: {fileID: 1428497378431334}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 0
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114615396968328296
+=======
 --- !u!114 &114633974418361684
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1023846339890340}
+=======
   m_GameObject: {fileID: 1053711055706696}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
@@ -3569,80 +3739,181 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapToGrid: 1
   snapValue: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114616773537498206
+=======
 --- !u!114 &114639168454121644
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1428497378431334}
+=======
   m_GameObject: {fileID: 1798964889844134}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 0
+--- !u!114 &114633974418361684
+=======
   isWalkable: 1
 --- !u!114 &114639968563987412
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1053711055706696}
+=======
   m_GameObject: {fileID: 1428248986768470}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapToGrid: 1
+  snapValue: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114639168454121644
+=======
+--- !u!114 &114653255004488344
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1798964889844134}
+=======
+  m_GameObject: {fileID: 1945151679053654}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114639968563987412
+=======
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  isWalkable: 1
+--- !u!114 &114658179300842828
+=======
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114548784769072302
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1428248986768470}
+=======
+  m_GameObject: {fileID: 1685421724454674}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f2ca65c127f2f43a9424c293b7279c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114653255004488344
+=======
+--- !u!114 &114557206083880812
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
   m_GameObject: {fileID: 1945151679053654}
+=======
+  m_GameObject: {fileID: 1803495300899426}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
   isWalkable: 1
 --- !u!114 &114658179300842828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1803495300899426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+=======
   snapToGrid: 1
   snapValue: 1
 --- !u!114 &114662255803607002
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1803495300899426}
+=======
   m_GameObject: {fileID: 1057210941158216}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  snapToGrid: 1
+  snapValue: 1
+--- !u!114 &114662255803607002
+=======
   isWalkable: 1
 --- !u!114 &114691155102498268
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1057210941158216}
+=======
   m_GameObject: {fileID: 1279831747007216}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+--- !u!114 &114691155102498268
+=======
+--- !u!114 &114702868233932006
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
+  m_GameObject: {fileID: 1279831747007216}
+=======
+  m_GameObject: {fileID: 1530624564570744}
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWalkable: 1
+<<<<<<< HEAD:Assets/Prefabs/Rooms/basic_room.prefab
 --- !u!114 &114702868233932006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3655,6 +3926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+=======
+>>>>>>> inventory-ui:Assets/Prefabs/Rooms/basic_room.prefab
 --- !u!114 &114705268984376068
 MonoBehaviour:
   m_ObjectHideFlags: 1
