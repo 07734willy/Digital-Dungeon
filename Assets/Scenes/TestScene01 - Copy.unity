@@ -2828,12 +2828,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d742d6514581047babf468972ec437, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &783085785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114759163569864882, guid: 814c19bc91963f7429e5b7df3ec88f18,
-    type: 2}
-  m_PrefabInternal: {fileID: 1953965633}
-  m_Script: {fileID: 11500000, guid: 49a99b7829687cd4eaf5cca0dd91fdd9, type: 3}
 --- !u!1 &784663869
 GameObject:
   m_ObjectHideFlags: 0
@@ -7106,7 +7100,7 @@ MonoBehaviour:
   gold: 0
   totalExperience: 0
   expMilestone: 100
-  rangedWeapon: {fileID: 783085785}
+  rangedWeapon: {fileID: 0}
   inventory:
   - {fileID: 0}
   - {fileID: 0}
@@ -7186,7 +7180,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1553173506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: -1, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 211267120}
@@ -8748,11 +8742,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4635144436913652, guid: 814c19bc91963f7429e5b7df3ec88f18, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4635144436913652, guid: 814c19bc91963f7429e5b7df3ec88f18, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 212531442039928556, guid: 814c19bc91963f7429e5b7df3ec88f18,
         type: 2}
@@ -8773,7 +8767,7 @@ Prefab:
     - target: {fileID: 114759163569864882, guid: 814c19bc91963f7429e5b7df3ec88f18,
         type: 2}
       propertyPath: range
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 814c19bc91963f7429e5b7df3ec88f18, type: 2}
