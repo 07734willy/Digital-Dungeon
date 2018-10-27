@@ -14,7 +14,6 @@ public class TrapTile : GameTile {
 	public GameObject whatToSpawnNormal;
 	public GameObject whatToSpawnHard;
 	public GameObject whatToSpawnExtreme;
-    public GameObject whatToSpawn;
 
     override protected void Awake() {
         base.Awake();
