@@ -61,7 +61,6 @@ public class TrapTile : GameTile {
 							Instantiate(whatToSpawnNormal, spawnLocation.GetCoordinates(), Quaternion.identity);
 							break;
 					}
-            		Instantiate(whatToSpawn, spawnLocation.GetCoordinates(), Quaternion.identity);
             	}
             }
         }

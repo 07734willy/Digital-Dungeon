@@ -301,7 +301,7 @@ abstract public class Character : Physical {
 		
 return true;
 	}
-    public void ReceiveDamage(int damage) {
+    public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
 			Debug.Log("Evaded damage!");
             return;
