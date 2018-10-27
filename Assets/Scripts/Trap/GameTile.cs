@@ -47,7 +47,13 @@ public class GameTile : Physical {
 				int difference = (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
 				if(difference <= this.gameManager.GetPlayer().rangedWeapon.range){
 					if(this.gameManager.GetPlayer().checkPlayerRangedAttack(this.character)){
-						player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+						if(this.gameManager.GetPlayer().arrows > 0){
+							player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+							this.gameManager.GetPlayer().arrows--;
+						}
+						else {
+							Debug.Log("No ammunition!");
+						}
 					}
 				}
 				else {

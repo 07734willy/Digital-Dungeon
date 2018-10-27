@@ -158,7 +158,7 @@ abstract public class Character : Physical {
 					Debug.Log("Character to the right");
 					for(int i = 0; i < this.rangedWeapon.range; i++){
 						coords = coords + Vector2.right;
-						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						//GameTile tileBeingChecked = gameManager.GetTile(coords);
 						if(coords.Equals(enemy.GetCoordinates())){
 							break;
 						}
@@ -235,7 +235,7 @@ abstract public class Character : Physical {
 					Debug.Log("Character to the right");
 					for(int i = 0; i < this.rangedWeapon.range; i++){
 						coords = coords + Vector2.right;
-						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						//GameTile tileBeingChecked = gameManager.GetTile(coords);
 						if(coords.Equals(this.gameManager.GetPlayer().GetCoordinates())){
 							break;
 						}
