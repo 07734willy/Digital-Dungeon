@@ -10,7 +10,6 @@ public class Player : Character {
 	public int arrows; 
     override protected void Awake() {
         base.Awake();
-        this.isPlayer = true;
         this.abilityLevel = new Dictionary<AbilityClass, int>() {
             { AbilityClass.Spin, 1 },
             { AbilityClass.Heal, 1 },
@@ -53,11 +52,11 @@ public class Player : Character {
 
     public void DisplayStats() {
 		GameObject.Find("AmmunitionValue").GetComponent<Text>().text = this.arrows.ToString();
-		GameObject.Find("UIGoldValue").GetComponent<Text>().text = this.gold.ToString();
-		GameObject.Find("UILevel").GetComponent<Text>().text = this.level.ToString();
-        GameObject.Find("UIHealthValue").GetComponent<Text>().text = this.health.ToString() +"/"+this.maxHealth.ToString();
+		GameObject.Find("UIGoldValue").GetComponent<Text>().text =     this.gold.ToString();
+		GameObject.Find("UILevel").GetComponent<Text>().text =         this.level.ToString();
+        GameObject.Find("UIHealthValue").GetComponent<Text>().text =   this.health.ToString() +"/"+this.maxHealth.ToString();
         GameObject.Find("UIEvasionValue").GetComponent<Text>().text = (this.evasion*100).ToString();
-        GameObject.Find("UIArmorValue").GetComponent<Text>().text = this.armor.ToString();
+        GameObject.Find("UIArmorValue").GetComponent<Text>().text =    this.armor.ToString();
     }
 
     public override TurnAction RequestAction() {
@@ -124,8 +123,7 @@ public class Player : Character {
 	
 	public override void ReceiveDamage (int damage){
 		float multiplier = 0f;
-		switch (gameManager.difficulty)
-		{
+		switch (gameManager.difficulty) {
 			case GameManager.Difficulty.Easy: multiplier = 0.75f;
 				break;
 			case GameManager.Difficulty.Hard: multiplier = 1.25f;

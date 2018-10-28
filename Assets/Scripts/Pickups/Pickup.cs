@@ -7,9 +7,6 @@ public class Pickup : Physical {
     public bool stackable = false;
     public int quantity = 1;
     public int value = 0;
-    public bool isWeapon;
-    public bool isArmor;
-    public bool isConsumable;
     public bool isConsumeNow;
     public Sprite itemSprite;
     protected GameManager gameManager;
@@ -37,9 +34,10 @@ public class Pickup : Physical {
             }*/
         }
     }
-	public void setCharacter (Character character){
+	public void SetCharacter (Character character){
 		this.character = character;
 	}
+
     public virtual void Select() {
         return;
     }

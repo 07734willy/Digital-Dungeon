@@ -6,7 +6,6 @@ public class MeleeAttackAction : AttackAction {
 
     public MeleeAttackAction (Character character, Character target, float attackSpeed, bool instant) 
         : base(character, target, attackSpeed, instant) {
-
     }
 
     public override bool Check() {
@@ -27,7 +26,7 @@ public class MeleeAttackAction : AttackAction {
             return false;
         }
 
-        Weapon weapon = character.GetWeapon();
+        Weapon weapon = character.GetMeleeWeapon();
 		Debug.Log(weapon);
         if (weapon == null) {
             target.ReceiveDamage(30);

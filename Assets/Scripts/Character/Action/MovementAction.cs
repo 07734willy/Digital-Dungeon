@@ -27,16 +27,19 @@ public class MovementAction : TurnAction {
     }
 
     public override void Animate() {
+        gameManager.GetTile(this.coordinates).SetCharacter(null);
         if (this.duration > 0) {
-            character.transform.position = Vector2.Lerp(coordinates, destination, (Time.time - startTime) / duration);
-            if (startTime + duration < Time.time) {
+            character.transform.position = Vector2.Lerp(coordinates, destination, (Time.time - startTime + 1e-5f) / duration);
+            if (startTime + duration <= Time.time) {
                 isComplete = true;
                 character.SnapToGrid();
+                gameManager.GetTile(destination).SetCharacter(this.character);
             }
         } else {
             character.transform.position = destination;
             isComplete = true;
             character.SnapToGrid();
+            gameManager.GetTile(destination).SetCharacter(this.character);
         }
     }
 
@@ -44,6 +47,7 @@ public class MovementAction : TurnAction {
         if (!Check()) {
             return false;
         }
+        
         this.startTime = Time.time;
         return true;
     }

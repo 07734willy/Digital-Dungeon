@@ -20,13 +20,14 @@ public class GameTile : Physical {
         gameManager.AddTile(this);
 	}
 
-
     public void RefreshContents() {
         if (character != null && character.GetCoordinates() != this.GetCoordinates()) {
+            Debug.LogError("Character was moved from tile without updating tile");
             this.character = null;
         }
         foreach (Pickup pickup in pickups) {
             if (pickup == null || pickup.GetCoordinates() != this.GetCoordinates() || pickup.transform.parent != null) {
+                Debug.Log("Pickup invalid / not in gametile, yet listed as such in the GameTile.pickups");
                 RemovePickup(pickup);
                 // This is because we can't modify the contents of a HashSet while iterating over it
                 RefreshContents();
@@ -41,11 +42,11 @@ public class GameTile : Physical {
     private void OnMouseDown() {
         Player player = gameManager.GetPlayer();
 		if(this.character != null && character != player && (player.GetCoordinates() - character.GetCoordinates()).magnitude > 1) {
-			if(this.gameManager.GetPlayer().rangedWeapon != null){
+			if(this.gameManager.GetPlayer().GetRangedWeapon() != null){
 				Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 				Vector2 enemyCoords = this.character.GetCoordinates();
 				int difference = (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
-				if(difference <= this.gameManager.GetPlayer().rangedWeapon.range){
+				if(difference <= this.gameManager.GetPlayer().GetRangedWeapon().range){
 					if(this.gameManager.GetPlayer().checkPlayerRangedAttack(this.character)){
 						if(this.gameManager.GetPlayer().arrows > 0){
 							player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));

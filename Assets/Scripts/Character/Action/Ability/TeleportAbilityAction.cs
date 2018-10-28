@@ -51,6 +51,8 @@ public class TeleportAbilityAction : AbilityAction {
         Vector2 temp = character.transform.position;
         character.transform.position = target.transform.position;
         target.transform.position = temp;
+        gameManager.GetTile(character.GetCoordinates()).SetCharacter(character);
+        gameManager.GetTile(target.GetCoordinates()).SetCharacter(target);
 
         character.AddActionFinisher(new AbilityFinisher(character, this.abilityClass, 2));
         character.SetOnCooldown(this.abilityClass, true);

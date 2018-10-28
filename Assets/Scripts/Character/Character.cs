@@ -27,21 +27,26 @@ abstract public class Character : Physical {
 	public int keys = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
-    protected bool isPlayer;
+
     protected int turnNumber = 0;
+
     protected Dictionary<int, List<ActionFinisher>> actionFinishers;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
-    //protected List<Item> inventory;
+
     protected Dictionary<AbilityClass, int> abilityLevel;
     protected Dictionary<AbilityClass, bool> onCooldown;
-    protected Weapon equippedWeapon;
-	public Weapon rangedWeapon;
+
+    protected Weapon meleeWeapon;
+    protected Weapon rangedWeapon;
+
 	public Pickup[] inventory = new Pickup[16];
 	public Pickup[] equipped = new Pickup[4];
 	public int itemsEquipped = 0;
 	public int items = 0;
     protected GameManager gameManager;
+
+    private bool initialized = false;
 
     virtual protected void Awake() {
         this.currentAction = new NullAction(this);
@@ -116,11 +121,22 @@ abstract public class Character : Physical {
         GameTile tile = gameManager.GetTile(this.GetCoordinates());
         if (tile != null) {
             Debug.Assert(tile.GetCharacter() == null || tile.GetCharacter() == this);
+            if (tile.GetCharacter() != this) {
+                Debug.LogError("Player moved to tile, but tile was not updated");
+            }
             tile.SetCharacter(this);
         }
     }
 
+    private void Initialize() {
+        if (!this.initialized) {
+            this.initialized = true;
+            gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
+        }
+    }
+
     virtual protected void Update() {
+        Initialize();
         RefreshPosition();
         RefreshInventory();
     }
@@ -141,10 +157,6 @@ abstract public class Character : Physical {
     }
 
     abstract public TurnAction RequestAction();
-
-    public bool IsPlayer() {
-        return this.isPlayer;
-    }
 
     public int GetTurnNumber() {
         return turnNumber;
@@ -350,13 +362,20 @@ abstract public class Character : Physical {
         }
     }
 
-    public void SetWeapon(Weapon weapon) {
-	//Debug.Log("Weapon set");
-        this.equippedWeapon = weapon;
+    public void SetMeleeWeapon(Weapon weapon) {
+        this.meleeWeapon = weapon;
     }
 
-    public Weapon GetWeapon() {
-        return this.equippedWeapon;
+    public Weapon GetMeleeWeapon() {
+        return this.meleeWeapon;
+    }
+
+    public void SetRangedWeapon(Weapon weapon) {
+        this.rangedWeapon = weapon;
+    }
+
+    public Weapon GetRangedWeapon() {
+        return this.rangedWeapon;
     }
 
     public void SetAbilityLevel(AbilityClass abilityClass, int level) {
@@ -371,7 +390,7 @@ abstract public class Character : Physical {
     }
 
     public void Kill() {
-        if (this.isPlayer) {
+        if (this is Player) {
             this.health = -1;
             gameManager.loadNewLevel("DeathScene");
         } else {

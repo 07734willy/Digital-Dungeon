@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
             currentAction.Animate();
         } else {
             action.isComplete = true;
-            if (!(character.IsPlayer())) {
+            if (!(character is Player)) {
                 if (action.consumeTurn) {
                     characterQueue.Enqueue(characterQueue.Dequeue());
                 }
@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour {
         }
 
         Debug.Log(difficulty);
-        print(difficulty);
     }
 
     public Player GetPlayer() {
@@ -126,7 +125,6 @@ public class GameManager : MonoBehaviour {
         map[coordinates].SetCharacter(character);
         return true;
     }
-
     
     public void loadNewLevel(string levelName){
         SceneManager.LoadScene(levelName);

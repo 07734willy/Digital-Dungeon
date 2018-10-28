@@ -8,9 +8,6 @@ public class Weapon : Pickup {
     public float accuracy = 1f;
 	public bool isRanged;
 	public int range;
-    public void Awake() {
-        this.isWeapon = true;
-    }
 
     public int GetDamageDealt() {
         return Random.Range(0, 1000) < 1000 * accuracy ? this.damage : 0;
@@ -19,10 +16,12 @@ public class Weapon : Pickup {
     public override void Select() {
         RefreshStatus();
         if (IsEquipped() && this.character != null && !this.isRanged) {
-            character.SetWeapon(this);
+            Debug.Assert(character.GetMeleeWeapon() == this);
+            character.SetMeleeWeapon(this);
         }
-		else if(IsEquipped() && this.character != null && this.isRanged){
-			character.rangedWeapon = this;
+		else if(IsEquipped() && this.character != null && this.isRanged) {
+            Debug.Assert(character.GetRangedWeapon() == this);
+            character.SetRangedWeapon(this);
 		}
     }
 

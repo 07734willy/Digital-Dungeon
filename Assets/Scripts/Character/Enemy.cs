@@ -13,10 +13,6 @@ public class Enemy : Character {
 				visitedBy = y;
 			}
 		}
-    override protected void Awake() {
-        base.Awake();
-        this.isPlayer = false;
-    }
 	
 	public void setAlertLevel(int x){
 		SpriteRenderer renderer = null;
@@ -40,6 +36,7 @@ public class Enemy : Character {
 			renderer.sprite = engageImage;
 				break;
 			default:
+                Debug.LogError("Invalid alert level to setAlertLevel()");
 			break;
 		}
 	}

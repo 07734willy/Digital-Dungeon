@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,32 +25,32 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 		}
 		else if(DragHandler.startParent.parent.parent.name == "Inventory" && item.transform.parent.parent.parent.name == "Equipped"){
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
-			Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
-			b.transform.SetParent(GameObject.Find("EquippedInven").transform);
-			if(b.gameObject.GetComponent<Pickup>().isWeapon){
-				if(b.gameObject.GetComponent<Weapon>().isRanged){
+			Transform pickup = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
+            pickup.transform.SetParent(GameObject.Find("EquippedInven").transform);
+			if(pickup.gameObject.GetComponent<Pickup>() is Weapon){
+				if(pickup.gameObject.GetComponent<Weapon>().isRanged){
 					Debug.Log("Ranged equipped");
-					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().rangedWeapon = b.gameObject.GetComponent<Weapon>();
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetRangedWeapon(pickup.gameObject.GetComponent<Weapon>());
 				}
 				else{
 					Debug.Log("Melee equipped");
-					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(b.gameObject.GetComponent<Weapon>());
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetMeleeWeapon(pickup.gameObject.GetComponent<Weapon>());
 				}
 			}
-			Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetWeapon());
+			Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetMeleeWeapon());
 		}
 		else if(DragHandler.startParent.parent.parent.name == "Equipped" && item.transform.parent.parent.parent.name == "Inventory"){
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
-			Transform b = GameObject.Find("EquippedInven").transform.GetChild(startIndex);
-			b.transform.SetParent(GameObject.Find("InventoryInven").transform);
-			if(b.gameObject.GetComponent<Pickup>().isWeapon){
-				if(b.gameObject.GetComponent<Weapon>().isRanged){
+			Transform pickup = GameObject.Find("EquippedInven").transform.GetChild(startIndex);
+            pickup.transform.SetParent(GameObject.Find("InventoryInven").transform);
+			if(pickup.gameObject.GetComponent<Pickup>() is Weapon){
+				if(pickup.gameObject.GetComponent<Weapon>().isRanged){
 					Debug.Log("Ranged unequipped");
-					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().rangedWeapon = null;
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetRangedWeapon(null);
 				}
 				else {
 					Debug.Log("Melee unequipped");
-					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetWeapon(null);
+					GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().SetMeleeWeapon(null);
 				}
 			}
 			
