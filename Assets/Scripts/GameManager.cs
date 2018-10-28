@@ -5,7 +5,14 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-
+	public enum Difficulty{
+		Easy, 
+		Normal, 
+		Hard, 
+		Extreme
+	};
+	
+	public Difficulty difficulty;
     private Dictionary<Vector2, GameTile> map;
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
@@ -74,6 +81,32 @@ public class GameManager : MonoBehaviour {
         }
         return null;
     }
+    
+
+    public void setDifficulty(String diffic)
+    {
+        switch(diffic)
+        {
+            case "easy":
+                difficulty = Difficulty.Easy;
+                break;
+            case "normal":
+                difficulty = Difficulty.Normal;
+                break;
+            case "hard":
+                difficulty = Difficulty.Hard;
+                break;
+            case "extreme":
+                difficulty = Difficulty.Extreme;
+                break;
+            default:
+                difficulty = Difficulty.Normal;
+                break;
+        }
+
+        Debug.Log(difficulty);
+        print(difficulty);
+    }
 
     public Player GetPlayer() {
         return this.player;
@@ -92,5 +125,10 @@ public class GameManager : MonoBehaviour {
         }
         map[coordinates].SetCharacter(character);
         return true;
+    }
+
+    
+    public void loadNewLevel(string levelName){
+        SceneManager.LoadScene(levelName);
     }
 }

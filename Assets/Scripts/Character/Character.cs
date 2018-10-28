@@ -121,6 +121,157 @@ abstract public class Character : Physical {
         this.pendingAction = action;
     }
 
+	public bool checkPlayerRangedAttack(Character enemy){
+			Vector2 difference = this.gameManager.GetPlayer().GetCoordinates()-enemy.GetCoordinates();
+			if(difference.x != 0 && difference.y != 0){
+				Debug.Log("Not a straight shot!");
+				return false;
+			}
+			else {
+				Vector2 coords = this.GetCoordinates();
+				Debug.Log("Initial check passed");
+				if(difference.x < 0){
+					Debug.Log("Character to the right");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.right;
+						//GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(enemy.GetCoordinates())){
+							break;
+						}
+						if(!gameManager.GetTile(coords).isWalkable){
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.x > 0){
+					Debug.Log("Character to the left");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.left;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(enemy.GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.y < 0){
+					Debug.Log("Character to the top");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.up;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(enemy.GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.y > 0){
+					Debug.Log("Character to downwards");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.down;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(enemy.GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				return true;
+			}
+	}
+	public bool checkRangedAttack(){
+
+        if (this != this.gameManager.GetPlayer()) {
+            Vector2 difference = this.gameManager.GetPlayer().GetCoordinates() - this.GetCoordinates();
+            if (difference.x != 0 && difference.y != 0) {
+                Debug.Log("Not a straight shot!");
+                return false;
+            } else {
+                Vector2 coords = this.GetCoordinates();
+                Debug.Log("Initial check passed");
+                if (difference.x > 0) {
+                    Debug.Log("Character to the right");
+                    for (int i = 0; i < this.rangedWeapon.range; i++) {
+                        coords = coords + Vector2.right;
+                        //GameTile tileBeingChecked = gameManager.GetTile(coords);
+                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
+                            break;
+                        }
+                        if (!gameManager.GetTile(coords).isWalkable) {
+                            Debug.Log("Wall in the way!");
+                            return false;
+                        }
+                    }
+                    Debug.Log("Can shoot!");
+                } else if (difference.x < 0) {
+                    Debug.Log("Character to the left");
+                    for (int i = 0; i < this.rangedWeapon.range; i++) {
+                        coords = coords + Vector2.left;
+                        GameTile tileBeingChecked = gameManager.GetTile(coords);
+                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
+                            break;
+                        }
+                        if (tileBeingChecked.isWalkable == false) {
+                            Debug.Log(coords);
+                            Debug.Log("Wall in the way!");
+                            return false;
+                        }
+                    }
+                    Debug.Log("Can shoot!");
+                } else if (difference.y > 0) {
+                    Debug.Log("Character to the top");
+                    for (int i = 0; i < this.rangedWeapon.range; i++) {
+                        coords = coords + Vector2.up;
+                        GameTile tileBeingChecked = gameManager.GetTile(coords);
+                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
+                            break;
+                        }
+                        if (tileBeingChecked.isWalkable == false) {
+                            Debug.Log(coords);
+                            Debug.Log("Wall in the way!");
+                            return false;
+                        }
+                    }
+                    Debug.Log("Can shoot!");
+                } else if (difference.y < 0) {
+                    Debug.Log("Character to downwards");
+                    for (int i = 0; i < this.rangedWeapon.range; i++) {
+                        coords = coords + Vector2.down;
+                        GameTile tileBeingChecked = gameManager.GetTile(coords);
+                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
+                            break;
+                        }
+                        if (tileBeingChecked.isWalkable == false) {
+                            Debug.Log(coords);
+                            Debug.Log("Wall in the way!");
+                            return false;
+                        }
+                    }
+                    Debug.Log("Can shoot!");
+                }
+                return true;
+            }
+        }
+        return true;
+	}
+
     public void SetOnCooldown(AbilityClass abilityClass, bool value) {
         this.onCooldown[abilityClass] = value;
     }
@@ -130,7 +281,8 @@ abstract public class Character : Physical {
         return this.onCooldown.TryGetValue(abilityClass, out value) ? value : false;
     }
 
-    public void ReceiveDamage(int damage) {
+
+    public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
             return;
         }
