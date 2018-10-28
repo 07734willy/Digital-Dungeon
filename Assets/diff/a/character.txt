@@ -24,20 +24,17 @@ abstract public class Character : Physical {
     public int armor = 0;
 	public int level = 1;
 	public int gold = 0;
-	public int keys = 0;
+    public int keys = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
     protected bool isPlayer;
-    protected int turnNumber = 0;
-    protected Dictionary<int, List<ActionFinisher>> actionFinishers;
     protected TurnAction currentAction;
     protected TurnAction pendingAction;
     //protected List<Item> inventory;
     protected Dictionary<AbilityClass, int> abilityLevel;
-    protected Dictionary<AbilityClass, bool> onCooldown;
     protected Weapon equippedWeapon;
-	
-	public Weapon rangedWeapon;public Pickup[] inventory = new Pickup[16];
+	public Weapon rangedWeapon;
+    public Pickup[] inventory = new Pickup[16];
 	public Pickup[] equipped = new Pickup[4];
 	public int itemsEquipped = 0;
 	public int items = 0;
@@ -49,21 +46,16 @@ abstract public class Character : Physical {
         //this.inventory = new List<Item>();
         this.inventory = this.gameObject.GetComponentsInChildren<Pickup>();
         this.health = maxHealth;
-        this.actionFinishers = new Dictionary<int, List<ActionFinisher>>();
-        this.onCooldown = new Dictionary<AbilityClass, bool>();
     }
     
     void Start() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddCharacter(this);
     }
-	
-	public void setInventory(int index, Pickup pickup){
-		this.inventory[index] = pickup;
+	public void setInventory(int index, Pickup b){
+		this.inventory[index] = b;
 	}
-
     public void RefreshInventory() {
-        Debug.Assert(inventoryCapacity >= 0);
 		inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
 		equipped = GameObject.Find("EquippedInven").GetComponentsInChildren<Pickup>();
 		for(int j = 0; j < 16; j++){
@@ -111,8 +103,18 @@ abstract public class Character : Physical {
 			}
 			index++;
 		}
+        while (inventory.Length > inventoryCapacity) {
+            inventory[inventory.Length - 1].transform.parent = null;
+            inventory = gameObject.GetComponentsInChildren<Pickup>();
+        }
+/*foreach (Pickup pickup in inventory) {
+            if (pickup.isWeapon) {
+                this.equippedWeapon = (Weapon)pickup;
+                Debug.Log("weap equipped");
+                break;
+            }
+        }*/
     }
-
     public void RefreshPosition() {
         GameTile tile = gameManager.GetTile(this.GetCoordinates());
         if (tile != null) {
@@ -126,33 +128,10 @@ abstract public class Character : Physical {
         RefreshInventory();
     }
 
-    public void AddActionFinisher(ActionFinisher finisher) {
-        if (!this.actionFinishers.ContainsKey(finisher.finishTurn)) {
-            this.actionFinishers[finisher.finishTurn] = new List<ActionFinisher>();
-        }
-        this.actionFinishers[finisher.finishTurn].Add(finisher);
-    }
-
-    public void FinishActions() {
-        if (this.actionFinishers.ContainsKey(this.turnNumber)) {
-            foreach (ActionFinisher finisher in this.actionFinishers[this.turnNumber]) {
-                finisher.Execute();
-            }
-        }
-    }
-
     abstract public TurnAction RequestAction();
 
     public bool IsPlayer() {
         return this.isPlayer;
-    }
-
-    public int GetTurnNumber() {
-        return turnNumber;
-    }
-
-    public void IncrementTurnNumber() {
-        this.turnNumber += 1;
     }
 
     public GameManager GetGameManager() {
@@ -243,91 +222,85 @@ abstract public class Character : Physical {
 			}
 	}
 	public bool checkRangedAttack(){
-
-        if (this != this.gameManager.GetPlayer()) {
-            Vector2 difference = this.gameManager.GetPlayer().GetCoordinates() - this.GetCoordinates();
-            if (difference.x != 0 && difference.y != 0) {
-                Debug.Log("Not a straight shot!");
-                return false;
-            } else {
-                Vector2 coords = this.GetCoordinates();
-                Debug.Log("Initial check passed");
-                if (difference.x > 0) {
-                    Debug.Log("Character to the right");
-                    for (int i = 0; i < this.rangedWeapon.range; i++) {
-                        coords = coords + Vector2.right;
-                        //GameTile tileBeingChecked = gameManager.GetTile(coords);
-                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
-                            break;
-                        }
-                        if (!gameManager.GetTile(coords).isWalkable) {
-                            Debug.Log("Wall in the way!");
-                            return false;
-                        }
-                    }
-                    Debug.Log("Can shoot!");
-                } else if (difference.x < 0) {
-                    Debug.Log("Character to the left");
-                    for (int i = 0; i < this.rangedWeapon.range; i++) {
-                        coords = coords + Vector2.left;
-                        GameTile tileBeingChecked = gameManager.GetTile(coords);
-                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
-                            break;
-                        }
-                        if (tileBeingChecked.isWalkable == false) {
-                            Debug.Log(coords);
-                            Debug.Log("Wall in the way!");
-                            return false;
-                        }
-                    }
-                    Debug.Log("Can shoot!");
-                } else if (difference.y > 0) {
-                    Debug.Log("Character to the top");
-                    for (int i = 0; i < this.rangedWeapon.range; i++) {
-                        coords = coords + Vector2.up;
-                        GameTile tileBeingChecked = gameManager.GetTile(coords);
-                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
-                            break;
-                        }
-                        if (tileBeingChecked.isWalkable == false) {
-                            Debug.Log(coords);
-                            Debug.Log("Wall in the way!");
-                            return false;
-                        }
-                    }
-                    Debug.Log("Can shoot!");
-                } else if (difference.y < 0) {
-                    Debug.Log("Character to downwards");
-                    for (int i = 0; i < this.rangedWeapon.range; i++) {
-                        coords = coords + Vector2.down;
-                        GameTile tileBeingChecked = gameManager.GetTile(coords);
-                        if (coords.Equals(this.gameManager.GetPlayer().GetCoordinates())) {
-                            break;
-                        }
-                        if (tileBeingChecked.isWalkable == false) {
-                            Debug.Log(coords);
-                            Debug.Log("Wall in the way!");
-                            return false;
-                        }
-                    }
-                    Debug.Log("Can shoot!");
-                }
-                return true;
-            }
-        }
-        return true;
+		
+		if(this != this.gameManager.GetPlayer()){
+			Vector2 difference = this.gameManager.GetPlayer().GetCoordinates()-this.GetCoordinates();
+			if(difference.x != 0 && difference.y != 0){
+				Debug.Log("Not a straight shot!");
+				return false;
+			}
+			else {
+				Vector2 coords = this.GetCoordinates();
+				Debug.Log("Initial check passed");
+				if(difference.x > 0){
+					Debug.Log("Character to the right");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.right;
+						//GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+							break;
+						}
+						if(!gameManager.GetTile(coords).isWalkable){
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.x < 0){
+					Debug.Log("Character to the left");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.left;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.y > 0){
+					Debug.Log("Character to the top");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.up;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				else if(difference.y < 0){
+					Debug.Log("Character to downwards");
+					for(int i = 0; i < this.rangedWeapon.range; i++){
+						coords = coords + Vector2.down;
+						GameTile tileBeingChecked = gameManager.GetTile(coords);
+						if(coords.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+							break;
+						}
+						if(tileBeingChecked.isWalkable == false){
+							Debug.Log(coords);
+							Debug.Log("Wall in the way!");
+							return false;
+						}
+					}
+					Debug.Log("Can shoot!");
+				}
+				return true;
+			}
+		}
+		
+return true;
 	}
-
-    public void SetOnCooldown(AbilityClass abilityClass, bool value) {
-        this.onCooldown[abilityClass] = value;
-    }
-
-    public bool IsOnCooldown(AbilityClass abilityClass) {
-        bool value;
-        return this.onCooldown.TryGetValue(abilityClass, out value) ? value : false;
-    }
-
-
     public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
 			Debug.Log("Evaded damage!");
@@ -351,6 +324,7 @@ abstract public class Character : Physical {
     }
 
     public void SetWeapon(Weapon weapon) {
+	//Debug.Log("Weapon set");
         this.equippedWeapon = weapon;
     }
 
@@ -373,6 +347,7 @@ abstract public class Character : Physical {
         if (this.isPlayer) {
             this.health = -1;
             gameManager.loadNewLevel("DeathScene");
+            
         } else {
 			//Add experience to the player
 			this.gameManager.GetPlayer().totalExperience += 50;
@@ -387,6 +362,7 @@ abstract public class Character : Physical {
 				
 				//Increase base stats upon level up
 				this.gameManager.GetPlayer().maxHealth += 10;
+				this.gameManager.GetPlayer().health += 10;
 				this.gameManager.GetPlayer().armor += 1;
 				this.gameManager.GetPlayer().evasion += .1f;
 			}

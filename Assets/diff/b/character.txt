@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 abstract public class Character : Physical {
@@ -16,15 +15,13 @@ abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
-    public int inventoryCapacity = 16;
-	public int itemAmount = 0;
+    public int inventoryCapacity = 8;
     public int health;
     public int maxHealth = 100;
     public float evasion = 0.1f;
     public int armor = 0;
 	public int level = 1;
 	public int gold = 0;
-	public int keys = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
     protected bool isPlayer;
@@ -36,11 +33,8 @@ abstract public class Character : Physical {
     protected Dictionary<AbilityClass, int> abilityLevel;
     protected Dictionary<AbilityClass, bool> onCooldown;
     protected Weapon equippedWeapon;
-	
-	public Weapon rangedWeapon;public Pickup[] inventory = new Pickup[16];
-	public Pickup[] equipped = new Pickup[4];
-	public int itemsEquipped = 0;
-	public int items = 0;
+	protected Weapon rangedWeapon;
+    protected Pickup[] inventory;
     protected GameManager gameManager;
 
     virtual protected void Awake() {
@@ -57,60 +51,21 @@ abstract public class Character : Physical {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddCharacter(this);
     }
-	
-	public void setInventory(int index, Pickup pickup){
-		this.inventory[index] = pickup;
-	}
 
     public void RefreshInventory() {
+        inventory = gameObject.GetComponentsInChildren<Pickup>();
         Debug.Assert(inventoryCapacity >= 0);
-		inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
-		equipped = GameObject.Find("EquippedInven").GetComponentsInChildren<Pickup>();
-		for(int j = 0; j < 16; j++){
-			GameObject gamex = GameObject.Find("equippedImage ("+j.ToString()+")");
-			if(gamex!=null){
-				gamex.GetComponent<Image>().sprite = null;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 0f;
-				image.color = tempColor;
-			}
-		}
-		for(int j = 0; j < 16; j++){
-			GameObject gamex = GameObject.Find("Image ("+j.ToString()+")");
-			if(gamex!=null){
-				gamex.GetComponent<Image>().sprite = null;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 0f;
-				image.color = tempColor;
-			}
-		}
-		int index = 0;
-		int eqIndex = 0;
-		foreach(Pickup item in this.equipped){
-			GameObject gamex = GameObject.Find("equippedImage ("+eqIndex.ToString()+")");
-			if(gamex!=null){
-				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 1f;
-				image.color = tempColor;
-			}
-			eqIndex++;
-		}
-		foreach(Pickup item in this.inventory){
-			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
-			if(gamex!=null){
-				//Debug.Log(this.inventory[0].itemSprite.name);
-				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 1f;
-				image.color = tempColor;
-			}
-			index++;
-		}
+        while (inventory.Length > inventoryCapacity) {
+            inventory[inventory.Length - 1].transform.parent = null;
+            inventory = gameObject.GetComponentsInChildren<Pickup>();
+        }
+        /*foreach (Pickup pickup in inventory) {
+            if (pickup.isWeapon) {
+                this.equippedWeapon = (Weapon)pickup;
+                Debug.Log("weap equipped");
+                break;
+            }
+        }*/
     }
 
     public void RefreshPosition() {
@@ -330,7 +285,6 @@ abstract public class Character : Physical {
 
     public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
-			Debug.Log("Evaded damage!");
             return;
         }
         int baseArmor = 20;
@@ -371,8 +325,7 @@ abstract public class Character : Physical {
 
     public void Kill() {
         if (this.isPlayer) {
-            this.health = -1;
-            gameManager.loadNewLevel("DeathScene");
+            Debug.LogError("Not yet implemented: player death");
         } else {
 			//Add experience to the player
 			this.gameManager.GetPlayer().totalExperience += 50;
