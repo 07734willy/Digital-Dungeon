@@ -1438,7 +1438,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407544441054740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -3, z: 0}
+  m_LocalPosition: {x: 2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4826816052562546}
@@ -2666,6 +2666,7 @@ MonoBehaviour:
   armor: 0
   level: 1
   gold: 0
+  keys: 0
   totalExperience: 0
   expMilestone: 100
   rangedWeapon: {fileID: 0}
@@ -5258,11 +5259,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224810387333216640}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.36353275}
-  m_AnchorMax: {x: 0.5, y: 0.36353275}
-  m_AnchoredPosition: {x: 394, y: -133.62}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 394, y: -220}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224122009760456776
@@ -5375,7 +5376,7 @@ RectTransform:
   - {fileID: 224411679746774654}
   - {fileID: 224962207447350188}
   m_Father: {fileID: 224810387333216640}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6235,9 +6236,9 @@ RectTransform:
   - {fileID: 224818120714675470}
   - {fileID: 224152495167987412}
   - {fileID: 224945500403406606}
+  - {fileID: 224120669411090844}
   - {fileID: 224167388490410600}
   - {fileID: 224981092968530066}
-  - {fileID: 224120669411090844}
   - {fileID: 224230247104748202}
   m_Father: {fileID: 4616934706158730}
   m_RootOrder: 2
@@ -6498,7 +6499,7 @@ RectTransform:
   m_Children:
   - {fileID: 224711227334051222}
   m_Father: {fileID: 224810387333216640}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
