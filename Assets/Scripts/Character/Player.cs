@@ -7,7 +7,7 @@ public class Player : Character {
 
     public Text dialogText;
     public GameObject dialogBox;
-
+	public int arrows; 
     override protected void Awake() {
         base.Awake();
         this.isPlayer = true;
@@ -52,9 +52,12 @@ public class Player : Character {
     }
 
     public void DisplayStats() {
-        GameObject.Find("UIHealthValue").GetComponent<Text>().text = this.health.ToString();
+		GameObject.Find("AmmunitionValue").GetComponent<Text>().text = this.arrows.ToString();
+		GameObject.Find("UIGoldValue").GetComponent<Text>().text = this.gold.ToString();
+		GameObject.Find("UILevel").GetComponent<Text>().text = this.level.ToString();
+        GameObject.Find("UIHealthValue").GetComponent<Text>().text = this.health.ToString() +"/"+this.maxHealth.ToString();
         GameObject.Find("UIEvasionValue").GetComponent<Text>().text = (this.evasion*100).ToString();
-        GameObject.Find("UISpeedValue").GetComponent<Text>().text = this.movementSpeed.ToString();
+        GameObject.Find("UIArmorValue").GetComponent<Text>().text = this.armor.ToString();
     }
 
     public override TurnAction RequestAction() {
