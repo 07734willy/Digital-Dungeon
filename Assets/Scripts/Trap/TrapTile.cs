@@ -40,7 +40,7 @@ public class TrapTile : GameTile {
             }
 
             if (newLevel != null){
-            	curGm.LoadNewLevel(newLevel);
+            	curGm.loadNewLevel(newLevel);
             }
 
             if(spawnLocation != null){
