@@ -10,12 +10,15 @@ public class Pickup : Physical {
     public bool isWeapon;
     public bool isArmor;
     public bool isConsumable;
+    public bool isConsumeNow;
+    public Sprite itemSprite;
     protected GameManager gameManager;
     protected Character character;
 
     // Use this for initialization
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		itemSprite = this.GetComponent<SpriteRenderer>().sprite;
         //gameManager.AddPickup(this);
     }
 
@@ -26,15 +29,17 @@ public class Pickup : Physical {
             if (tile != null) {
                 tile.AddPickup(this);
             }
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = true;
         } else {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            if (tile != null && tile.GetCharacter() != null) { 
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            /*if (tile != null && tile.GetCharacter() != null) { 
                 this.character = tile.GetCharacter().GetComponent<Character>();
-            }
+            }*/
         }
     }
-
+	public void setCharacter (Character character){
+		this.character = character;
+	}
     public virtual void Select() {
         return;
     }

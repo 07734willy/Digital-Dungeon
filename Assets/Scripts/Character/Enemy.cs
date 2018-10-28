@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-	public Sprite alertImage;
+    public Sprite alertImage;
 	public Sprite engageImage;
 	public struct visitedNode {
 			public Vector2 visit;
@@ -51,6 +51,8 @@ public class Enemy : Character {
 		}
 		return false;
 	}
+	
+	//Finds a specific node in the given list
 	public visitedNode searchListForNode(List<visitedNode> list, Vector2 x){
 		visitedNode z = new visitedNode(GetCoordinates(), GetCoordinates());
 		for(int i = 0; i < list.Count; i++){
@@ -60,7 +62,35 @@ public class Enemy : Character {
 		}
 		return z;
 	}
+	//Goes back through the list of nodes starting from the player's tile to get the first tile from the enemy in the shortest path to the player
 	
+	public Vector2 easyPath(){
+		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+		Vector2 enemyCoords = GetCoordinates();
+		int playerX, playerY, enemyX, enemyY;
+		playerX = (int)playerCoords.x;
+		playerY = (int)playerCoords.y;
+		enemyX = (int)enemyCoords.x;
+		enemyY = (int)enemyCoords.y;
+        Debug.Assert(currentAction.isComplete);
+        if (Mathf.Abs(enemyX-playerX) < Mathf.Abs(enemyY-playerY) || (Mathf.Abs(enemyX-playerX) == Mathf.Abs(enemyY-playerY) && Random.Range(0,2) == 0)){
+			if(enemyY > playerY){
+				return GetCoordinates() + Vector2.down;
+			}
+			else {
+				return GetCoordinates() + Vector2.up;
+			}
+		}
+		else {
+			if(enemyX > playerX){
+				return GetCoordinates() + Vector2.left;
+			}	
+			else {
+				return GetCoordinates() + Vector2.right;
+			}
+		}
+	}
+
 	public Vector2 backTrack(List<visitedNode> list){
 		//The player coordinates are the end of the path we want, so find them in the list
 		visitedNode x = searchListForNode(list, this.gameManager.GetPlayer().GetCoordinates());
@@ -70,10 +100,14 @@ public class Enemy : Character {
 			x = searchListForNode(list, x.visitedBy);
 		}
 		
-		//we are now on the tile that is one move away from the enemy on the shortest path to the player, return it
+		//we are now on the tile that is one move away from the enemy on the shortest path to the player, return it if it is not the players coords
+		if(x.visit.Equals(this.gameManager.GetPlayer().GetCoordinates())){
+			return Vector2.zero;
+		}
 		return x.visit;
 	}
 	
+	//Locates the shortest path between the player and the enemy
 	public Vector2 shortestPath(){
 		bool pathFound = false;
 		//list that holds all the visitedNode structs (tile currently being visited, which tile visited it)
@@ -90,6 +124,9 @@ public class Enemy : Character {
 		
 		while(pathFound == false){
 			//Grab next game tile to be processed
+			if(searchingQueue.Count == 0){
+				return Vector2.zero;
+			}
 			Vector2 current = searchingQueue.Dequeue();
 			
 			//Check to see if the current vector is the player's tile
@@ -138,25 +175,58 @@ public class Enemy : Character {
 		//The path has been found, now backtrack through the list to find what the next move is
 		return backTrack(visited);
 	}
+	
     public override TurnAction RequestAction() {
         Debug.Assert(currentAction.isComplete);
-        if (getDistance() <= 4) {
+        //Get the overall distance to determine which pathfinding to use
+		if (getDistance() <= 4) {
+			//Set the alert level to "alert"
 			setAlertLevel(1);
 			if(getDistance() <= 2.0001){
+				//Set the alert level to "engaged"
 				setAlertLevel(2);
 			}
-			return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+			/* Implement condition for ranged attack here */
+			if(this.rangedWeapon != null){
+				if(this.checkRangedAttack()){
+					if(getDistance() <= this.rangedWeapon.range){
+						Debug.Log("Ranged attack launched!");
+						return new RangedAttackAction(this, this.gameManager.GetPlayer(), this.movementSpeed, this.instantTurn);
+					}
+				}
+			}
+			/* If not within range for ranged attack, get path movement */
+			if(shortestPath().Equals(Vector2.zero)==false){
+				switch (gameManager.difficulty)
+				{
+					case GameManager.Difficulty.Easy:
+						return new MovementAction(this, easyPath(), this.movementSpeed, this.instantTurn);	
+					default:
+						return new MovementAction(this, shortestPath(), this.movementSpeed, this.instantTurn);
+				}
+			}
+			
+			/* If too close for path movement, enemy is within distance of a melee attack */
+			if(getDistance() <= 1.0001){
+				return new MeleeAttackAction(this, this.gameManager.GetPlayer(), this.movementSpeed, this.instantTurn);
+			}
+			
+			/* Just wait */
+			return new WaitAction(this);
 		}
+		//Otherwise, set alert level to "unalert" and move randomly
 		setAlertLevel(0);
 		return getRandomMovement();
     }
 	
+	//Function to determine overall distance between this character and the player
 	public int getDistance(){
 		Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
 		Vector2 enemyCoords = GetCoordinates();
         return (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
 	}
 	
+	//Returns a random movement for the enemy to move in
 	public TurnAction getRandomMovement(){
 		int x = Random.Range(0,4);
 		Vector2 movement;
@@ -176,5 +246,22 @@ public class Enemy : Character {
 			
 		}
 		return new MovementAction(this, GetCoordinates() + movement, this.movementSpeed, this.instantTurn);
+	}
+	
+	public override void ReceiveDamage (int damage){
+		float multiplier = 0f;
+		switch (gameManager.difficulty)
+		{
+			case GameManager.Difficulty.Easy: multiplier = 0.75f;
+				break;
+			case GameManager.Difficulty.Hard: multiplier = 1.25f;
+				break;
+			case GameManager.Difficulty.Extreme: multiplier = 1.75f;
+				break;
+			default: multiplier = 1f;
+				break;
+		}
+		damage = (int)(damage * (1 / multiplier));
+		base.ReceiveDamage(damage);
 	}
 }

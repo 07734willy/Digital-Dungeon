@@ -38,10 +38,31 @@ public class GameTile : Physical {
     private void Update() {
         RefreshContents();
     }
-
     private void OnMouseDown() {
         Player player = gameManager.GetPlayer();
-        if (this.character != null && character != player) {
+		if(this.character != null && character != player && (player.GetCoordinates() - character.GetCoordinates()).magnitude > 1) {
+			if(this.gameManager.GetPlayer().rangedWeapon != null){
+				Vector2 playerCoords = this.gameManager.GetPlayer().GetCoordinates();
+				Vector2 enemyCoords = this.character.GetCoordinates();
+				int difference = (int)Mathf.Abs((playerCoords - enemyCoords).magnitude);
+				if(difference <= this.gameManager.GetPlayer().rangedWeapon.range){
+					if(this.gameManager.GetPlayer().checkPlayerRangedAttack(this.character)){
+						if(this.gameManager.GetPlayer().arrows > 0){
+							player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+							this.gameManager.GetPlayer().arrows--;
+						}
+						else {
+							Debug.Log("No ammunition!");
+						}
+					}
+				}
+				else {
+					Debug.Log("Out of range!");
+				}
+			}
+			//player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+		}
+        else if (this.character != null && character != player) {
             //attack
             player.SetPendingAction(new MeleeAttackAction(player, character, player.movementSpeed, player.instantTurn));
         } else if (player.GetCoordinates() != this.GetCoordinates()) {
@@ -49,7 +70,9 @@ public class GameTile : Physical {
         } else if (this.pickups.Count > 0) {
             foreach (Pickup pickup in pickups) {
                 // Don't waste a turn trying to pickup if you can't
-                if (player.SpareInventoryCapacity() > 0) {
+                if (pickup is ConsumeNow){
+                    ((ConsumeNow)pickup).Consume();
+                }else if (player.SpareInventoryCapacity() > 0) {
                     player.SetPendingAction(new PickupAction(player, pickup));
                 }
                 // this is a nasty hack, but we can only (and want to) pick up one item per turn, so to retrieve one item from a hashset...we do this
