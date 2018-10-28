@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
 	};
 	
 	public Difficulty difficulty;
+    public GameObject pauseMenu;
+    public GameObject deathMenu;
     private Dictionary<Vector2, GameTile> map;
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
@@ -57,6 +59,31 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void setDifficulty(String diffic)
+    {
+        switch(diffic)
+        {
+            case "easy":
+                difficulty = Difficulty.Easy;
+                break;
+            case "normal":
+                difficulty = Difficulty.Normal;
+                break;
+            case "hard":
+                difficulty = Difficulty.Hard;
+                break;
+            case "extreme":
+                difficulty = Difficulty.Extreme;
+                break;
+            default:
+                difficulty = Difficulty.Normal;
+                break;
+        }
+
+        Debug.Log(difficulty);
+        print(difficulty);
+    }
+
     public void AddTile (GameTile gameTile) {
         if (!map.ContainsKey(gameTile.GetCoordinates())) { 
             map.Add(gameTile.GetCoordinates(), gameTile);
@@ -98,4 +125,12 @@ public class GameManager : MonoBehaviour {
     public void loadNewLevel(string levelName){
         SceneManager.LoadScene(levelName);
     }
+
+    public void setPause(bool shown)
+    {
+        pauseMenu.SetActive(shown);
+        Debug.Log(shown);
+    }
+
+   
 }
