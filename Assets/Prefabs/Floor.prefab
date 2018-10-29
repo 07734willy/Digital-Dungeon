@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4509680008201700
 Transform:
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+  fogPrefab: {fileID: 0}
 --- !u!212 &212125171337902038
 SpriteRenderer:
   m_ObjectHideFlags: 1

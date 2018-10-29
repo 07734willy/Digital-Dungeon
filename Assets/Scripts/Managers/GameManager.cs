@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
+        UpdateFog(2);
+
         Character character = characterQueue.Peek();
         if (character == null) {
             characterQueue.Dequeue();
@@ -80,6 +82,19 @@ public class GameManager : MonoBehaviour {
             return map[coordinates];
         }
         return null;
+    }
+
+    public void UpdateFog(int size) {
+        Vector2 topLeft = player.GetCoordinates() + (Vector2.up + Vector2.left) * size;
+        int i, j;
+        for (i = 0; i < size * 2 + 1; i++) {
+            for (j = 0; j < size * 2 + 1; j++) {
+                GameTile tile = GetTile(topLeft + Vector2.down * i + Vector2.right * j);
+                if (tile != null) {
+                    tile.HideFog();
+                }
+            }
+        }
     }
     
 

@@ -6,12 +6,17 @@ public class GameTile : Physical {
 
     //public GameManager gameManager;
     public bool isWalkable;
+    public GameObject fogPrefab;
+    protected GameObject fog;
     protected Character character;
     private GameManager gameManager;
     private HashSet<Pickup> pickups;
 
     virtual protected void Awake() {
         this.pickups = new HashSet<Pickup>();
+        this.fog = Instantiate<GameObject>(fogPrefab);
+        this.fog.transform.parent = this.transform;
+        this.fog.transform.position = this.transform.position;
     }
 
     // Use this for initialization
@@ -102,5 +107,9 @@ public class GameTile : Physical {
 
     public bool IsWalkable() {
         return this.isWalkable && (character == null);
+    }
+
+    public void HideFog() {
+        this.fog.SetActive(false);
     }
 }
