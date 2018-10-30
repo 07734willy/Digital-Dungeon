@@ -371,6 +371,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -397,6 +403,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -558,6 +570,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -676,6 +694,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -696,6 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+  fogPrefab: {fileID: 0}
   damage: 0
   resetting: 0
   newLevel: Level 1
@@ -727,6 +752,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -896,6 +927,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1251,6 +1288,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1277,6 +1320,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1303,6 +1352,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1329,6 +1384,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1395,6 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+  fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
   damage: 0
   resetting: 1
   newLevel: 
@@ -1438,6 +1500,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1556,6 +1624,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1582,6 +1656,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1608,6 +1688,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1634,6 +1720,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1760,6 +1852,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1786,6 +1884,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -8
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -1812,6 +1916,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2038,6 +2148,26 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 20871521536744206, guid: f0784b41017d02d40ba664f0fbd1d982,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20871521536744206, guid: f0784b41017d02d40ba664f0fbd1d982,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20871521536744206, guid: f0784b41017d02d40ba664f0fbd1d982,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114002291238790392, guid: f0784b41017d02d40ba664f0fbd1d982,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
   m_IsPrefabAsset: 0
@@ -2064,6 +2194,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2110,6 +2246,12 @@ Prefab:
       propertyPath: m_Name
       value: Floor (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 114275075288790804, guid: 47d742d6514581047babf468972ec437,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d742d6514581047babf468972ec437, type: 2}
   m_IsPrefabAsset: 0
@@ -2136,6 +2278,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2208,6 +2356,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2380,6 +2534,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -8
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2544,6 +2704,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2616,6 +2782,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2642,6 +2814,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2668,6 +2846,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2694,6 +2878,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2720,6 +2910,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2746,6 +2942,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2818,6 +3020,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2844,6 +3052,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2958,6 +3172,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -2984,6 +3204,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3010,6 +3236,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3036,6 +3268,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3062,6 +3300,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3226,6 +3470,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3386,6 +3636,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3412,6 +3668,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3438,6 +3700,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3464,6 +3732,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3582,6 +3856,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3700,6 +3980,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3726,6 +4012,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3860,6 +4152,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -3979,6 +4277,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4051,6 +4355,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4215,6 +4525,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4241,6 +4557,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4313,6 +4635,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4339,6 +4667,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4365,6 +4699,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4437,6 +4777,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4463,6 +4809,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -8
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4489,6 +4841,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4561,6 +4919,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4587,6 +4951,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4613,6 +4983,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4685,6 +5061,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4711,6 +5093,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4737,6 +5125,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4763,6 +5157,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4928,6 +5328,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
+        type: 2}
+      propertyPath: fogPrefab
+      value: 
+      objectReference: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
   m_IsPrefabAsset: 0
@@ -4994,6 +5400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+  fogPrefab: {fileID: 0}
 --- !u!1001 &2121705087
 Prefab:
   m_ObjectHideFlags: 0

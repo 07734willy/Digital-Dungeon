@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
+  fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
   damage: 0
   resetting: 1
   newLevel: 

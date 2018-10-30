@@ -57,6 +57,7 @@ public class Player : Character {
         GameObject.Find("UIHealthValue").GetComponent<Text>().text =   this.health.ToString() +"/"+this.maxHealth.ToString();
         GameObject.Find("UIEvasionValue").GetComponent<Text>().text = (this.evasion*100).ToString();
         GameObject.Find("UIArmorValue").GetComponent<Text>().text =    this.armor.ToString();
+        GameObject.Find("UIKeyValue").GetComponent<Text>().text =    this.keys.ToString();
     }
 
     public override TurnAction RequestAction() {

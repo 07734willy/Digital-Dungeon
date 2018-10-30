@@ -53,12 +53,12 @@ TagManager:
   - name: Characters
     uniqueID: 1565562449
     locked: 0
+  - name: Fog
+    uniqueID: 3565325599
+    locked: 0
   - name: UI
     uniqueID: 3762440725
     locked: 0
   - name: Inventory
     uniqueID: 1990791017
-    locked: 0
-  - name: Fog
-    uniqueID: 3565325599
     locked: 0

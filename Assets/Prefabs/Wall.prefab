@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 0
-  fogPrefab: {fileID: 0}
+  fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
 --- !u!212 &212540612404344664
 SpriteRenderer:
   m_ObjectHideFlags: 1
