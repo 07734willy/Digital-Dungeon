@@ -7,7 +7,7 @@ public class TrapTile : GameTile {
     public int damage = 0;
     public bool resetting = false;
 	private bool sprung;
-    public string newLevel = null;
+    public string newLevel = "";
     private GameManager curGm;
     public GameTile spawnLocation;
     public GameObject whatToSpawnEasy;
@@ -22,10 +22,9 @@ public class TrapTile : GameTile {
     }
 
     public override void SetCharacter(Character character) {
-
-        if (!this.sprung && this.character == null) {
-            base.SetCharacter(character);
-
+        Character oldCharacter = this.character;
+        base.SetCharacter(character);
+        if (!this.sprung && oldCharacter == null) {
             Dialog dialog = this.GetComponent<Dialog>();
             if (dialog != null) {
                 dialog.DisplayDialogMessage();
@@ -39,7 +38,7 @@ public class TrapTile : GameTile {
                 this.sprung = true;
             }
 
-            if (newLevel != null){
+            if (newLevel != ""){
             	curGm.loadNewLevel(newLevel);
             }
 

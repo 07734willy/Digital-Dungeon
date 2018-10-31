@@ -27,7 +27,6 @@ public class MovementAction : TurnAction {
     }
 
     public override void Animate() {
-        gameManager.GetTile(this.coordinates).SetCharacter(null);
         if (this.duration > 0) {
             character.transform.position = Vector2.Lerp(coordinates, destination, (Time.time - startTime + 1e-5f) / duration);
             if (startTime + duration <= Time.time) {
@@ -47,7 +46,7 @@ public class MovementAction : TurnAction {
         if (!Check()) {
             return false;
         }
-        
+        gameManager.GetTile(this.coordinates).SetCharacter(null);
         this.startTime = Time.time;
         return true;
     }
