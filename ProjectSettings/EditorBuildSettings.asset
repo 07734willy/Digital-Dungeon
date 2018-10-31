@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameSequence/Level 1.unity
     guid: 2988d734a9cb165429286cbfc1f2edcc
+  - enabled: 1
+    path: Assets/Scenes/GameSequence/Level 2.unity
+    guid: e9675bc22fbb77345a440afb587edc67
+  - enabled: 1
+    path: Assets/Scenes/GameSequence/Final Level.unity
+    guid: 233aa9d885e1b2d45964a187f88489b0
   m_configObjects: {}
