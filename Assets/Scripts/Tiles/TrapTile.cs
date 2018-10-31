@@ -38,7 +38,7 @@ public class TrapTile : GameTile {
                 this.sprung = true;
             }
 
-            if (newLevel != ""){
+            if (newLevel != "" && this.character is Player){
             	curGm.loadNewLevel(newLevel);
             }
 

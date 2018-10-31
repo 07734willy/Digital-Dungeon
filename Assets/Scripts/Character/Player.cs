@@ -7,7 +7,6 @@ public class Player : Character {
 
     public Text dialogText;
     public GameObject dialogBox;
-	public int arrows; 
     override protected void Awake() {
         base.Awake();
         this.abilityLevel = new Dictionary<AbilityClass, int>() {

@@ -8,7 +8,8 @@ public class ConsumeNow : Pickup {
 
 	public enum Type{
 		Gold,
-		Key
+		Key,
+		Arrows
 	};
 
 	public Type type;
@@ -33,6 +34,9 @@ public class ConsumeNow : Pickup {
 			break;
 			case Type.Key:
 			this.character.keys++;
+			break;
+			case Type.Arrows:
+			this.character.arrows += 50;
 			break;
 			default:
 			break;

@@ -25,6 +25,7 @@ abstract public class Character : Physical {
 	public int level = 1;
 	public int gold = 0;
 	public int keys = 0;
+	public int arrows = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
 
