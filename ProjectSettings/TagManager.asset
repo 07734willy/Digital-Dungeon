@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - Obstacle
-  - Pickup
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -16,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Tiles
-  - Pickups
-  - Characters
-  - Inventory
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,21 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tiles
-    uniqueID: 1658303739
+  - name: Tile
+    uniqueID: 3167169349
     locked: 0
-  - name: Pickups
-    uniqueID: 3818197315
+  - name: Pickup
+    uniqueID: 2884484541
     locked: 0
-  - name: Characters
-    uniqueID: 1565562449
+  - name: Character
+    uniqueID: 3661349529
     locked: 0
   - name: Fog
-    uniqueID: 3565325599
+    uniqueID: 934797749
     locked: 0
   - name: UI
-    uniqueID: 3762440725
+    uniqueID: 33389093
     locked: 0
   - name: Inventory
-    uniqueID: 1990791017
+    uniqueID: 3371301621
     locked: 0
