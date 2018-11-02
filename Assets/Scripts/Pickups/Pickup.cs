@@ -44,7 +44,7 @@ public class Pickup : Physical {
     public virtual void Select() {
         return;
     }
-	
+
 	// Update is called once per frame
 	public virtual void Update () {
         RefreshStatus();

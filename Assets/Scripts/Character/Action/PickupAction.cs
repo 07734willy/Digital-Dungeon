@@ -15,8 +15,10 @@ public class PickupAction : TurnAction {
     public override bool Check() {
         character.RefreshInventory();
         if (character.SpareInventoryCapacity() <= 0) {
+			Debug.Log("Failing check!");
             return false;
         }
+		Debug.Log(character.SpareInventoryCapacity());
         return true;
     }
 
@@ -29,7 +31,7 @@ public class PickupAction : TurnAction {
         if (!Check()) {
             return false;
         }
-		
+
 		if (pickup.IsPurchasable()){
 			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
                 string notEnough = string.Format("Innsufficent gold! This item costs: {0}", pickup.GetCost());
@@ -43,7 +45,6 @@ public class PickupAction : TurnAction {
 			}
 		}
 			
-		
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         //pickup.transform.parent = character.transform;
 		pickup.transform.parent = GameObject.Find("InventoryInven").transform;

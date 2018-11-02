@@ -39,6 +39,7 @@ abstract public class Character : Physical {
     protected Dictionary<AbilityClass, bool> onCooldown;
 
     protected Weapon meleeWeapon;
+	[SerializeField]
     protected Weapon rangedWeapon;
 
 	public Pickup[] inventory = new Pickup[16];
@@ -173,7 +174,7 @@ abstract public class Character : Physical {
     }
 
     public int SpareInventoryCapacity() {
-        return inventoryCapacity - inventory.Length;
+        return (inventoryCapacity+8) - inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {
@@ -390,7 +391,12 @@ abstract public class Character : Physical {
         }
         return this.abilityLevel[abilityClass];
     }
-
+	public void upgradeStats(int armInc, float evaInc, int maxHealthInc, int healthInc){
+				this.maxHealth += maxHealthInc;
+				this.health += healthInc;
+				this.armor += armInc;
+				this.evasion += evaInc;
+	}
     public void Kill() {
         if (this is Player) {
             this.health = -1;
@@ -403,17 +409,20 @@ abstract public class Character : Physical {
 				this.gameManager.GetPlayer().gold += 50;
 			
 			//Level the player up if the milestone is reached, and adjust the milestone
-			if(this.gameManager.GetPlayer().totalExperience >= expMilestone){
+			if(this.gameManager.GetPlayer().totalExperience >= this.gameManager.GetPlayer().expMilestone){
 				this.gameManager.GetPlayer().level++;
-				this.gameManager.GetPlayer().expMilestone *= 1.5;
+				this.gameManager.GetPlayer().expMilestone *= 2.5;
 				
 				//Increase base stats upon level up
-				this.gameManager.GetPlayer().maxHealth += 10;
-				this.gameManager.GetPlayer().health += 10;
-				this.gameManager.GetPlayer().armor += 1;
-				this.gameManager.GetPlayer().evasion += .1f;
+				this.gameManager.GetPlayer().upgradeStats(10, .1f, 10, 10);
+				this.gameManager.GetPlayer().health = this.gameManager.GetPlayer().maxHealth;
+				//Level up all enemies
+				var enemies = FindObjectsOfType<Enemy>();
+				foreach(Enemy enemy in enemies){
+					enemy.upgradeStats(5, .25f, 10, 10);
+				}
 			}
-			Debug.Log(this.gameManager.GetPlayer().gold);
+			//Debug.Log(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
                     child.transform.position = this.transform.position;
