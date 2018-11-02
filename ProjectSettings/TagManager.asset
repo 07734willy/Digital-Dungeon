@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Floor
+  - Obstacle
+  - Pickup
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Tiles
+    uniqueID: 2916994313
+    locked: 0
+  - name: Pickups
+    uniqueID: 3602233991
+    locked: 0
+  - name: Characters
+    uniqueID: 3827215899
+    locked: 0
+  - name: Fog
+    uniqueID: 3807853173
+    locked: 0
+  - name: UI
+    uniqueID: 3264042429
+    locked: 0
+  - name: Inventory
+    uniqueID: 2929565309
+    locked: 0
