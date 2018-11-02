@@ -41,7 +41,9 @@ public class ConsumeNow : Pickup {
 			default:
 			break;
 		}
-		Destroy(this.gameObject);
+		if (!this.isPurchasable){
+			Destroy(this.gameObject);
+		}
 	}
 	
 	public override Pickup Clone () {

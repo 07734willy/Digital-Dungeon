@@ -32,6 +32,8 @@ public class PickupAction : TurnAction {
 		
 		if (pickup.IsPurchasable()){
 			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
+                string notEnough = string.Format("Innsufficent gold! This item costs: {0}", pickup.GetCost());
+                gameManager.GetPlayer().SetDialogMessage(notEnough);
 				return false;
 			}
 			else {
@@ -51,7 +53,9 @@ public class PickupAction : TurnAction {
             gameManager.GetPlayer().SetDialogMessage(dialog.message);
         }
 	    pickup.SetCharacter(this.character);
-        if (pickup is Consumable) {
+        if (pickup is ConsumeNow) {
+            ((ConsumeNow)pickup).Consume();
+        } else if (pickup is Consumable) {
             pickup.Select();
         }
         //pickup.transform.position = Vector2.zero;

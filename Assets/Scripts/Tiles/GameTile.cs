@@ -76,9 +76,7 @@ public class GameTile : Physical {
         } else if (this.pickups.Count > 0) {
             foreach (Pickup pickup in pickups) {
                 // Don't waste a turn trying to pickup if you can't
-                if (pickup is ConsumeNow){
-                    ((ConsumeNow)pickup).Consume();
-                }else if (player.SpareInventoryCapacity() > 0) {
+                if (player.SpareInventoryCapacity() > 0 || pickup is ConsumeNow) {
                     player.SetPendingAction(new PickupAction(player, pickup));
                 }
                 // this is a nasty hack, but we can only (and want to) pick up one item per turn, so to retrieve one item from a hashset...we do this
