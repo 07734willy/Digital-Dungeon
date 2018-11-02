@@ -16,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Tiles
+  - Pickups
+  - Characters
+  - Inventory
   - 
   - 
   - 
@@ -45,20 +45,20 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Tiles
-    uniqueID: 2916994313
+    uniqueID: 1658303739
     locked: 0
   - name: Pickups
-    uniqueID: 3602233991
+    uniqueID: 3818197315
     locked: 0
   - name: Characters
-    uniqueID: 3827215899
+    uniqueID: 1565562449
     locked: 0
   - name: Fog
-    uniqueID: 3807853173
+    uniqueID: 3565325599
     locked: 0
   - name: UI
-    uniqueID: 3264042429
+    uniqueID: 3762440725
     locked: 0
   - name: Inventory
-    uniqueID: 2929565309
+    uniqueID: 1990791017
     locked: 0
