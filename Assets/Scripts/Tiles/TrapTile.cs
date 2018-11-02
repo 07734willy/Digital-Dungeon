@@ -26,7 +26,7 @@ public class TrapTile : GameTile {
         base.SetCharacter(character);
         if (!this.sprung && oldCharacter == null) {
             Dialog dialog = this.GetComponent<Dialog>();
-            if (dialog != null) {
+            if (dialog != null && this.character is Player) {
                 dialog.DisplayDialogMessage();
             }
 
