@@ -56,9 +56,9 @@ TagManager:
   - name: UI
     uniqueID: 3762440725
     locked: 0
-  - name: Inventory
+  - name: Fog
     uniqueID: 1990791017
     locked: 0
-  - name: Fog
+  - name: Inventory
     uniqueID: 3565325599
     locked: 0
