@@ -36,31 +36,4 @@ public class Weapon : Pickup {
     public bool IsEquipped() {
         return transform.parent != null && transform.parent.name != "InventoryInven";
     }
-	
-	public override Pickup Clone () {
-		Debug.Log("Weapon cloning");
-		
-		Weapon weapon = Instantiate<GameObject>(this.gameObject).GetComponent<Weapon>();
-/* 		weapon.stackable = this.stackable;
-		weapon.quantity = this.quantity;
-		weapon.value = this.value;
-		weapon.isConsumeNow = this.isConsumeNow;
-		weapon.isPurchasable = this.isPurchasable;
-		weapon.cost = this.cost;
-		weapon.itemSprite = this.itemSprite;
-		weapon.gameManager = this.gameManager;
-		weapon.character = this.character;
-		weapon.damage = this.damage;
-		weapon.accuracy = this.accuracy;
-		weapon.isRanged = this.isRanged;
-		weapon.range = this.range;
- */		
-		return weapon;
-	}
-	
-	public override string GetStats () {
-		Debug.Log("Weapon stats");
-		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nDamage: " + this.damage + "\nRange: " + this.range;
-		return message;
-	}
 }

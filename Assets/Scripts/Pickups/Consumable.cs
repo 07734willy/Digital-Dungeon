@@ -8,11 +8,4 @@ public class Consumable : Pickup {
         return transform.parent != null;
     }
 
-	public override Pickup Clone () {
-		Debug.Log("Consumable cloning");
-		
-		Consumable consume = Instantiate<GameObject>(this.gameObject).GetComponent<Consumable>();
-
-		return consume;
-	}
 }

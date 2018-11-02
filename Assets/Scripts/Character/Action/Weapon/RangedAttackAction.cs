@@ -28,7 +28,7 @@ public RangedAttackAction (Character character, Character target, float attackSp
         if (!Check()) {
             return false;
         }
-		Debug.Log("Ranged execute function check successful");
+		Debug.Log("Ranged attack bitches!");
         Weapon weapon = character.GetRangedWeapon();
         if (weapon == null) {
             Debug.LogError("This shouldn't execute-  if the player has no ranged weapon, don't attack");

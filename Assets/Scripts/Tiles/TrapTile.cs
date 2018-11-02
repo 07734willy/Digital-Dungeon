@@ -23,10 +23,10 @@ public class TrapTile : GameTile {
 
     public override void SetCharacter(Character character) {
         Character oldCharacter = this.character;
-        this.character = character;
+        base.SetCharacter(character);
         if (!this.sprung && oldCharacter == null) {
             Dialog dialog = this.GetComponent<Dialog>();
-            if (dialog != null && this.character is Player) {
+            if (dialog != null) {
                 dialog.DisplayDialogMessage();
             }
 
@@ -38,7 +38,7 @@ public class TrapTile : GameTile {
                 this.sprung = true;
             }
 
-            if (newLevel != "" && this.character is Player){
+            if (newLevel != ""){
             	curGm.loadNewLevel(newLevel);
             }
 

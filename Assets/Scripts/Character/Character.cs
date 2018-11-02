@@ -6,8 +6,8 @@ using UnityEngine;
 abstract public class Character : Physical {
     public enum AbilityClass {
         None,
-        Heal,
         Spin,
+        Heal,
         Teleport,
         Fury,
         Equilibrium,
@@ -25,7 +25,6 @@ abstract public class Character : Physical {
 	public int level = 1;
 	public int gold = 0;
 	public int keys = 0;
-	public int arrows = 0;
 	public int totalExperience = 0;
 	public double expMilestone = 100;
 
@@ -39,7 +38,6 @@ abstract public class Character : Physical {
     protected Dictionary<AbilityClass, bool> onCooldown;
 
     protected Weapon meleeWeapon;
-	[SerializeField]
     protected Weapon rangedWeapon;
 
 	public Pickup[] inventory = new Pickup[16];
@@ -125,15 +123,14 @@ abstract public class Character : Physical {
             Debug.Assert(tile.GetCharacter() == null || tile.GetCharacter() == this);
             if (tile.GetCharacter() != this) {
                 Debug.LogError("Player moved to tile, but tile was not updated");
-				tile.SetCharacter(this);
-			}
+            }
+            tile.SetCharacter(this);
         }
     }
 
     private void Initialize() {
         if (!this.initialized) {
             this.initialized = true;
-			//Debug.Log("Initialize");
             gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
         }
     }
@@ -174,7 +171,7 @@ abstract public class Character : Physical {
     }
 
     public int SpareInventoryCapacity() {
-        return (inventoryCapacity+8) - inventory.Length;
+        return inventoryCapacity - inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {
@@ -391,12 +388,7 @@ abstract public class Character : Physical {
         }
         return this.abilityLevel[abilityClass];
     }
-	public void upgradeStats(int armInc, float evaInc, int maxHealthInc, int healthInc){
-				this.maxHealth += maxHealthInc;
-				this.health += healthInc;
-				this.armor += armInc;
-				this.evasion += evaInc;
-	}
+
     public void Kill() {
         if (this is Player) {
             this.health = -1;
@@ -409,20 +401,17 @@ abstract public class Character : Physical {
 				this.gameManager.GetPlayer().gold += 50;
 			
 			//Level the player up if the milestone is reached, and adjust the milestone
-			if(this.gameManager.GetPlayer().totalExperience >= this.gameManager.GetPlayer().expMilestone){
+			if(this.gameManager.GetPlayer().totalExperience >= expMilestone){
 				this.gameManager.GetPlayer().level++;
-				this.gameManager.GetPlayer().expMilestone *= 2.5;
+				this.gameManager.GetPlayer().expMilestone *= 1.5;
 				
 				//Increase base stats upon level up
-				this.gameManager.GetPlayer().upgradeStats(10, .1f, 10, 10);
-				this.gameManager.GetPlayer().health = this.gameManager.GetPlayer().maxHealth;
-				//Level up all enemies
-				var enemies = FindObjectsOfType<Enemy>();
-				foreach(Enemy enemy in enemies){
-					enemy.upgradeStats(5, .25f, 10, 10);
-				}
+				this.gameManager.GetPlayer().maxHealth += 10;
+				this.gameManager.GetPlayer().health += 10;
+				this.gameManager.GetPlayer().armor += 1;
+				this.gameManager.GetPlayer().evasion += .1f;
 			}
-			//Debug.Log(this.gameManager.GetPlayer().gold);
+			Debug.Log(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
                     child.transform.position = this.transform.position;
@@ -432,16 +421,4 @@ abstract public class Character : Physical {
             Destroy(this.gameObject);
         }
     }
-	
-	public int GetGold () {
-		return gold;
-	}
-	
-	public void SetGold (int newGold) {
-		gold = newGold;
-	}
-	
-	public int GetLevel () {
-		return level;
-	}
 }
