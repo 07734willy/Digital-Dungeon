@@ -8,7 +8,8 @@ public class ConsumeNow : Pickup {
 
 	public enum Type{
 		Gold,
-		Key
+		Key,
+		Arrows
 	};
 
 	public Type type;
@@ -34,9 +35,22 @@ public class ConsumeNow : Pickup {
 			case Type.Key:
 			this.character.keys++;
 			break;
+			case Type.Arrows:
+			this.character.arrows += 50;
+			break;
 			default:
 			break;
 		}
-		Destroy(this.gameObject);
+		if (!this.isPurchasable){
+			Destroy(this.gameObject);
+		}
+	}
+	
+	public override Pickup Clone () {
+		Debug.Log("ConsumeNow cloning");
+		
+		ConsumeNow consumeNow = Instantiate<GameObject>(this.gameObject).GetComponent<ConsumeNow>();
+
+		return consumeNow;
 	}
 }
