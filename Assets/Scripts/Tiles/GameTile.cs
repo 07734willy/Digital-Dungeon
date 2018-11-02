@@ -21,7 +21,7 @@ public class GameTile : Physical {
 
     // Use this for initialization
     void Start () {
-		this.fog.SetActive(false);
+		//this.fog.SetActive(false);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
