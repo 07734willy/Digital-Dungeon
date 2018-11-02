@@ -65,7 +65,9 @@ public class Player : Character {
         currentAction = pendingAction;
         pendingAction = new NullAction(this);
         if (!(currentAction is NullAction)) {
-			Debug.Log(currentAction);
+			//Debug.Log(currentAction); 
+            //prints the action, but can clutter log
+            //that currently has some game information in it
             HideDialogBox();
         }
         return currentAction;

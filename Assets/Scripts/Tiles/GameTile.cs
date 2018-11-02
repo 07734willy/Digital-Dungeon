@@ -94,7 +94,7 @@ public class GameTile : Physical {
     public virtual void SetCharacter(Character character) {
         Character oldCharacter = this.character;
 		this.character = character;
-		Debug.Log("SetCharacter");
+		//Debug.Log("SetCharacter");
 		Dialog dialog = this.GetComponent<Dialog>();
 		string message = "";
 		foreach (Pickup pickup in pickups) {

@@ -133,7 +133,7 @@ abstract public class Character : Physical {
     private void Initialize() {
         if (!this.initialized) {
             this.initialized = true;
-			Debug.Log("Initialize");
+			//Debug.Log("Initialize");
             gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
         }
     }

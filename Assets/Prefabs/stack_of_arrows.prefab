@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212070422577535286}
   - component: {fileID: 114297481179534242}
   - component: {fileID: 114114328248443726}
+  - component: {fileID: 114094253816132054}
   m_Layer: 9
   m_Name: stack_of_arrows
   m_TagString: Untagged
@@ -36,12 +37,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341855975527080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 17, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114094253816132054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341855975527080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368ee79e271cca747aebca8e9b03621c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: You picked up 50 arrows!
 --- !u!114 &114114328248443726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,6 +70,9 @@ MonoBehaviour:
   quantity: 1
   value: 0
   isConsumeNow: 1
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
   itemSprite: {fileID: 0}
   type: 2
   numGold: 0

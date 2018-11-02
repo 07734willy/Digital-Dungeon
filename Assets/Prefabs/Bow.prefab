@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368ee79e271cca747aebca8e9b03621c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: You picked up sword!
+  message: You picked up bow!
 --- !u!114 &114469174086655090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,9 +83,10 @@ MonoBehaviour:
   quantity: 1
   value: 0
   isConsumeNow: 0
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
   itemSprite: {fileID: 0}
-  isAmmunition: 0
-  Amount: 0
   damage: 100
   accuracy: 1
   isRanged: 1
