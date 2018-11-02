@@ -66,6 +66,7 @@ public class Player : Character {
         currentAction = pendingAction;
         pendingAction = new NullAction(this);
         if (!(currentAction is NullAction)) {
+			Debug.Log(currentAction);
             HideDialogBox();
         }
         return currentAction;

@@ -138,7 +138,8 @@ public class GameManager : MonoBehaviour {
             return false;
         }
         map[coordinates].SetCharacter(character);
-        return true;
+        Debug.Log("GameManagerSetCharacter");
+		return true;
     }
     
     public void loadNewLevel(string levelName){

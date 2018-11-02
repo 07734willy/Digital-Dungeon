@@ -93,7 +93,21 @@ public class GameTile : Physical {
     }
 
     public virtual void SetCharacter(Character character) {
-        this.character = character;
+        Character oldCharacter = this.character;
+		this.character = character;
+		Debug.Log("SetCharacter");
+		Dialog dialog = this.GetComponent<Dialog>();
+		string message = "";
+		foreach (Pickup pickup in pickups) {
+            if(pickup.IsPurchasable()){
+				message += pickup.GetStats();
+			}
+		}
+		
+		if (dialog != null && oldCharacter == null) {
+			dialog.message = message;
+            dialog.DisplayDialogMessage();
+        }
     }
 
     public void AddPickup(Pickup pickup) {

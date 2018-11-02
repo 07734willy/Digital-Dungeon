@@ -123,14 +123,15 @@ abstract public class Character : Physical {
             Debug.Assert(tile.GetCharacter() == null || tile.GetCharacter() == this);
             if (tile.GetCharacter() != this) {
                 Debug.LogError("Player moved to tile, but tile was not updated");
-            }
-            tile.SetCharacter(this);
+				tile.SetCharacter(this);
+			}
         }
     }
 
     private void Initialize() {
         if (!this.initialized) {
             this.initialized = true;
+			Debug.Log("Initialize");
             gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
         }
     }
@@ -421,4 +422,16 @@ abstract public class Character : Physical {
             Destroy(this.gameObject);
         }
     }
+	
+	public int GetGold () {
+		return gold;
+	}
+	
+	public void SetGold (int newGold) {
+		gold = newGold;
+	}
+	
+	public int GetLevel () {
+		return level;
+	}
 }

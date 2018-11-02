@@ -39,4 +39,12 @@ public class ConsumeNow : Pickup {
 		}
 		Destroy(this.gameObject);
 	}
+	
+	public override Pickup Clone () {
+		Debug.Log("ConsumeNow cloning");
+		
+		ConsumeNow consumeNow = Instantiate<GameObject>(this.gameObject).GetComponent<ConsumeNow>();
+
+		return consumeNow;
+	}
 }

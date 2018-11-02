@@ -30,6 +30,18 @@ public class PickupAction : TurnAction {
             return false;
         }
 		
+		if (pickup.IsPurchasable()){
+			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
+				return false;
+			}
+			else {
+				character.SetGold(character.GetGold() - pickup.GetCost());
+				Pickup newPickup = pickup.Clone();
+				gameManager.GetTile(pickup.GetCoordinates()).AddPickup(newPickup);
+			}
+		}
+			
+		
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         //pickup.transform.parent = character.transform;
 		pickup.transform.parent = GameObject.Find("InventoryInven").transform;
