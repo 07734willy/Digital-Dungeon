@@ -6,8 +6,8 @@ using UnityEngine;
 abstract public class Character : Physical {
     public enum AbilityClass {
         None,
-        Spin,
         Heal,
+        Spin,
         Teleport,
         Fury,
         Equilibrium,

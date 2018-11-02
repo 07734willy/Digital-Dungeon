@@ -7,6 +7,8 @@ public class Player : Character {
 
     public Text dialogText;
     public GameObject dialogBox;
+    public AbilityClass selectedAbility = Character.AbilityClass.Heal;
+
     override protected void Awake() {
         base.Awake();
         this.abilityLevel = new Dictionary<AbilityClass, int>() {
@@ -46,6 +48,13 @@ public class Player : Character {
                     pendingAction = new MovementAction(this, GetCoordinates() + movement, movementSpeed, false);
                 }
             }
+        }
+        
+        if(this.IsOnCooldown(selectedAbility)) {
+            GameObject.Find("ability_cooldown").GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else {
+            GameObject.Find("ability_cooldown").GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -104,6 +113,53 @@ public class Player : Character {
     public void UseAbility6() {
         Debug.Log("push ability used");
         this.pendingAction = new PushAbilityAction(this);
+    }
+
+    // optional method for ability button
+    public void UseAbility() {
+        switch(selectedAbility)
+        {
+            case AbilityClass.Heal:
+                UseAbility1();
+                break;
+            case AbilityClass.Spin:
+                UseAbility2();
+                break;
+            case AbilityClass.Teleport:
+                UseAbility3();
+                break;
+            case AbilityClass.Fury:
+                UseAbility4();
+                break;
+            case AbilityClass.Equilibrium:
+                UseAbility5();
+                break;
+            case AbilityClass.Push:
+                UseAbility6();
+                break;
+            default:
+                UseAbility1();
+                break;
+        }
+    }
+
+    //Abilities casted to int, ranging from 1-n
+    public void SwitchAbility() {
+        for(int i = (int)selectedAbility; i < 7; i++)
+        {
+            if(i != 6 && this.getAbilityLevel((AbilityClass)(i+1)) > 0)
+            {
+                selectedAbility = (AbilityClass)(i+1);
+                break;
+            }
+            else if(i == 6 && this.getAbilityLevel((AbilityClass)1) > 0)
+            {
+                selectedAbility = (AbilityClass)1;
+                break;
+            }
+        }
+
+        GameObject.Find("CurrentAbility").GetComponent<Text>().text = (this.selectedAbility).ToString();
     }
 
     public void WaitTurn() {
