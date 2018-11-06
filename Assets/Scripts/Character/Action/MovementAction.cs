@@ -32,13 +32,15 @@ public class MovementAction : TurnAction {
             if (startTime + duration <= Time.time) {
                 isComplete = true;
                 character.SnapToGrid();
+				//Debug.Log("Move1SetCharacter");
                 gameManager.GetTile(destination).SetCharacter(this.character);
             }
         } else {
             character.transform.position = destination;
             isComplete = true;
             character.SnapToGrid();
-            gameManager.GetTile(destination).SetCharacter(this.character);
+            //Debug.Log("Move2SetCharacter");
+			gameManager.GetTile(destination).SetCharacter(this.character);
         }
     }
 
@@ -46,6 +48,7 @@ public class MovementAction : TurnAction {
         if (!Check()) {
             return false;
         }
+		//Debug.Log("Move3SetCharacter");
         gameManager.GetTile(this.coordinates).SetCharacter(null);
         this.startTime = Time.time;
         return true;

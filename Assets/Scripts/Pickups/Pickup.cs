@@ -8,6 +8,9 @@ public class Pickup : Physical {
     public int quantity = 1;
     public int value = 0;
     public bool isConsumeNow;
+	public bool isPurchasable = false;
+	public int cost = -1;
+	public int baseLevel = 0;
     public Sprite itemSprite;
     protected GameManager gameManager;
     protected Character character;
@@ -41,9 +44,31 @@ public class Pickup : Physical {
     public virtual void Select() {
         return;
     }
-	
+
 	// Update is called once per frame
 	public virtual void Update () {
         RefreshStatus();
     }
+	
+	public virtual Pickup Clone () {
+		Debug.Log("Wrong cloning");
+		return this;
+	}
+	
+	public virtual string GetStats () {
+		Debug.Log("Wrong stats");
+		return "";
+	}
+	
+	public bool IsPurchasable () {
+		return isPurchasable;
+	}
+	
+	public int GetCost () {
+		return cost;
+	}
+	
+	public int GetBaseLevel () {
+		return baseLevel;
+	}
 }
