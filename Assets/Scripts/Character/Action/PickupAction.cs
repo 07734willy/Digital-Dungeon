@@ -40,9 +40,9 @@ public class PickupAction : TurnAction {
 			}
 			else {
 				character.SetGold(character.GetGold() - pickup.GetCost());
-				pickup.isPurchasable = false;
 				Pickup newPickup = pickup.Clone();
 				gameManager.GetTile(pickup.GetCoordinates()).AddPickup(newPickup);
+				pickup.isPurchasable = false;
 			}
 		}
 			
