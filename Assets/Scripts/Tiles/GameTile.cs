@@ -7,6 +7,7 @@ public class GameTile : Physical {
     //public GameManager gameManager;
     public bool isWalkable;
     public GameObject fogPrefab;
+	protected bool fogActivated = true;
     protected GameObject fog;
     protected Character character;
     private GameManager gameManager;
@@ -25,7 +26,12 @@ public class GameTile : Physical {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
-
+	public bool getFogActivated(){
+		return this.fogActivated;
+	}
+	public void setFogActivated(bool x){
+		this.fogActivated= x;
+	}
     public void RefreshContents() {
         if (character != null && character.GetCoordinates() != this.GetCoordinates()) {
             Debug.LogError("Character was moved from tile without updating tile");
@@ -124,5 +130,6 @@ public class GameTile : Physical {
 
     public void HideFog() {
         this.fog.SetActive(false);
+		this.setFogActivated(false);
     }
 }
