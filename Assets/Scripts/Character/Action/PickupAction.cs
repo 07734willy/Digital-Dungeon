@@ -47,8 +47,21 @@ public class PickupAction : TurnAction {
 		}
 			
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
-        //pickup.transform.parent = character.transform;
+        //pickup.transform.parent = character.transform
+		
+		//Find index of first dummy item in inventory
+		Pickup[] inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
+		int index = 0;
+		for(int i = 0; i < inventory.Length; i++){
+			if(inventory[i].name == "invenDummy"){
+				index = i; 
+				break;
+			}
+		}
+		//REplace dummy item with pickup
 		pickup.transform.parent = GameObject.Find("InventoryInven").transform;
+		pickup.transform.SetSiblingIndex(index);
+		UnityEngine.Object.Destroy(GameObject.Find("InventoryInven").transform.GetChild(index+1).gameObject);
         pickup.GetComponent<SpriteRenderer>().enabled = false;
         Dialog dialog = pickup.GetComponent<Dialog>();
         if (dialog != null) {

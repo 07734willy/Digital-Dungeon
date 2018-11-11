@@ -110,11 +110,20 @@ abstract public class Character : Physical {
 			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
 			if(gamex!=null){
 				//Debug.Log(this.inventory[0].itemSprite.name);
-				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 1f;
-				image.color = tempColor;
+				if(item.name == "invenDummy"){
+					gamex.GetComponent<Image>().sprite = null;
+					Image image = gamex.GetComponent<Image>();
+					var tempColor = image.color;
+					tempColor.a = 0f;
+					image.color = tempColor;
+				}
+				else {
+					gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+					Image image = gamex.GetComponent<Image>();
+					var tempColor = image.color;
+					tempColor.a = 1f;
+					image.color = tempColor;
+				}
 			}
 			index++;
 		}
@@ -174,7 +183,13 @@ abstract public class Character : Physical {
     }
 
     public int SpareInventoryCapacity() {
-        return (inventoryCapacity+8) - inventory.Length;
+		int count = 0;
+		for(int i = 0; i < inventory.Length; i++){
+			if(inventory[i].GetComponent<dummyItem>()){
+				count++;
+			}
+		}
+        return (inventoryCapacity+8) - count;//inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {

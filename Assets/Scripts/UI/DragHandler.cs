@@ -18,6 +18,15 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         mainCamera = Camera.main;
         zAxis = transform.position.z;
     }
+	public static void addDummyItem(int index){
+		GameObject player;
+        player = new GameObject();
+		player.name = "invenDummy";
+		player.AddComponent<Pickup>();
+		player.AddComponent<SpriteRenderer>();
+		player.transform.parent = GameObject.Find("InventoryInven").transform;
+		player.transform.SetSiblingIndex(index);
+	}
     public void OnBeginDrag(PointerEventData eventData)
     {
 		startPosition = transform.position;
