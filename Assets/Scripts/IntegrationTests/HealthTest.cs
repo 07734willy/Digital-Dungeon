@@ -16,7 +16,7 @@ public class HealthTest : IntegrationTest {
         int health = player.health;
         player.ReceiveDamage(200);
 
-        if (player.health > health) {
+        if (player.health < health) {
             this.status = TestManager.Status.passed;
         } else {
             this.status = TestManager.Status.failed;
