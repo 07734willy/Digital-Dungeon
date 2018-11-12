@@ -9,6 +9,7 @@ public class SnapToGridEditor : Editor {
 
     private bool jDown = false;
     private bool reset = true;
+    private UnityEngine.KeyCode boxFillKeyCode = KeyCode.Space;
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
@@ -46,12 +47,12 @@ public class SnapToGridEditor : Editor {
                 case EventType.MouseDrag:
                     break;
                 case EventType.KeyDown:
-                    if (e.keyCode == KeyCode.J) {
+                    if (e.keyCode == this.boxFillKeyCode) {
                         jDown = true;
                     }
                     break;
                 case EventType.KeyUp:
-                    if (e.keyCode == KeyCode.J) {
+                    if (e.keyCode == this.boxFillKeyCode) {
                         jDown = false;
                     }
                     break;
