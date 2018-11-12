@@ -103,7 +103,7 @@ public class GameTile : Physical {
 			}
 		}
 		
-		if (dialog != null && oldCharacter == null) {
+		if (dialog != null && message != "" && oldCharacter == null) {
 			dialog.message = message;
             dialog.DisplayDialogMessage();
         }
@@ -125,4 +125,8 @@ public class GameTile : Physical {
     public void HideFog() {
         this.fog.SetActive(false);
     }
+	
+	public HashSet<Pickup> GetPickups(){
+		return pickups;
+	}
 }

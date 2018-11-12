@@ -38,7 +38,7 @@ public class Weapon : Pickup {
     }
 	
 	public override Pickup Clone () {
-		Debug.Log("Weapon cloning");
+		//Debug.Log("Weapon cloning");
 		
 		Weapon weapon = Instantiate<GameObject>(this.gameObject).GetComponent<Weapon>();
 /* 		weapon.stackable = this.stackable;
@@ -59,8 +59,8 @@ public class Weapon : Pickup {
 	}
 	
 	public override string GetStats () {
-		Debug.Log("Weapon stats");
-		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nDamage: " + this.damage + "\nRange: " + this.range;
+		//Debug.Log("Weapon stats");
+		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nSell: " + (int)(this.cost*0.8) + "  \tDamage: " + this.damage + "\nRange: " + this.range;
 		return message;
 	}
 }
