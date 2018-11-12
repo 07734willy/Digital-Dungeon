@@ -16,7 +16,7 @@ abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
-    public int inventoryCapacity = 16;
+    public int inventoryCapacity;
 	public int itemAmount = 0;
     public int health;
     public int maxHealth = 100;
@@ -174,7 +174,7 @@ abstract public class Character : Physical {
     }
 
     public int SpareInventoryCapacity() {
-        return (inventoryCapacity+8) - inventory.Length;
+        return inventoryCapacity - inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {

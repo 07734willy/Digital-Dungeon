@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        UpdateFog(2);
+        UpdateFog(player.fogDistance);
 
         Character character = characterQueue.Peek();
         if (character == null) {

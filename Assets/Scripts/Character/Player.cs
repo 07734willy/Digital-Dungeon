@@ -7,6 +7,7 @@ public class Player : Character {
 
     public Text dialogText;
     public GameObject dialogBox;
+    public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
 
     override protected void Awake() {

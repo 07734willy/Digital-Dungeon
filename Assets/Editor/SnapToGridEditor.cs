@@ -78,6 +78,10 @@ public class SnapToGridEditor : Editor {
                     continue;
                 }
                 GameObject go = Instantiate<GameObject>(prefab);
+                GameObject actualPrefab;
+                if ((actualPrefab = (GameObject)PrefabUtility.GetCorrespondingObjectFromSource(prefab)) != null) {
+                    go = PrefabUtility.ConnectGameObjectToPrefab(go, actualPrefab);
+                }
                 go.transform.position = new Vector2(xPos, yPos);
                 go.name = prefab.name;
             }

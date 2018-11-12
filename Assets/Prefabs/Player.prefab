@@ -4252,7 +4252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   instantTurn: 0
-  inventoryCapacity: 8
+  inventoryCapacity: 16
   itemAmount: 0
   health: 0
   maxHealth: 100
