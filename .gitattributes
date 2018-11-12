@@ -2,11 +2,8 @@
 * text=auto
 
 # Explicitly state certain project settings files are text files
-ProjectSettings/GraphicsSettings.asset text
-ProjectSettings/EditorBuildSettings.asset text
-ProjectSettings/TagManager.asset text
-ProjectSettings/ProjectSettings.asset text
-ProjectSettings/ProjectVersion.txt text
+ProjectSettings/*.asset text
+ProjectSettings/*.txt text
 
 
 # Specify scripts, prefabs, scenes, and meta files are text
