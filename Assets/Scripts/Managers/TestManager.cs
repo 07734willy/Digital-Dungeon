@@ -9,7 +9,8 @@ public class TestManager : MonoBehaviour {
         waiting,
         running,
         passed,
-        failed
+        failed,
+        timedout
     }
 
     public List<IntegrationTest> tests;
@@ -23,8 +24,14 @@ public class TestManager : MonoBehaviour {
         this.testIndex = PlayerPrefs.GetInt("testIndex", 0);
     }
 
-	
-	void Update () {
+    public IEnumerator DelayedStartup() {
+        yield return new WaitForSeconds(0.02f);
+        StartCoroutine(tests[testIndex].Run());
+        StartCoroutine(TestTimeoutFail(tests[testIndex].timeout));
+        yield return null;
+    }
+
+    void Update() {
         if (this.testIndex >= this.tests.Count) {
             PlayerPrefs.DeleteKey("testIndex");
             if (nextSceneName != "") {
@@ -41,24 +48,26 @@ public class TestManager : MonoBehaviour {
 
         if (!testStarted) {
             testStarted = true;
-            StartCoroutine(tests[testIndex].Run());
-            StartCoroutine(TestTimeoutFail(tests[testIndex].timeout));
+            StartCoroutine(DelayedStartup());
             return;
         }
 
-        Status status = tests[testIndex].status; 
+        Status status = tests[testIndex].status;
         if (status == Status.failed) {
             Debug.LogError(string.Format("[FAILED] Test {0} in scene {1} failed\n  Description: {2}", testIndex, currentSceneName, tests[testIndex].description));
             RunNextTest();
         } else if (status == Status.passed) {
             Debug.Log(string.Format("[PASSED] Test {0} in scene {1} passed", testIndex, currentSceneName));
             RunNextTest();
+        } else if (status == Status.timedout) {
+            Debug.LogError(string.Format("[FAILED] Test {0} in scene {1} timed out after {2} seconds\n  Description: {3}", testIndex, currentSceneName, tests[testIndex].timeout, tests[testIndex].description));
+            RunNextTest();
         }
     }
 
     IEnumerator TestTimeoutFail(int timeout) {
         yield return new WaitForSeconds(timeout);
-        tests[testIndex].status = Status.failed;
+        tests[testIndex].status = Status.timedout;
         yield return null;
     }
 

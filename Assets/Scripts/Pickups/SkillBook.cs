@@ -16,7 +16,7 @@ public class SkillBook : Consumable {
     }
 	
 	public override Pickup Clone () {
-		Debug.Log("SkillBook cloning");
+		//Debug.Log("SkillBook cloning");
 		
 		SkillBook skill = Instantiate<GameObject>(this.gameObject).GetComponent<SkillBook>();
 
@@ -24,8 +24,8 @@ public class SkillBook : Consumable {
 	}
 	
 	public override string GetStats () {
-		Debug.Log("SkillBook stats");
-		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() +  "\nAbility: " + this.abilityClass;
+		//Debug.Log("SkillBook stats");
+		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() +  "\nSell: " + (int)(this.cost*0.8) + "  \tAbility: " + this.abilityClass;
 		return message;
 	}
 }
