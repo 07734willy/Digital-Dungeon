@@ -7,6 +7,7 @@ public class TrapTile : GameTile {
     public int damage = 0;
     public bool resetting = false;
 	private bool sprung;
+    public string achievement = "";
     public string newLevel = "";
     private GameManager curGm;
     public GameTile spawnLocation;
@@ -28,6 +29,10 @@ public class TrapTile : GameTile {
             Dialog dialog = this.GetComponent<Dialog>();
             if (dialog != null && this.character is Player) {
                 dialog.DisplayDialogMessage();
+            }
+
+            if (achievement != "" && this.character is Player){
+                ((Player)character).completeAchievement(achievement);
             }
 
             if (damage > 0) {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Player : Character {
 
@@ -9,6 +10,8 @@ public class Player : Character {
     public GameObject dialogBox;
     public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
+    private string[] achievements = {"Test"};
+
 
     override protected void Awake() {
         base.Awake();
@@ -196,4 +199,13 @@ public class Player : Character {
 		damage = (int)(damage * multiplier);
 		base.ReceiveDamage(damage);
 	}
+
+    public void completeAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+            PlayerPrefs.SetInt(cheev, 1);
+            string achievementMessage = string.Format("You just earned the {0} achievement!", cheev);
+            SetDialogMessage(achievementMessage);
+        }
+    }
 }
