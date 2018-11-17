@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
     private Player player;
+    private SaveManager saveManager;
 
     private void Awake() {
         this.map = new Dictionary<Vector2, GameTile>();
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
         this.player = GameObject.Find("Player").GetComponent<Player>();
+        this.saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
     }
 
 
@@ -126,6 +128,10 @@ public class GameManager : MonoBehaviour {
         return this.player;
     }
 
+    public SaveManager GetSaveManager() {
+        return this.saveManager;
+    }
+
     public bool TileUnsetCharacter(Vector2 coordinates) {
         return TileSetCharacter(coordinates, null);
     }
@@ -143,6 +149,7 @@ public class GameManager : MonoBehaviour {
     }
     
     public void loadNewLevel(string levelName){
+        this.saveManager.SaveData();
         SceneManager.LoadScene(levelName);
     }
 }

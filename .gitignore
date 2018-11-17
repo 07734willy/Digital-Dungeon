@@ -5,7 +5,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-ProjectSettings/GraphicSettings.asset
+ProjectSettings/QualitySettings.asset
 ProjectSettings/graphicssettings.asset
 
 # Visual Studio cache directory

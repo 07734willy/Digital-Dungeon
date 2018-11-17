@@ -18,7 +18,6 @@ public class PickupAction : TurnAction {
 			Debug.Log("Failing check!");
             return false;
         }
-		Debug.Log(character.SpareInventoryCapacity());
         return true;
     }
 

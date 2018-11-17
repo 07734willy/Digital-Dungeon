@@ -10,6 +10,8 @@ public class Player : Character {
     public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
 
+    private bool loaded = false;
+
     override protected void Awake() {
         base.Awake();
         this.abilityLevel = new Dictionary<AbilityClass, int>() {
@@ -21,6 +23,11 @@ public class Player : Character {
 
     // Update is called once per frame
     override protected void Update () {
+        if (!loaded) {
+            gameManager.GetSaveManager().LoadData();
+            loaded = true;
+        }
+
         base.Update();
         DisplayStats();
 
