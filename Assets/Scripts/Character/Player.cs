@@ -202,10 +202,13 @@ public class Player : Character {
 
     public void completeAchievement(string cheev){
         Debug.Assert(achievements.Contains(cheev));
+        //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 0));
         if(PlayerPrefs.GetInt(cheev, 0) == 0){
             PlayerPrefs.SetInt(cheev, 1);
             string achievementMessage = string.Format("You just earned the {0} achievement!", cheev);
             SetDialogMessage(achievementMessage);
+            PlayerPrefs.SetInt("achievementsEarned",PlayerPrefs.GetInt("achievementsEarned",0) + 1);
+            //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 1));
         }
     }
 }
