@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
     public void setDifficulty(String diffic)
     {
-        switch(diffic)
+        switch(diffic.ToLower())
         {
             case "easy":
                 difficulty = Difficulty.Easy;
@@ -120,8 +120,6 @@ public class GameManager : MonoBehaviour {
                 difficulty = Difficulty.Normal;
                 break;
         }
-
-        Debug.Log(difficulty);
     }
 
     public Player GetPlayer() {

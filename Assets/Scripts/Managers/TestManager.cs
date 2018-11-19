@@ -13,15 +13,19 @@ public class TestManager : MonoBehaviour {
         timedout
     }
 
-    public List<IntegrationTest> tests;
     public string nextSceneName;
     private string currentSceneName;
     private int testIndex;
     private bool testStarted = false;
+    private List<IntegrationTest> tests;
 
     public void Awake() {
         this.currentSceneName = SceneManager.GetActiveScene().name;
         this.testIndex = PlayerPrefs.GetInt("testIndex", 0);
+    }
+
+    public void Start() {
+        this.tests = new List<IntegrationTest>(this.gameObject.GetComponentsInChildren<IntegrationTest>());
     }
 
     public IEnumerator DelayedStartup() {
