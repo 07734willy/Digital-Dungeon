@@ -15,6 +15,8 @@ public class TrapTile : GameTile {
 	public GameObject whatToSpawnNormal;
 	public GameObject whatToSpawnHard;
 	public GameObject whatToSpawnExtreme;
+    public string achievementShowcase = "";
+    public bool test = false;
 
     override protected void Awake() {
         base.Awake();
@@ -32,7 +34,26 @@ public class TrapTile : GameTile {
             }
 
             if (achievement != "" && this.character is Player){
-                ((Player)character).completeAchievement(achievement);
+                if(achievement == "Game Complete"){
+                    switch(curGm.difficulty){
+                        case GameManager.Difficulty.Extreme:
+                        ((Player)character).completeAchievement("Game Complete Extreme");
+                        goto case GameManager.Difficulty.Hard;
+                        case GameManager.Difficulty.Hard:
+                        ((Player)character).completeAchievement("Game Complete Hard");
+                        goto case GameManager.Difficulty.Normal;
+                        case GameManager.Difficulty.Normal:
+                        ((Player)character).completeAchievement("Game Complete Normal");
+                        goto case GameManager.Difficulty.Easy;                       
+                        case GameManager.Difficulty.Easy:
+                        ((Player)character).completeAchievement("Game Complete Easy");
+                        break;    
+                        default:
+                        break;
+                    }
+                }else{
+                    ((Player)character).completeAchievement(achievement);
+            }
             }
 
             if (damage > 0) {
@@ -65,6 +86,17 @@ public class TrapTile : GameTile {
 							break;
 					}
             	}
+            }
+
+            if(achievementShowcase != "" && this.character is Player){
+                ((Player)character).displayAchievement(achievementShowcase);
+            }
+
+            if(test){
+                //These are test functions to run them easily somewhere, just
+                //make sure test is false for real game tiles
+                //also try to remember to comment out tests as a double safety
+                //((Player)character).wipeAchievements();
             }
         }
     }

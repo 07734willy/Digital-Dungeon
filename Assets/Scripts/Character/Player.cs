@@ -10,7 +10,23 @@ public class Player : Character {
     public GameObject dialogBox;
     public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
-    private string[] achievements = {"Test"};
+    private string[] achievements = {
+    "Tutorial", 
+    "Level 1", 
+    "Level 2", 
+    "Level 3", 
+    "Level 4", 
+    "Level 5",
+    "Final Level",
+    "Game Complete Easy",
+    "Game Complete Normal",
+    "Game Complete Hard",
+    "Game Complete Extreme",
+    "First Weapon",
+    "First Purchase",
+    "First Enemy Defeated",
+    "First Sale"
+    };
 
 
     override protected void Awake() {
@@ -210,5 +226,23 @@ public class Player : Character {
             PlayerPrefs.SetInt("achievementsEarned",PlayerPrefs.GetInt("achievementsEarned",0) + 1);
             //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 1));
         }
+    }
+
+    public void displayAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+                string achievementMessage = string.Format("You have not yet earned the {0} achievement.", cheev);
+                SetDialogMessage(achievementMessage);
+            }else{
+                string achievementMessage = string.Format("Congratulations on earning the {0} achievement!", cheev);
+                SetDialogMessage(achievementMessage);
+            }
+    }
+
+    public void wipeAchievements(){
+        foreach (string s in achievements){
+            PlayerPrefs.SetInt(s, 0);
+        }
+        PlayerPrefs.SetInt("achievementsEarned", 0);
     }
 }

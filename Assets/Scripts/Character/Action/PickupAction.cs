@@ -32,6 +32,10 @@ public class PickupAction : TurnAction {
             return false;
         }
 
+        if (pickup is Weapon){
+            ((Player)character).completeAchievement("First Weapon");
+        }
+
 		if (pickup.IsPurchasable()){
 			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
                 string notEnough = string.Format("Innsufficent gold! This item costs: {0}", pickup.GetCost());
@@ -39,6 +43,7 @@ public class PickupAction : TurnAction {
 				return false;
 			}
 			else {
+                ((Player)character).completeAchievement("First Purchase");
 				character.SetGold(character.GetGold() - pickup.GetCost());
 				Pickup newPickup = pickup.Clone();
 				gameManager.GetTile(pickup.GetCoordinates()).AddPickup(newPickup);

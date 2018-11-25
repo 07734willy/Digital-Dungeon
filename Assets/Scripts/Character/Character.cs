@@ -402,6 +402,7 @@ abstract public class Character : Physical {
             this.health = -1;
             gameManager.loadNewLevel("DeathScene");
         } else {
+        	this.gameManager.GetPlayer().completeAchievement("First Enemy Defeated");
 			//Add experience to the player
 			this.gameManager.GetPlayer().totalExperience += 50;
 			

@@ -2251,7 +2251,7 @@ MonoBehaviour:
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
   damage: 0
   resetting: 0
-  achievement: 
+  achievement: Tutorial
   newLevel: Level 1
   spawnLocation: {fileID: 0}
   whatToSpawnEasy: {fileID: 0}
@@ -15582,6 +15582,11 @@ Prefab:
         type: 2}
       propertyPath: newLevel
       value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279179778997478, guid: 9e7214117b369cc44b92d19dd3177ec1,
+        type: 2}
+      propertyPath: achievement
+      value: Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114701802066303204, guid: 9e7214117b369cc44b92d19dd3177ec1, type: 2}
