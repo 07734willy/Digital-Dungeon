@@ -8,7 +8,9 @@ public class Player : Character {
     public Text dialogText;
     public GameObject dialogBox;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
-
+	public string[] logs = new string[5];
+	private int logNumber = 0;
+	
     override protected void Awake() {
         base.Awake();
         this.abilityLevel = new Dictionary<AbilityClass, int>() {
@@ -17,12 +19,14 @@ public class Player : Character {
             { AbilityClass.Teleport, 1 }
         };
     }
-
     // Update is called once per frame
     override protected void Update () {
         base.Update();
         DisplayStats();
-
+		for(int i = 0; i < 5; i++){
+			GameObject.Find("logText "+i.ToString()).GetComponent<Text>().text = logs[i];
+		}
+		
         if (currentAction.isComplete) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 UseAbility1();
@@ -86,35 +90,47 @@ public class Player : Character {
     // Good
     public void UseAbility1() {
         Debug.Log("healing ablity used");
+		shiftLogBox();
+		logs[0]="healing ability used!";
         //SetDialogMessage("dialog text updated");
         this.pendingAction = new HealAbilityAction(this);
     }
 
     public void UseAbility2() {
         Debug.Log("spin ability used");
+	shiftLogBox();
+		logs[0]="spin ability used!";
         this.pendingAction = new SpinAbilityAction(this);
     }
 
     public void UseAbility3() {
         Debug.Log("teleport ability used");
+		shiftLogBox();
+		logs[0]="teleport ability used!";
         this.pendingAction = new TeleportAbilityAction(this);
     }
 
     public void UseAbility4() {
         Debug.Log("fury ability used");
+		shiftLogBox();
+		logs[0]="fury ability used!";
         this.pendingAction = new FuryAbilityAction(this);
     }
 
     public void UseAbility5() {
         Debug.Log("equilibrium ability used");
+		shiftLogBox();
+		logs[0]="Equilibrium ability used!";
         this.pendingAction = new EquilibriumAbilityAction(this);
     }
 
     public void UseAbility6() {
         Debug.Log("push ability used");
+		shiftLogBox();
+		logs[0]="Push ability used!";
         this.pendingAction = new PushAbilityAction(this);
     }
-
+	
     // optional method for ability button
     public void UseAbility() {
         switch(selectedAbility)
@@ -169,9 +185,16 @@ public class Player : Character {
     // Good
     public void SetDialogMessage(string message) {
         this.dialogText.text = message;
-        ShowDialogBox();
+		shiftLogBox();
+		logs[0] = message;
+       // ShowDialogBox();
     }
-    
+    public void shiftLogBox(){
+		for(int i = 4; i > 0; i--){
+			logs[i] = logs[i-1];
+			
+		}
+	}
     public void ShowDialogBox() {
         dialogBox.SetActive(true);
     }

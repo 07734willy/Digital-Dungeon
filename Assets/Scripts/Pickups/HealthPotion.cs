@@ -12,6 +12,8 @@ public class HealthPotion : Consumable {
             character.Heal(healValue);
             Destroy(this.gameObject);
         }
+		this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="Restored " + healValue + " health";
         character.RefreshInventory();
     }
 	
@@ -24,7 +26,7 @@ public class HealthPotion : Consumable {
 	}
 	
 	public override string GetStats () {
-		Debug.Log("Hralth Potion stats");
+		Debug.Log("Health Potion stats");
 		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nHeals: " + this.healValue;
 		return message;
 	}

@@ -62,6 +62,8 @@ public class GameTile : Physical {
 					if(this.gameManager.GetPlayer().checkPlayerRangedAttack(this.character)){
 						if(this.gameManager.GetPlayer().arrows > 0){
 							player.SetPendingAction(new RangedAttackAction(player, character, player.movementSpeed, player.instantTurn));
+							this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="Enemy has " + character.health + " health left!";
 							this.gameManager.GetPlayer().arrows--;
 						}
 						else {
@@ -78,6 +80,8 @@ public class GameTile : Physical {
         else if (this.character != null && character != player) {
             //attack
             player.SetPendingAction(new MeleeAttackAction(player, character, player.movementSpeed, player.instantTurn));
+			this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="Enemy has " + character.health + " health left!";
         } else if (player.GetCoordinates() != this.GetCoordinates()) {
             // pathfind, and MoveAction() towards it.
         } else if (this.pickups.Count > 0) {

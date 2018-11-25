@@ -200,6 +200,8 @@ abstract public class Character : Physical {
 			Vector2 difference = this.gameManager.GetPlayer().GetCoordinates()-enemy.GetCoordinates();
 			if(difference.x != 0 && difference.y != 0){
 				Debug.Log("Not a straight shot!");
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Not a straight shot!";
 				return false;
 			}
 			else {
@@ -215,6 +217,8 @@ abstract public class Character : Physical {
 						}
 						if(!gameManager.GetTile(coords).isWalkable){
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -231,6 +235,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -247,6 +253,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -263,6 +271,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -361,13 +371,24 @@ abstract public class Character : Physical {
     public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
 			Debug.Log("Evaded damage!");
+			if(this == this.gameManager.GetPlayer()){
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="You evaded damage!";
+			}
+			else {
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Enemy evaded damage!";
+			}
             return;
         }
         int baseArmor = 20;
         Debug.Assert(armor + baseArmor > 0);
         Debug.Log("Damage taken: " + damage / Mathf.Sqrt(armor + baseArmor));
         health -= (int)(damage / Mathf.Sqrt(armor + baseArmor));
-
+		if(this == this.gameManager.GetPlayer()){
+			this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="You took " + damage / Mathf.Sqrt(armor + baseArmor) + " damage!";
+		}
         if (health <= 0) {
             this.Kill();
         }
