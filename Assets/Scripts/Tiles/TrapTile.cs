@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapTile : GameTile {
+	public enum TrapDependency{
+		None, 
+		Health, 
+		Level, 
+		Gold
+	};
+	public TrapDependency trapDependency;
 
     public int damage = 0;
     public bool resetting = false;
@@ -14,6 +21,9 @@ public class TrapTile : GameTile {
 	public GameObject whatToSpawnNormal;
 	public GameObject whatToSpawnHard;
 	public GameObject whatToSpawnExtreme;
+	public int minDependency;
+	public int maxDependency;
+	
 
     override protected void Awake() {
         base.Awake();
@@ -30,11 +40,37 @@ public class TrapTile : GameTile {
                 dialog.DisplayDialogMessage();
             }
 
-            if (damage > 0) {
-                character.ReceiveDamage(damage);
-            }
-
-            if (!resetting) {
+            switch(trapDependency)
+			{
+				case TrapDependency.Health:
+					if(this.character.GetHealth() < minDependency || this.character.GetHealth() > maxDependency){
+						if (damage > 0) {
+							character.ReceiveDamage(damage);
+						}
+					}
+					break;
+				case TrapDependency.Level:
+					if(this.character.GetLevel() < minDependency || this.character.GetLevel() > maxDependency){
+						if (damage > 0) {
+							character.ReceiveDamage(damage);
+						}
+					}
+					break;
+				case TrapDependency.Gold:
+					if(this.character.GetGold() < minDependency || this.character.GetGold() > maxDependency){
+						if (damage > 0) {
+							character.ReceiveDamage(damage);
+						}
+					}
+					break;
+				default:
+					if (damage > 0) {
+						character.ReceiveDamage(damage);
+					}
+					break;
+			}
+			
+			if (!resetting) {
                 this.sprung = true;
             }
 
