@@ -13,7 +13,7 @@ public class GameTile : Physical, IPointerClickHandler {
     private GameManager gameManager;
     private HashSet<Pickup> pickups;
 
-    virtual protected void Awake() {
+    protected virtual void Awake() {
         this.pickups = new HashSet<Pickup>();
         this.fog = Instantiate<GameObject>(fogPrefab);
         this.fog.transform.parent = this.transform;
@@ -21,7 +21,7 @@ public class GameTile : Physical, IPointerClickHandler {
     }
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
 		//this.fog.SetActive(false);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);

@@ -134,6 +134,9 @@ abstract public class Character : Physical {
         if (!this.initialized) {
             this.initialized = true;
 			//Debug.Log("Initialize");
+            if (this.gameObject == null) {
+                Debug.Log("Player not on a gametile");
+            }
             gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
         }
     }

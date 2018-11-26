@@ -6,7 +6,7 @@ public class TrapTile : GameTile {
 
     public int damage = 0;
     public bool resetting = false;
-	private bool sprung;
+	protected bool sprung;
     public string newLevel = "";
     private GameManager curGm;
     public GameTile spawnLocation;
@@ -41,7 +41,7 @@ public class TrapTile : GameTile {
             if (newLevel != "" && this.character is Player){
             	curGm.loadNewLevel(newLevel);
             }
-
+            
             if(spawnLocation != null){
             	if(spawnLocation.GetCharacter() == null && spawnLocation.IsWalkable()){
             		switch (curGm.difficulty)
@@ -62,5 +62,6 @@ public class TrapTile : GameTile {
             	}
             }
         }
+        base.SetCharacter(character);
     }
 }
