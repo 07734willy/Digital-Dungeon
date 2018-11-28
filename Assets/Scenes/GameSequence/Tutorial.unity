@@ -2258,6 +2258,8 @@ MonoBehaviour:
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  achievementShowcase: 
+  test: 0
 --- !u!1001 &347320451
 Prefab:
   m_ObjectHideFlags: 0
@@ -4470,6 +4472,8 @@ MonoBehaviour:
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  achievementShowcase: 
+  test: 0
 --- !u!114 &606147774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5714,6 +5718,8 @@ MonoBehaviour:
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  achievementShowcase: 
+  test: 0
 --- !u!1001 &755090752
 Prefab:
   m_ObjectHideFlags: 0
@@ -6650,6 +6656,18 @@ Prefab:
     - target: {fileID: 4013319042819816, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
