@@ -33,6 +33,9 @@ public class LightPuzzleTile : GameTile {
             }
             this.ToggleLit();
         }
+        if (this.door.lightLocks == 0) {
+            this.door.OpenDoor();
+        }
         base.SetCharacter(character);
     }
 
@@ -44,9 +47,6 @@ public class LightPuzzleTile : GameTile {
         } else {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = this.unlitSprite;
             this.door.lightLocks++;
-        }
-        if (this.door.lightLocks == 0) {
-            this.door.OpenDoor();
         }
     }
 }
