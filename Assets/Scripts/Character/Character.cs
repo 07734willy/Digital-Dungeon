@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 abstract public class Character : Physical {
     public enum AbilityClass {
@@ -403,7 +404,7 @@ abstract public class Character : Physical {
     public void Kill() {
         if (this is Player) {
             this.health = -1;
-            gameManager.loadNewLevel("DeathScene");
+            SceneManager.LoadScene("DeathScene");
         } else {
         	this.gameManager.GetPlayer().completeAchievement("First Enemy Defeated");
 			//Add experience to the player

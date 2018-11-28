@@ -120,6 +120,9 @@ public class GameManager : MonoBehaviour {
                 difficulty = Difficulty.Normal;
                 break;
         }
+
+        PlayerPrefs.SetString("difficulty", this.difficulty.ToString().ToLower());
+        Debug.Log(difficulty.ToString());
     }
 
     public Player GetPlayer() {
@@ -146,8 +149,31 @@ public class GameManager : MonoBehaviour {
 		return true;
     }
     
-    public void loadNewLevel(string levelName){
+    public void loadNewLevel(string levelName) {
+        Debug.Assert(this.saveManager != null);
         this.saveManager.SaveData();
+        PlayerPrefs.SetString("levelname", levelName);
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void loadNewLevel()
+    {
+        Debug.Assert(this.saveManager != null);
+        this.saveManager.SaveData();
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void instantLoad(string levelName)
+    {
         SceneManager.LoadScene(levelName);
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        //Stop playing the scene
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Trivia : MonoBehaviour {
     public string nextlevel;
@@ -48,8 +50,15 @@ public class Trivia : MonoBehaviour {
         GameObject.Find("Trivia").GetComponent<Text>().text = trivmessage;
         for (int i = 0; i < 270; i += 1) {
             GameObject.Find("Loading Bar").GetComponent<SpriteRenderer>().transform.localScale = new Vector3(i, 30, 1);
-            yield return new WaitForSeconds(0.01F*(Random.Range(0,8)));
+            yield return new WaitForSeconds(0.01F*(Random.Range(0,1)));
         }
+
+        string leveltoload = PlayerPrefs.GetString("levelname", null);
+
+        Debug.Log(PlayerPrefs.GetString("levelname", null));
+        Debug.Assert(leveltoload != null);
+
+        SceneManager.LoadScene(leveltoload);
     }
 
     public void setNextLevel(string leveltoload)
