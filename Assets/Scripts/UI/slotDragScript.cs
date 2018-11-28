@@ -28,6 +28,9 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 			Transform pickup = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
             pickup.transform.SetParent(GameObject.Find("EquippedInven").transform);
 			DragHandler.addDummyItem(startIndex);
+			if(pickup.GetComponent<Pickup>().isArmor){
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().armor += pickup.GetComponent<armor>().armorValue;
+			}
 			if(pickup.gameObject.GetComponent<Pickup>() is Weapon){
 				if(pickup.gameObject.GetComponent<Weapon>().isRanged){
 					Debug.Log("Ranged equipped");
@@ -48,6 +51,9 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 				UnityEngine.Object.Destroy(GameObject.Find("InventoryInven").transform.GetChild(endIndex).gameObject);
 				pickup.transform.SetParent(GameObject.Find("InventoryInven").transform);
 				pickup.transform.SetSiblingIndex(endIndex);
+			}
+			if(pickup.GetComponent<Pickup>().isArmor){
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().armor -= pickup.GetComponent<armor>().armorValue;
 			}
 			else{
 				Pickup[] inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
