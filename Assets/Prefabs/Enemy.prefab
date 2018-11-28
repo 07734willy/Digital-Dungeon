@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   instantTurn: 0
-  inventoryCapacity: 8
+  inventoryCapacity: 16
   itemAmount: 0
   health: 0
   maxHealth: 100
@@ -127,6 +127,7 @@ MonoBehaviour:
   level: 1
   gold: 0
   keys: 0
+  arrows: 0
   totalExperience: 0
   expMilestone: 100
   rangedWeapon: {fileID: 0}
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: You picked up sword!
+  inspect: 
 --- !u!114 &114440956560575442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,10 +184,10 @@ MonoBehaviour:
   stackable: 0
   quantity: 1
   value: 0
-  isWeapon: 1
-  isArmor: 0
-  isConsumable: 0
   isConsumeNow: 0
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
   itemSprite: {fileID: 0}
   damage: 100
   accuracy: 1
@@ -250,7 +252,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1565562449
-  m_SortingLayer: 0
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -296,7 +298,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -476769981
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f1ee4429a8e5c2e418cb764a79f19e33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -342,7 +344,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1565562449
-  m_SortingLayer: 0
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 85f1e60a7e9809b40ad049673e167a03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

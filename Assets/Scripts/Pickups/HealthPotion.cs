@@ -16,7 +16,7 @@ public class HealthPotion : Consumable {
     }
 	
 	public override Pickup Clone () {
-		Debug.Log("HealthPotion cloning");
+		//Debug.Log("HealthPotion cloning");
 		
 		HealthPotion health = Instantiate<GameObject>(this.gameObject).GetComponent<HealthPotion>();
 
@@ -24,8 +24,8 @@ public class HealthPotion : Consumable {
 	}
 	
 	public override string GetStats () {
-		Debug.Log("Hralth Potion stats");
-		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nHeals: " + this.healValue;
+		//Debug.Log("Health Potion stats");
+		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() + "\nSell: " + (int)(this.cost*0.8) + "  \tHeals: " + this.healValue;
 		return message;
 	}
 }

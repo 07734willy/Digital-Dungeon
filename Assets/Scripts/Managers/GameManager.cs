@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
     private Player player;
+    private SaveManager saveManager;
 
     private void Awake() {
         this.map = new Dictionary<Vector2, GameTile>();
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
         this.player = GameObject.Find("Player").GetComponent<Player>();
+        this.saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
     }
 
 
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        UpdateFog(2);
+        UpdateFog(player.fogDistance);
 
         Character character = characterQueue.Peek();
         if (character == null) {
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
     public void setDifficulty(String diffic)
     {
-        switch(diffic)
+        switch(diffic.ToLower())
         {
             case "easy":
                 difficulty = Difficulty.Easy;
@@ -118,12 +120,14 @@ public class GameManager : MonoBehaviour {
                 difficulty = Difficulty.Normal;
                 break;
         }
-
-        Debug.Log(difficulty);
     }
 
     public Player GetPlayer() {
         return this.player;
+    }
+
+    public SaveManager GetSaveManager() {
+        return this.saveManager;
     }
 
     public bool TileUnsetCharacter(Vector2 coordinates) {
@@ -143,6 +147,7 @@ public class GameManager : MonoBehaviour {
     }
     
     public void loadNewLevel(string levelName){
+        this.saveManager.SaveData();
         SceneManager.LoadScene(levelName);
     }
 }
