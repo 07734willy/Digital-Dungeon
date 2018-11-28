@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Trivia : MonoBehaviour {
+    public string nextlevel;
 
     void Start()
     {
@@ -47,10 +48,12 @@ public class Trivia : MonoBehaviour {
         GameObject.Find("Trivia").GetComponent<Text>().text = trivmessage;
         for (int i = 0; i < 270; i += 1) {
             GameObject.Find("Loading Bar").GetComponent<SpriteRenderer>().transform.localScale = new Vector3(i, 30, 1);
-            //GameObject.Find("Loading Bar").GetComponent<SpriteRenderer>().transform.localPosition = new Vector3(-5, -203, 1);
-            yield return new WaitForSeconds(0.01F*(Random.Range(1,5)));
+            yield return new WaitForSeconds(0.01F*(Random.Range(0,8)));
         }
-        //transform.Translate(10, 10, 10);
+    }
 
+    public void setNextLevel(string leveltoload)
+    {
+        nextlevel = leveltoload;
     }
 }
