@@ -41,6 +41,16 @@ public class ConsumeNow : Pickup {
 			default:
 			break;
 		}
-		Destroy(this.gameObject);
+		if (!this.isPurchasable){
+			Destroy(this.gameObject);
+		}
+	}
+	
+	public override Pickup Clone () {
+		Debug.Log("ConsumeNow cloning");
+		
+		ConsumeNow consumeNow = Instantiate<GameObject>(this.gameObject).GetComponent<ConsumeNow>();
+
+		return consumeNow;
 	}
 }

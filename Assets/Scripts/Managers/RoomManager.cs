@@ -67,6 +67,7 @@ public class RoomManager : MonoBehaviour {
             if (tile.IsWalkable()) {
                 Character instance = Instantiate<Character>(character);
                 instance.transform.position = tile.transform.position;
+				Debug.Log("RoomManagerSetCharacter");
                 tile.SetCharacter(instance);
                 break;
             } else {

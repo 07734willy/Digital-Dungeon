@@ -1,0 +1,25 @@
+# Autodetect text files
+* text=auto
+
+# Explicitly state certain project settings files are text files
+ProjectSettings/*.asset text
+ProjectSettings/*.txt text
+
+
+# Specify scripts, prefabs, scenes, and meta files are text
+Assets/**/*.meta text
+Assets/**/*.cs text
+Assets/Prefabs/**/*.prefab text
+Assets/Scenes/**/*.unity text
+
+
+# Specify these other filetypes are also text
+Assets/**/*.txt text
+Assets/**/*.test text
+
+# Ensure that images and data files are treated at binary files
+Assets/**/*.png binary
+Assets/**/*.ttf binary
+Assets/**/*.doc binary
+Assets/**/*.zip binary
+Assets/**/*.data binary

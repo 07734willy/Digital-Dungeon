@@ -15,8 +15,10 @@ public class PickupAction : TurnAction {
     public override bool Check() {
         character.RefreshInventory();
         if (character.SpareInventoryCapacity() <= 0) {
+			Debug.Log("Failing check!");
             return false;
         }
+		Debug.Log(character.SpareInventoryCapacity());
         return true;
     }
 
@@ -29,7 +31,21 @@ public class PickupAction : TurnAction {
         if (!Check()) {
             return false;
         }
-		
+
+		if (pickup.IsPurchasable()){
+			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
+                string notEnough = string.Format("Innsufficent gold! This item costs: {0}", pickup.GetCost());
+                gameManager.GetPlayer().SetDialogMessage(notEnough);
+				return false;
+			}
+			else {
+				character.SetGold(character.GetGold() - pickup.GetCost());
+				Pickup newPickup = pickup.Clone();
+				gameManager.GetTile(pickup.GetCoordinates()).AddPickup(newPickup);
+				pickup.isPurchasable = false;
+			}
+		}
+			
         gameManager.GetTile(pickup.GetCoordinates()).RemovePickup(pickup);
         //pickup.transform.parent = character.transform;
 		pickup.transform.parent = GameObject.Find("InventoryInven").transform;
@@ -39,7 +55,9 @@ public class PickupAction : TurnAction {
             gameManager.GetPlayer().SetDialogMessage(dialog.message);
         }
 	    pickup.SetCharacter(this.character);
-        if (pickup is Consumable) {
+        if (pickup is ConsumeNow) {
+            ((ConsumeNow)pickup).Consume();
+        } else if (pickup is Consumable) {
             pickup.Select();
         }
         //pickup.transform.position = Vector2.zero;

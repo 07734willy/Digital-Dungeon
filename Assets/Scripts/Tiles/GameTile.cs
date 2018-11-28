@@ -21,6 +21,7 @@ public class GameTile : Physical {
 
     // Use this for initialization
     void Start () {
+		//this.fog.SetActive(false);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
@@ -76,9 +77,7 @@ public class GameTile : Physical {
         } else if (this.pickups.Count > 0) {
             foreach (Pickup pickup in pickups) {
                 // Don't waste a turn trying to pickup if you can't
-                if (pickup is ConsumeNow){
-                    ((ConsumeNow)pickup).Consume();
-                }else if (player.SpareInventoryCapacity() > 0) {
+                if (player.SpareInventoryCapacity() > 0 || pickup is ConsumeNow) {
                     player.SetPendingAction(new PickupAction(player, pickup));
                 }
                 // this is a nasty hack, but we can only (and want to) pick up one item per turn, so to retrieve one item from a hashset...we do this
@@ -93,7 +92,21 @@ public class GameTile : Physical {
     }
 
     public virtual void SetCharacter(Character character) {
-        this.character = character;
+        Character oldCharacter = this.character;
+		this.character = character;
+		//Debug.Log("SetCharacter");
+		Dialog dialog = this.GetComponent<Dialog>();
+		string message = "";
+		foreach (Pickup pickup in pickups) {
+            if(pickup.IsPurchasable()){
+				message += pickup.GetStats();
+			}
+		}
+		
+		if (dialog != null && oldCharacter == null) {
+			dialog.message = message;
+            dialog.DisplayDialogMessage();
+        }
     }
 
     public void AddPickup(Pickup pickup) {
