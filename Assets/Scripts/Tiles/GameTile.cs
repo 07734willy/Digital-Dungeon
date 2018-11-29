@@ -8,6 +8,7 @@ public class GameTile : Physical, IPointerClickHandler {
     //public GameManager gameManager;
     public bool isWalkable;
     public GameObject fogPrefab;
+	protected bool fogActivated = true;
     protected GameObject fog;
     protected Character character;
     private GameManager gameManager;
@@ -26,7 +27,12 @@ public class GameTile : Physical, IPointerClickHandler {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.AddTile(this);
 	}
-
+	public bool getFogActivated(){
+		return this.fogActivated;
+	}
+	public void setFogActivated(bool x){
+		this.fogActivated= x;
+	}
     public void RefreshContents() {
         if (character != null && character.GetCoordinates() != this.GetCoordinates()) {
             Debug.LogError("Character was moved from tile without updating tile");
@@ -72,6 +78,8 @@ public class GameTile : Physical, IPointerClickHandler {
             } else if (this.character != null && character != player) {
                 //attack
                 player.SetPendingAction(new MeleeAttackAction(player, character, player.movementSpeed, player.instantTurn));
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Enemy has " + character.health + " health";
             } else if (player.GetCoordinates() != this.GetCoordinates()) {
                 // pathfind, and MoveAction() towards it.
             } else if (this.pickups.Count > 0) {
@@ -143,6 +151,7 @@ public class GameTile : Physical, IPointerClickHandler {
 
     public void HideFog() {
         this.fog.SetActive(false);
+		this.setFogActivated(false);
     }
 	
 	public HashSet<Pickup> GetPickups(){

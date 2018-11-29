@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickup : Physical {
 
     public bool stackable = false;
+	public bool isArmor = false;
     public int quantity = 1;
     public int value = 0;
     public bool isConsumeNow;

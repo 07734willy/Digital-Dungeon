@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 abstract public class Character : Physical {
     public enum AbilityClass {
@@ -111,11 +110,20 @@ abstract public class Character : Physical {
 			GameObject gamex = GameObject.Find("Image ("+index.ToString()+")");
 			if(gamex!=null){
 				//Debug.Log(this.inventory[0].itemSprite.name);
-				gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-				Image image = gamex.GetComponent<Image>();
-				var tempColor = image.color;
-				tempColor.a = 1f;
-				image.color = tempColor;
+				if(item.name == "invenDummy"){
+					gamex.GetComponent<Image>().sprite = null;
+					Image image = gamex.GetComponent<Image>();
+					var tempColor = image.color;
+					tempColor.a = 0f;
+					image.color = tempColor;
+				}
+				else {
+					gamex.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+					Image image = gamex.GetComponent<Image>();
+					var tempColor = image.color;
+					tempColor.a = 1f;
+					image.color = tempColor;
+				}
 			}
 			index++;
 		}
@@ -178,7 +186,14 @@ abstract public class Character : Physical {
     }
 
     public int SpareInventoryCapacity() {
-        return inventoryCapacity - inventory.Length;
+		int count = 0;
+		for(int i = 0; i < inventory.Length; i++){
+			if(inventory[i].GetComponent<dummyItem>()){
+				count++;
+			}
+		}
+        return inventoryCapacity - count;//inventory.Length;
+        //return inventoryCapacity - inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {
@@ -189,6 +204,8 @@ abstract public class Character : Physical {
 			Vector2 difference = this.gameManager.GetPlayer().GetCoordinates()-enemy.GetCoordinates();
 			if(difference.x != 0 && difference.y != 0){
 				Debug.Log("Not a straight shot!");
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Not a straight shot!";
 				return false;
 			}
 			else {
@@ -204,6 +221,8 @@ abstract public class Character : Physical {
 						}
 						if(!gameManager.GetTile(coords).isWalkable){
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -220,6 +239,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -236,6 +257,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -252,6 +275,8 @@ abstract public class Character : Physical {
 						if(tileBeingChecked.isWalkable == false){
 							Debug.Log(coords);
 							Debug.Log("Wall in the way!");
+							this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Wall in the way of shot!";
 							return false;
 						}
 					}
@@ -350,13 +375,24 @@ abstract public class Character : Physical {
     public virtual void ReceiveDamage(int damage) {
         if (Random.Range(0, 1000) < 1000 * evasion) {
 			Debug.Log("Evaded damage!");
+			if(this == this.gameManager.GetPlayer()){
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="You evaded damage!";
+			}
+			else {
+				this.gameManager.GetPlayer().shiftLogBox();
+				this.gameManager.GetPlayer().logs[0]="Enemy evaded damage!";
+			}
             return;
         }
         int baseArmor = 20;
         Debug.Assert(armor + baseArmor > 0);
         Debug.Log("Damage taken: " + damage / Mathf.Sqrt(armor + baseArmor));
         health -= (int)(damage / Mathf.Sqrt(armor + baseArmor));
-
+		if(this == this.gameManager.GetPlayer()){
+			this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="You took " + damage / Mathf.Sqrt(armor + baseArmor) + " damage!";
+		}
         if (health <= 0) {
             this.Kill();
         }
@@ -404,7 +440,7 @@ abstract public class Character : Physical {
     public void Kill() {
         if (this is Player) {
             this.health = -1;
-            SceneManager.LoadScene("DeathScene");
+            gameManager.instantLoad("DeathScene");
         } else {
         	this.gameManager.GetPlayer().completeAchievement("First Enemy Defeated");
 			//Add experience to the player
@@ -450,3 +486,4 @@ abstract public class Character : Physical {
 		return level;
 	}
 }
+>>>>>>> master

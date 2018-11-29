@@ -12,6 +12,8 @@ public class HealthPotion : Consumable {
             character.Heal(healValue);
             Destroy(this.gameObject);
         }
+		this.gameManager.GetPlayer().shiftLogBox();
+			this.gameManager.GetPlayer().logs[0]="Restored " + healValue + " health";
         character.RefreshInventory();
     }
 	
