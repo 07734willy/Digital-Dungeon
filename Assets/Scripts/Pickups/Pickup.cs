@@ -24,8 +24,9 @@ public class Pickup : Physical {
 
     public void RefreshStatus() {
         // If it is not a child of another gameobject <- that is, not inside a character inventory
-        GameTile tile = gameManager.GetTile(this.GetCoordinates());
+
         if (transform.parent == null) {
+            GameTile tile = gameManager.GetTile(this.GetCoordinates());
             if (tile != null) {
                 tile.AddPickup(this);
             }

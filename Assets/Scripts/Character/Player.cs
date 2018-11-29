@@ -2,12 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Player : Character {
 
     public Text dialogText;
     public GameObject dialogBox;
+    public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
+    private string[] achievements = {
+    "Tutorial", 
+    "Level 1", 
+    "Level 2", 
+    "Level 3", 
+    "Level 4", 
+    "Level 5",
+    "Final Level",
+    "Game Complete Easy",
+    "Game Complete Normal",
+    "Game Complete Hard",
+    "Game Complete Extreme",
+    "First Weapon",
+    "First Purchase",
+    "First Enemy Defeated",
+    "First Sale"
+    };
+
+
+    private bool loaded = false;
 
     override protected void Awake() {
         base.Awake();
@@ -20,6 +42,11 @@ public class Player : Character {
 
     // Update is called once per frame
     override protected void Update () {
+        if (!loaded) {
+            gameManager.GetSaveManager().LoadData();
+            loaded = true;
+        }
+
         base.Update();
         DisplayStats();
 
@@ -195,4 +222,34 @@ public class Player : Character {
 		damage = (int)(damage * multiplier);
 		base.ReceiveDamage(damage);
 	}
+
+    public void completeAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 0));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+            PlayerPrefs.SetInt(cheev, 1);
+            string achievementMessage = string.Format("You just earned the {0} achievement!", cheev);
+            SetDialogMessage(achievementMessage);
+            PlayerPrefs.SetInt("achievementsEarned",PlayerPrefs.GetInt("achievementsEarned",0) + 1);
+            //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 1));
+        }
+    }
+
+    public void displayAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+                string achievementMessage = string.Format("You have not yet earned the {0} achievement.", cheev);
+                SetDialogMessage(achievementMessage);
+            }else{
+                string achievementMessage = string.Format("Congratulations on earning the {0} achievement!", cheev);
+                SetDialogMessage(achievementMessage);
+            }
+    }
+
+    public void wipeAchievements(){
+        foreach (string s in achievements){
+            PlayerPrefs.SetInt(s, 0);
+        }
+        PlayerPrefs.SetInt("achievementsEarned", 0);
+    }
 }

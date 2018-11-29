@@ -2883,6 +2883,11 @@ Prefab:
       propertyPath: newLevel
       value: Level 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114279179778997478, guid: 9e7214117b369cc44b92d19dd3177ec1,
+        type: 2}
+      propertyPath: achievement
+      value: Level 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e7214117b369cc44b92d19dd3177ec1, type: 2}
   m_IsPrefabAsset: 0
@@ -5056,7 +5061,7 @@ Prefab:
     - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
         type: 2}
       propertyPath: isWalkable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
@@ -5103,6 +5108,11 @@ Prefab:
     - target: {fileID: 1137896431289116, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
       propertyPath: m_Name
       value: Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067565263618338, guid: 3b636c340cc9d9348bc3fe0b020722a7,
+        type: 2}
+      propertyPath: instantTurn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
@@ -10232,6 +10242,19 @@ Prefab:
       propertyPath: m_SortingLayer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114808518915668320, guid: f0784b41017d02d40ba664f0fbd1d982,
+        type: 2}
+      propertyPath: instantTurn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
   m_IsPrefabAsset: 0
@@ -13641,7 +13664,7 @@ Prefab:
     - target: {fileID: 114864763001985448, guid: f1e25727dd80a4f4b91cbdd7f4dbc174,
         type: 2}
       propertyPath: isWalkable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e25727dd80a4f4b91cbdd7f4dbc174, type: 2}
@@ -13872,6 +13895,11 @@ Prefab:
     - target: {fileID: 1137896431289116, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067565263618338, guid: 3b636c340cc9d9348bc3fe0b020722a7,
+        type: 2}
+      propertyPath: instantTurn
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
