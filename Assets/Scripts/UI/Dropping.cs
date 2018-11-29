@@ -20,6 +20,11 @@ public class Dropping : MonoBehaviour, IPointerDownHandler
 	}
     public void OnPointerDown(PointerEventData data)
     {
+		GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		Character character = gameManager.GetPlayer();
+		GameTile gameTile = gameManager.GetTile(character.GetCoordinates());
+		
+		
         clicked++;
         if (clicked == 1) clicktime = Time.time;
  
@@ -29,12 +34,35 @@ public class Dropping : MonoBehaviour, IPointerDownHandler
             clicktime = 0;
 			Debug.Log(this.name);
             int startIndex = int.Parse(Regex.Match(this.name, @"\(([^)]*)\)").Groups[1].Value);
+/*
 			Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
 			b.transform.parent = null;
 			addDummyItem(startIndex);
 			b.transform.GetComponent<SpriteRenderer>().enabled = true;
 			b.position = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetCoordinates();
 			Debug.Log("Dropped");
+*/
+			
+			bool shop = false;
+			GameObject gameObject = GameObject.Find("InventoryInven").transform.GetChild(startIndex).gameObject;
+			Debug.Log(gameObject);
+			foreach (Pickup pickup in gameTile.GetPickups()) {
+				if(pickup.IsPurchasable()){
+					shop = true;
+					if(gameObject.GetComponent<Pickup>().GetStats() == pickup.GetStats()){
+						character.SetGold(character.GetGold() + (int)(pickup.GetCost()*0.8));
+						Destroy(gameObject);
+						//Debug.Log("Destroy");
+					}
+				}
+			}
+			if(!shop){
+				Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
+				b.transform.parent = null;
+				b.transform.GetComponent<SpriteRenderer>().enabled = true;
+				b.position = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetCoordinates();
+				//Debug.Log("Dropped");
+			}
  
         }
         else if (clicked > 2 || Time.time - clicktime > 1) clicked = 0;

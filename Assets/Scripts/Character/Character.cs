@@ -16,7 +16,7 @@ abstract public class Character : Physical {
 
     public float movementSpeed = 3f;
     public bool instantTurn = false;
-    public int inventoryCapacity = 16;
+    public int inventoryCapacity;
 	public int itemAmount = 0;
     public int health;
     public int maxHealth = 100;
@@ -143,6 +143,9 @@ abstract public class Character : Physical {
         if (!this.initialized) {
             this.initialized = true;
 			//Debug.Log("Initialize");
+            if (this.gameObject == null) {
+                Debug.Log("Player not on a gametile");
+            }
             gameManager.GetTile(this.GetCoordinates()).SetCharacter(this);
         }
     }
@@ -189,7 +192,8 @@ abstract public class Character : Physical {
 				count++;
 			}
 		}
-        return (inventoryCapacity+8) - count;//inventory.Length;
+        return inventoryCapacity - count;//inventory.Length;
+        //return inventoryCapacity - inventory.Length;
     }
 
     public void SetPendingAction(TurnAction action) {
@@ -438,6 +442,7 @@ abstract public class Character : Physical {
             this.health = -1;
             gameManager.loadNewLevel("DeathScene");
         } else {
+        	this.gameManager.GetPlayer().completeAchievement("First Enemy Defeated");
 			//Add experience to the player
 			this.gameManager.GetPlayer().totalExperience += 50;
 			

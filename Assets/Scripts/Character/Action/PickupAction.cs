@@ -18,7 +18,6 @@ public class PickupAction : TurnAction {
 			Debug.Log("Failing check!");
             return false;
         }
-		Debug.Log(character.SpareInventoryCapacity());
         return true;
     }
 
@@ -31,6 +30,10 @@ public class PickupAction : TurnAction {
         if (!Check()) {
             return false;
         }
+        if (pickup is Weapon){
+            ((Player)character).completeAchievement("First Weapon");
+        }
+
 
 		if (pickup.IsPurchasable()){
 			if(character.GetGold() < pickup.GetCost() || character.GetLevel() < pickup.GetBaseLevel()) {
@@ -39,10 +42,11 @@ public class PickupAction : TurnAction {
 				return false;
 			}
 			else {
+                ((Player)character).completeAchievement("First Purchase");
 				character.SetGold(character.GetGold() - pickup.GetCost());
-				pickup.isPurchasable = false;
 				Pickup newPickup = pickup.Clone();
 				gameManager.GetTile(pickup.GetCoordinates()).AddPickup(newPickup);
+				pickup.isPurchasable = false;
 			}
 		}
 			
@@ -62,6 +66,10 @@ public class PickupAction : TurnAction {
 		pickup.transform.parent = GameObject.Find("InventoryInven").transform;
 		pickup.transform.SetSiblingIndex(index);
 		UnityEngine.Object.Destroy(GameObject.Find("InventoryInven").transform.GetChild(index+1).gameObject);
+
+        //pickup.transform.parent = character.transform;
+		//pickup.transform.parent = GameObject.Find("InventoryInven").transform;
+
         pickup.GetComponent<SpriteRenderer>().enabled = false;
         Dialog dialog = pickup.GetComponent<Dialog>();
         if (dialog != null) {
