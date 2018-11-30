@@ -79,4 +79,11 @@ public abstract class SaveLoadTesting : IntegrationTest {
             Debug.Log(pickup);
         }
     }
+
+    public void PrintEquipped() {
+        Debug.Log("equipped size: " + player.equipped.Length.ToString());
+        foreach (Pickup pickup in player.equipped) {
+            Debug.Log(pickup);
+        }
+    }
 }

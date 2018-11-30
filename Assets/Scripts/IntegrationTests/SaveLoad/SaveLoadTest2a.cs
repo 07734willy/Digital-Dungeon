@@ -17,7 +17,7 @@ public class SaveLoadTest2a : SaveLoadTesting {
         ResetPlayer();
         GameObject go = InstantiateFrom(swordPrefab);
         InsertEquippedPlayer(go.GetComponent<Pickup>());
-        gameManager.loadNewLevel("SaveLoad2bTesting");
+        gameManager.instantLoad("SaveLoad2bTesting");
         // this shouldn't execute
         status = TestManager.Status.failed;
         yield return null;
