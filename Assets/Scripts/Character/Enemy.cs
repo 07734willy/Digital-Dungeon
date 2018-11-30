@@ -172,8 +172,16 @@ public class Enemy : Character {
 		//The path has been found, now backtrack through the list to find what the next move is
 		return backTrack(visited);
 	}
-	
+	public void decideInstant(){
+		if(gameManager.GetTile(GetCoordinates()).getFogActivated()){
+					this.instantTurn = true;
+				}
+				else {
+					this.instantTurn = false;
+				}
+	}
     public override TurnAction RequestAction() {
+		this.decideInstant();
         Debug.Assert(currentAction.isComplete);
         //Get the overall distance to determine which pathfinding to use
 		if (getDistance() <= 4) {

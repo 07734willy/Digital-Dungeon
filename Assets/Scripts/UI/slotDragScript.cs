@@ -27,6 +27,10 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
 			Transform pickup = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
             pickup.transform.SetParent(GameObject.Find("EquippedInven").transform);
+			DragHandler.addDummyItem(startIndex);
+			if(pickup.GetComponent<Pickup>().isArmor){
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().armor += pickup.GetComponent<armor>().armorValue;
+			}
 			if(pickup.gameObject.GetComponent<Pickup>() is Weapon){
 				if(pickup.gameObject.GetComponent<Weapon>().isRanged){
 					Debug.Log("Ranged equipped");
@@ -40,9 +44,33 @@ public class slotDragScript : MonoBehaviour, IDropHandler {
 			Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetMeleeWeapon());
 		}
 		else if(DragHandler.startParent.parent.parent.name == "Equipped" && item.transform.parent.parent.parent.name == "Inventory"){
+			int endIndex = int.Parse(Regex.Match(item.transform.parent.name, @"\(([^)]*)\)").Groups[1].Value);
 			int startIndex = int.Parse(Regex.Match(DragHandler.startParent.name, @"\(([^)]*)\)").Groups[1].Value);
 			Transform pickup = GameObject.Find("EquippedInven").transform.GetChild(startIndex);
-            pickup.transform.SetParent(GameObject.Find("InventoryInven").transform);
+			if(GameObject.Find("InventoryInven").transform.GetChild(endIndex).name == "invenDummy"){
+				UnityEngine.Object.Destroy(GameObject.Find("InventoryInven").transform.GetChild(endIndex).gameObject);
+				pickup.transform.SetParent(GameObject.Find("InventoryInven").transform);
+				pickup.transform.SetSiblingIndex(endIndex);
+			}
+			if(pickup.GetComponent<Pickup>().isArmor){
+				GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().armor -= pickup.GetComponent<armor>().armorValue;
+			}
+			else{
+				Pickup[] inventory = GameObject.Find("InventoryInven").GetComponentsInChildren<Pickup>();
+				int index = 0;
+				for(int i = 0; i < inventory.Length; i++){
+					if(inventory[i].name == "invenDummy"){
+						index = i; 
+						break;
+					}
+				}
+				Debug.Log("Index: "+index);
+				UnityEngine.Object.Destroy(GameObject.Find("InventoryInven").transform.GetChild(index).gameObject);
+				pickup.transform.SetParent(GameObject.Find("InventoryInven").transform);
+				pickup.transform.SetSiblingIndex(index);
+			}
+			
+            
 			if(pickup.gameObject.GetComponent<Pickup>() is Weapon){
 				if(pickup.gameObject.GetComponent<Weapon>().isRanged){
 					Debug.Log("Ranged unequipped");

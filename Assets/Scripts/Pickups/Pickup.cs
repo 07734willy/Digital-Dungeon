@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickup : Physical {
 
     public bool stackable = false;
+	public bool isArmor = false;
     public int quantity = 1;
     public int value = 0;
     public bool isConsumeNow;
@@ -24,8 +25,9 @@ public class Pickup : Physical {
 
     public void RefreshStatus() {
         // If it is not a child of another gameobject <- that is, not inside a character inventory
-        GameTile tile = gameManager.GetTile(this.GetCoordinates());
+
         if (transform.parent == null) {
+            GameTile tile = gameManager.GetTile(this.GetCoordinates());
             if (tile != null) {
                 tile.AddPickup(this);
             }

@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: You picked up sword!
+  inspect: 
 --- !u!114 &114759163569864882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,11 +70,15 @@ MonoBehaviour:
   stackable: 0
   quantity: 1
   value: 0
-  isWeapon: 0
-  isArmor: 0
-  isConsumable: 0
+  isConsumeNow: 0
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
+  itemSprite: {fileID: 0}
   damage: 100
   accuracy: 1
+  isRanged: 0
+  range: 0
 --- !u!114 &114857128852153872
 MonoBehaviour:
   m_ObjectHideFlags: 1

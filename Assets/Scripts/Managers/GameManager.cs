@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     private Queue<Character> characterQueue;
     private TurnAction currentAction;
     private Player player;
+    private SaveManager saveManager;
 
     private void Awake() {
         this.map = new Dictionary<Vector2, GameTile>();
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
         this.player = GameObject.Find("Player").GetComponent<Player>();
+        this.saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
     }
 
 
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
     public void setDifficulty(String diffic)
     {
-        switch(diffic)
+        switch(diffic.ToLower())
         {
             case "easy":
                 difficulty = Difficulty.Easy;
@@ -119,11 +121,16 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 
-        Debug.Log(difficulty);
+        PlayerPrefs.SetString("difficulty", this.difficulty.ToString().ToLower());
+        Debug.Log(difficulty.ToString());
     }
 
     public Player GetPlayer() {
         return this.player;
+    }
+
+    public SaveManager GetSaveManager() {
+        return this.saveManager;
     }
 
     public bool TileUnsetCharacter(Vector2 coordinates) {
@@ -142,7 +149,31 @@ public class GameManager : MonoBehaviour {
 		return true;
     }
     
-    public void loadNewLevel(string levelName){
+    public void loadNewLevel(string levelName) {
+        Debug.Assert(this.saveManager != null);
+        this.saveManager.SaveData();
+        PlayerPrefs.SetString("levelname", levelName);
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void loadNewLevel()
+    {
+        Debug.Assert(this.saveManager != null);
+        this.saveManager.SaveData();
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void instantLoad(string levelName)
+    {
         SceneManager.LoadScene(levelName);
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        //Stop playing the scene
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

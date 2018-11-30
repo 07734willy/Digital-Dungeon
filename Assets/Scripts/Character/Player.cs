@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Player : Character {
 
@@ -9,7 +10,28 @@ public class Player : Character {
     public GameObject dialogBox;
     public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
+	public string[] logs = new string[5];
+	private int logNumber = 0;
+    private string[] achievements = {
+    "Tutorial", 
+    "Level 1", 
+    "Level 2", 
+    "Level 3", 
+    "Level 4", 
+    "Level 5",
+    "Final Level",
+    "Game Complete Easy",
+    "Game Complete Normal",
+    "Game Complete Hard",
+    "Game Complete Extreme",
+    "First Weapon",
+    "First Purchase",
+    "First Enemy Defeated",
+    "First Sale"
+    };
 
+
+    private bool loaded = false;
     override protected void Awake() {
         base.Awake();
         this.abilityLevel = new Dictionary<AbilityClass, int>() {
@@ -18,12 +40,19 @@ public class Player : Character {
             { AbilityClass.Teleport, 1 }
         };
     }
-
     // Update is called once per frame
     override protected void Update () {
+        if (!loaded) {
+            gameManager.GetSaveManager().LoadData();
+            loaded = true;
+        }
+
         base.Update();
         DisplayStats();
-
+		for(int i = 0; i < 5; i++){
+			GameObject.Find("logText "+i.ToString()).GetComponent<Text>().text = logs[i];
+		}
+		
         if (currentAction.isComplete) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 UseAbility1();
@@ -87,35 +116,47 @@ public class Player : Character {
     // Good
     public void UseAbility1() {
         Debug.Log("healing ablity used");
+		shiftLogBox();
+		logs[0]="healing ability used!";
         //SetDialogMessage("dialog text updated");
         this.pendingAction = new HealAbilityAction(this);
     }
 
     public void UseAbility2() {
         Debug.Log("spin ability used");
+	shiftLogBox();
+		logs[0]="spin ability used!";
         this.pendingAction = new SpinAbilityAction(this);
     }
 
     public void UseAbility3() {
         Debug.Log("teleport ability used");
+		shiftLogBox();
+		logs[0]="teleport ability used!";
         this.pendingAction = new TeleportAbilityAction(this);
     }
 
     public void UseAbility4() {
         Debug.Log("fury ability used");
+		shiftLogBox();
+		logs[0]="fury ability used!";
         this.pendingAction = new FuryAbilityAction(this);
     }
 
     public void UseAbility5() {
         Debug.Log("equilibrium ability used");
+		shiftLogBox();
+		logs[0]="Equilibrium ability used!";
         this.pendingAction = new EquilibriumAbilityAction(this);
     }
 
     public void UseAbility6() {
         Debug.Log("push ability used");
+		shiftLogBox();
+		logs[0]="Push ability used!";
         this.pendingAction = new PushAbilityAction(this);
     }
-
+	
     // optional method for ability button
     public void UseAbility() {
         switch(selectedAbility)
@@ -170,9 +211,16 @@ public class Player : Character {
     // Good
     public void SetDialogMessage(string message) {
         this.dialogText.text = message;
-        ShowDialogBox();
+		shiftLogBox();
+		logs[0] = message;
+       // ShowDialogBox();
     }
-    
+    public void shiftLogBox(){
+		for(int i = 4; i > 0; i--){
+			logs[i] = logs[i-1];
+			
+		}
+	}
     public void ShowDialogBox() {
         dialogBox.SetActive(true);
     }
@@ -196,4 +244,34 @@ public class Player : Character {
 		damage = (int)(damage * multiplier);
 		base.ReceiveDamage(damage);
 	}
+
+    public void completeAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 0));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+            PlayerPrefs.SetInt(cheev, 1);
+            string achievementMessage = string.Format("You just earned the {0} achievement!", cheev);
+            SetDialogMessage(achievementMessage);
+            PlayerPrefs.SetInt("achievementsEarned",PlayerPrefs.GetInt("achievementsEarned",0) + 1);
+            //Debug.Log(PlayerPrefs.GetInt("achievementsEarned", 1));
+        }
+    }
+
+    public void displayAchievement(string cheev){
+        Debug.Assert(achievements.Contains(cheev));
+        if(PlayerPrefs.GetInt(cheev, 0) == 0){
+                string achievementMessage = string.Format("You have not yet earned the {0} achievement.", cheev);
+                SetDialogMessage(achievementMessage);
+            }else{
+                string achievementMessage = string.Format("Congratulations on earning the {0} achievement!", cheev);
+                SetDialogMessage(achievementMessage);
+            }
+    }
+
+    public void wipeAchievements(){
+        foreach (string s in achievements){
+            PlayerPrefs.SetInt(s, 0);
+        }
+        PlayerPrefs.SetInt("achievementsEarned", 0);
+    }
 }
