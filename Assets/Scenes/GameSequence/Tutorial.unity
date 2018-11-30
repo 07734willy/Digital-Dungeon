@@ -2249,6 +2249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 1
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
+  trapDependency: 0
   damage: 0
   resetting: 0
   achievement: Tutorial
@@ -2258,6 +2259,8 @@ MonoBehaviour:
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  minDependency: 0
+  maxDependency: 0
   achievementShowcase: 
   test: 0
 --- !u!1001 &347320451
@@ -4463,6 +4466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 1
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
+  trapDependency: 0
   damage: 0
   resetting: 1
   achievement: 
@@ -4472,6 +4476,8 @@ MonoBehaviour:
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  minDependency: 0
+  maxDependency: 0
   achievementShowcase: 
   test: 0
 --- !u!114 &606147774
@@ -5312,7 +5318,7 @@ Prefab:
     - target: {fileID: 114067565263618338, guid: 3b636c340cc9d9348bc3fe0b020722a7,
         type: 2}
       propertyPath: instantTurn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
@@ -5704,22 +5710,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 748418772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0534a7faa8bd8e94db9e823d6cec18e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
-  damage: 10
-  resetting: 1
-  achievement: 
-  newLevel: 
-  spawnLocation: {fileID: 0}
-  whatToSpawnEasy: {fileID: 0}
-  whatToSpawnNormal: {fileID: 0}
-  whatToSpawnHard: {fileID: 0}
-  whatToSpawnExtreme: {fileID: 0}
-  achievementShowcase: 
-  test: 0
 --- !u!1001 &755090752
 Prefab:
   m_ObjectHideFlags: 0
@@ -6074,7 +6069,7 @@ Prefab:
     - target: {fileID: 114067565263618338, guid: 3b636c340cc9d9348bc3fe0b020722a7,
         type: 2}
       propertyPath: instantTurn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
@@ -6666,6 +6661,18 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
@@ -8943,7 +8950,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4423476576126290, guid: cc948025195d81f4c9b1050ec0cf9134, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1724475620421426, guid: cc948025195d81f4c9b1050ec0cf9134, type: 2}
       propertyPath: m_Name
@@ -13120,7 +13127,7 @@ Prefab:
     - target: {fileID: 114067565263618338, guid: 3b636c340cc9d9348bc3fe0b020722a7,
         type: 2}
       propertyPath: instantTurn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b636c340cc9d9348bc3fe0b020722a7, type: 2}
