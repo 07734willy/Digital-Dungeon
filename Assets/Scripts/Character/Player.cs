@@ -214,9 +214,21 @@ public class Player : Character {
     // Good
     public void SetDialogMessage(string message) {
         //this.dialogText.text = message;
+        int index = message.IndexOf("\n");
+        string remainder = null;
+        if (index != -1 && index < 32) {
+            remainder = message.Substring(index + 1);
+            message = message.Substring(0, index);
+        } else if (message.Length > 32) {
+            remainder = message.Substring(32);
+            message = message.Substring(0, 32);
+        }
 		shiftLogBox();
 		logs[0] = message;
         DisplayDialog();
+        if (remainder != null) {
+            SetDialogMessage(remainder);
+        }
        // ShowDialogBox();
     }
     public void shiftLogBox(){
