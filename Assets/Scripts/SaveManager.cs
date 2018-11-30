@@ -22,12 +22,32 @@ public class SaveManager : MonoBehaviour {
 
         PlayerPrefs.SetString("levelname", SceneManager.GetActiveScene().name);
 
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        PlayerPrefs.SetInt("health", player.health);
+        PlayerPrefs.SetFloat("evasion", player.evasion);
+        PlayerPrefs.SetInt("armor", player.armor);
+        PlayerPrefs.SetInt("level", player.level);
+        PlayerPrefs.SetInt("gold", player.gold);
+        PlayerPrefs.SetInt("arrows", player.arrows);
+        PlayerPrefs.SetInt("totalExperience", player.totalExperience);
+        PlayerPrefs.SetFloat("expMilestone", (float)player.expMilestone);
+
         PlayerPrefs.Save();
     }
 
     public void LoadData() {
         LoadInventory();
         LoadEqipped();
+
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.health = PlayerPrefs.GetInt("health", player.health);
+        player.evasion = PlayerPrefs.GetFloat("evasion", player.evasion);
+        player.armor = PlayerPrefs.GetInt("armor", player.armor);
+        player.level = PlayerPrefs.GetInt("level", player.level);
+        player.gold = PlayerPrefs.GetInt("gold", player.gold);
+        player.arrows = PlayerPrefs.GetInt("arrows", player.arrows);
+        player.totalExperience = PlayerPrefs.GetInt("totalExperience", player.totalExperience);
+        player.expMilestone = PlayerPrefs.GetFloat("expMilestone", (float)player.expMilestone);
         // Also load difficulty
         this.gameManager.setDifficulty(PlayerPrefs.GetString("difficulty", "normal"));
     }

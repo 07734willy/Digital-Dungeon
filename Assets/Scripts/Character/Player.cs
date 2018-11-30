@@ -229,7 +229,7 @@ public class Player : Character {
         if (remainder != null) {
             SetDialogMessage(remainder);
         }
-       // ShowDialogBox();
+        //ShowDialogBox();
     }
     public void shiftLogBox(){
 		for(int i = 4; i > 0; i--){
@@ -242,7 +242,7 @@ public class Player : Character {
     }
     
     public void HideDialogBox() {
-        dialogBox.SetActive(false);
+        //dialogBox.SetActive(false);
     }
 	
 	public override void ReceiveDamage (int damage){
