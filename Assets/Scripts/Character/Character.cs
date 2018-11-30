@@ -486,4 +486,3 @@ abstract public class Character : Physical {
 		return level;
 	}
 }
->>>>>>> master
