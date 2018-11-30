@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InspectionTest1 : InspectionTesting {
 
@@ -16,8 +17,9 @@ public class InspectionTest1 : InspectionTesting {
         status = TestManager.Status.running;
         string startText = "sample text";
         player.SetDialogMessage(startText);
+        string[] startLogs = GetDialogText().Clone() as string[];
         RightClickTile(testTile);
-        status = GetDialogText() != startText ? TestManager.Status.passed : TestManager.Status.failed;
+        status = !CompareText(GetDialogText(), startLogs) ? TestManager.Status.passed : TestManager.Status.failed;
         yield return null;
     }
 }
