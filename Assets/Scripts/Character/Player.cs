@@ -11,7 +11,6 @@ public class Player : Character {
     public int fogDistance = 2;
     public AbilityClass selectedAbility = Character.AbilityClass.Heal;
 	public string[] logs = new string[5];
-	private int logNumber = 0;
     private string[] achievements = {
     "Tutorial", 
     "Level 1", 
@@ -49,10 +48,8 @@ public class Player : Character {
 
         base.Update();
         DisplayStats();
-		for(int i = 0; i < 5; i++){
-			GameObject.Find("logText "+i.ToString()).GetComponent<Text>().text = logs[i];
-		}
-		
+        DisplayDialog();
+
         if (currentAction.isComplete) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 UseAbility1();
@@ -96,6 +93,12 @@ public class Player : Character {
         GameObject.Find("UIEvasionValue").GetComponent<Text>().text = (this.evasion*100).ToString();
         GameObject.Find("UIArmorValue").GetComponent<Text>().text =    this.armor.ToString();
         GameObject.Find("UIKeyValue").GetComponent<Text>().text =    this.keys.ToString();
+    }
+
+    public void DisplayDialog() {
+        for (int i = 0; i < 5; i++) {
+            GameObject.Find("logText " + i.ToString()).GetComponent<Text>().text = logs[i];
+        }
     }
 
     public override TurnAction RequestAction() {
@@ -210,9 +213,10 @@ public class Player : Character {
 
     // Good
     public void SetDialogMessage(string message) {
-        this.dialogText.text = message;
+        //this.dialogText.text = message;
 		shiftLogBox();
 		logs[0] = message;
+        DisplayDialog();
        // ShowDialogBox();
     }
     public void shiftLogBox(){

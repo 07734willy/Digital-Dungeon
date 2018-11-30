@@ -43,6 +43,17 @@ public class SaveManager : MonoBehaviour {
             pickup.transform.parent = GameObject.Find("InventoryInven").transform;
             pickup.GetComponent<SpriteRenderer>().enabled = false;
             pickup.SetCharacter(player);
+
+            Transform inv = GameObject.Find("InventoryInven").transform;
+            int num_children = inv.childCount;
+            int i;
+            for (i = 0; i < num_children; i++) {
+                if (inv.GetChild(i).name == "invenDummy") {
+                    DestroyImmediate(inv.GetChild(i).gameObject);
+                    pickup.transform.SetSiblingIndex(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -51,7 +62,7 @@ public class SaveManager : MonoBehaviour {
         List<int> indices = new List<int>();
         foreach (Pickup pickup in inventory) {
             int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
-            Debug.Assert(index >= 0);
+            Debug.Assert(index >= 0 || pickup.name == "invenDummy");
             if (index >= 0) {
                 indices.Add(index);
             }

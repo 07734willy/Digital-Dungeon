@@ -63,11 +63,9 @@ public class Boss : Enemy {
                     case 0:
                         Debug.Log("Enemy used heal ability!");
                         return new HealAbilityAction(this);
-                        break;
                     default:
                         Debug.Log("Enemy attacked!");
                         return new MeleeAttackAction(this, this.gameManager.GetPlayer(), this.movementSpeed, this.instantTurn);
-                        break;
                 }
             }
 

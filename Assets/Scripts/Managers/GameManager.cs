@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour {
         }
 
         PlayerPrefs.SetString("difficulty", this.difficulty.ToString().ToLower());
-        Debug.Log(difficulty.ToString());
     }
 
     public Player GetPlayer() {
@@ -163,8 +162,8 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("LoadingScene");
     }
 
-    public void instantLoad(string levelName)
-    {
+    public void instantLoad(string levelName) {
+        this.saveManager.SaveData();
         SceneManager.LoadScene(levelName);
     }
 

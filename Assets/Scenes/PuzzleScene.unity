@@ -3119,6 +3119,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
   m_IsPrefabAsset: 0
@@ -6168,12 +6176,15 @@ MonoBehaviour:
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
   damage: 0
   resetting: 0
+  achievement: 
   newLevel: 
   spawnLocation: {fileID: 0}
   whatToSpawnEasy: {fileID: 0}
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  achievementShowcase: 
+  test: 0
   openDoor: 0
   doorTile: {fileID: 954518959}
 --- !u!4 &1296991717 stripped
