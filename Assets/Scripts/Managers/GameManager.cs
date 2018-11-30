@@ -149,21 +149,23 @@ public class GameManager : MonoBehaviour {
     }
     
     public void loadNewLevel(string levelName) {
+        if (levelName == null || levelName == "") {
+            levelName = PlayerPrefs.GetString("levelname", null);
+            if (levelName == null || levelName == "") {
+                return;
+            }
+        }
         Debug.Assert(this.saveManager != null);
         this.saveManager.SaveData();
         PlayerPrefs.SetString("levelname", levelName);
         SceneManager.LoadScene("LoadingScene");
     }
 
-    public void loadNewLevel()
-    {
-        Debug.Assert(this.saveManager != null);
-        this.saveManager.SaveData();
-        SceneManager.LoadScene("LoadingScene");
-    }
-
     public void instantLoad(string levelName) {
+        Debug.Assert(this.saveManager != null);
+        string oldname = PlayerPrefs.GetString("levelname", null);
         this.saveManager.SaveData();
+        PlayerPrefs.SetString("levelname", oldname);
         SceneManager.LoadScene(levelName);
     }
 
