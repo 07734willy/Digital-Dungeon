@@ -33,7 +33,7 @@ public class Trivia : MonoBehaviour {
                 trivmessage = "The Purdue Computer Science tracks are Computational Science and Engineering, Computer Graphics Database and Information Systems, Foundations of Computer Science, Software Engineering, Systems Programming, Machine Intelligence, Programming Language, and Security.";
                 break;
             case 3:
-                trivmessage = "The core required classes for a Computer Science degree are CS180, CS82, CS240, CS250, CS251, and CS252.";
+                trivmessage = "The core required classes for a Computer Science degree are CS180, CS182, CS240, CS250, CS251, and CS252.";
                 break;
             case 4:
                 trivmessage = "The Lawson Building doors are open from 7:00AM to 10:30PM";

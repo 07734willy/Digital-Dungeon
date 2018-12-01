@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour {
 
     public void quitGame()
     {
+        PlayerPrefs.DeleteAll();
         Application.Quit();
 #if UNITY_EDITOR
         //Stop playing the scene
