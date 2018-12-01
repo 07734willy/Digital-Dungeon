@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
         // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
         this.player = GameObject.Find("Player").GetComponent<Player>();
         this.saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+                Debug.Log(difficulty);
     }
 
 
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour {
 
     public void setDifficulty(String diffic)
     {
+        Debug.Log(difficulty);
         switch(diffic.ToLower())
         {
             case "easy":
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour {
                 difficulty = Difficulty.Normal;
                 break;
         }
-
+        Debug.Log(difficulty);
         PlayerPrefs.SetString("difficulty", this.difficulty.ToString().ToLower());
     }
 
