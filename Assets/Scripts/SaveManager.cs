@@ -14,7 +14,7 @@ public class SaveManager : MonoBehaviour {
     }
 
     public void SaveData() {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         SaveInventory();
         SaveEquipped();
         // Probably save difficulty here as well
@@ -138,6 +138,7 @@ public class SaveManager : MonoBehaviour {
         string key = "_ilist:" + name + i.ToString();
         while (PlayerPrefs.HasKey(key)) {
             list.Add(PlayerPrefs.GetInt(key));
+            PlayerPrefs.DeleteKey(key);
             //Debug.Log("loading from _ilist:" + name + i.ToString());
             //Debug.Log("Value: " + list[i].ToString());
             i++;
