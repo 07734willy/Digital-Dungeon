@@ -63,6 +63,8 @@ public class Player : Character {
                 UseAbility5();
             } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
                 UseAbility6();
+            } else if (Input.GetKeyDown(KeyCode.Escape)) {
+            	gameManager.instantLoad("MainMenuScene");
             } else {
                 Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 

@@ -4458,7 +4458,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4423476576126290, guid: cc948025195d81f4c9b1050ec0cf9134, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114652196383761596, guid: cc948025195d81f4c9b1050ec0cf9134,
         type: 2}
@@ -4846,10 +4846,10 @@ MonoBehaviour:
   instantTurn: 0
   inventoryCapacity: 0
   itemAmount: 0
-  health: 0
-  maxHealth: 100
-  evasion: 0.1
-  armor: 0
+  health: 150
+  maxHealth: 200
+  evasion: 0.2
+  armor: 10
   level: 1
   gold: 0
   keys: 0
@@ -5118,6 +5118,18 @@ Prefab:
     - target: {fileID: 4731452480155700, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalPosition.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}

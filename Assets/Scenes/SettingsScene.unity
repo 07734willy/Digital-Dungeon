@@ -546,9 +546,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114006821353898230, guid: 94f579f1041a03941a6637fc108daa96,
-          type: 2}
-        m_MethodName: setDifficulty
+      - m_Target: {fileID: 11500000, guid: beb063b69666b7b41afcb142488b58b7, type: 3}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
