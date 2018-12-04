@@ -34,14 +34,6 @@ public class Dropping : MonoBehaviour, IPointerDownHandler
             clicktime = 0;
 			Debug.Log(this.name);
             int startIndex = int.Parse(Regex.Match(this.name, @"\(([^)]*)\)").Groups[1].Value);
-/*
-			Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
-			b.transform.parent = null;
-			addDummyItem(startIndex);
-			b.transform.GetComponent<SpriteRenderer>().enabled = true;
-			b.position = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetCoordinates();
-			Debug.Log("Dropped");
-*/
 			
 			bool shop = false;
 			GameObject gameObject = GameObject.Find("InventoryInven").transform.GetChild(startIndex).gameObject;
@@ -58,10 +50,12 @@ public class Dropping : MonoBehaviour, IPointerDownHandler
 			}
 			if(!shop){
 				Transform b = GameObject.Find("InventoryInven").transform.GetChild(startIndex);
+				if(b.transform.name!="invenDummy"){
 				b.transform.parent = null;
 				b.transform.GetComponent<SpriteRenderer>().enabled = true;
 				b.position = GameObject.Find("GameManager").GetComponent<GameManager>().GetPlayer().GetCoordinates();
 				//Debug.Log("Dropped");
+				}
 			}
  
         }
