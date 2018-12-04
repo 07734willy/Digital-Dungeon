@@ -733,7 +733,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4815261684257042, guid: 76e18996e69ffa04e90cafb39e9e7d6a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114743522704524966, guid: 76e18996e69ffa04e90cafb39e9e7d6a,
         type: 2}
@@ -1614,7 +1614,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4296418854598660, guid: 37f0c8fc8f158344390f580e2e08384b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37f0c8fc8f158344390f580e2e08384b, type: 2}
@@ -2162,7 +2162,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4296418854598660, guid: 37f0c8fc8f158344390f580e2e08384b, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1967717203376194, guid: 37f0c8fc8f158344390f580e2e08384b, type: 2}
       propertyPath: m_Name
@@ -3026,7 +3026,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4646830123899178, guid: 94f579f1041a03941a6637fc108daa96, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94f579f1041a03941a6637fc108daa96, type: 2}
@@ -3087,37 +3087,37 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalPosition.x
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalPosition.y
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4645978244694578, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
+    - target: {fileID: 4434798393523388, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0784b41017d02d40ba664f0fbd1d982, type: 2}
@@ -6166,14 +6166,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 1
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
+  trapDependency: 0
   damage: 0
   resetting: 0
+  achievement: 
   newLevel: 
   spawnLocation: {fileID: 0}
   whatToSpawnEasy: {fileID: 0}
   whatToSpawnNormal: {fileID: 0}
   whatToSpawnHard: {fileID: 0}
   whatToSpawnExtreme: {fileID: 0}
+  minDependency: 0
+  maxDependency: 0
+  achievementShowcase: 
+  test: 0
   openDoor: 0
   doorTile: {fileID: 954518959}
 --- !u!4 &1296991717 stripped

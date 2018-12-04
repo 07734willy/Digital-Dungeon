@@ -14,7 +14,7 @@ public class SaveManager : MonoBehaviour {
     }
 
     public void SaveData() {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         SaveInventory();
         SaveEquipped();
         // Probably save difficulty here as well
@@ -22,12 +22,32 @@ public class SaveManager : MonoBehaviour {
 
         PlayerPrefs.SetString("levelname", SceneManager.GetActiveScene().name);
 
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        PlayerPrefs.SetInt("health", player.health);
+        PlayerPrefs.SetFloat("evasion", player.evasion);
+        PlayerPrefs.SetInt("armor", player.armor);
+        PlayerPrefs.SetInt("level", player.level);
+        PlayerPrefs.SetInt("gold", player.gold);
+        PlayerPrefs.SetInt("arrows", player.arrows);
+        PlayerPrefs.SetInt("totalExperience", player.totalExperience);
+        PlayerPrefs.SetFloat("expMilestone", (float)player.expMilestone);
+
         PlayerPrefs.Save();
     }
 
     public void LoadData() {
         LoadInventory();
         LoadEqipped();
+
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.health = PlayerPrefs.GetInt("health", player.health);
+        player.evasion = PlayerPrefs.GetFloat("evasion", player.evasion);
+        player.armor = PlayerPrefs.GetInt("armor", player.armor);
+        player.level = PlayerPrefs.GetInt("level", player.level);
+        player.gold = PlayerPrefs.GetInt("gold", player.gold);
+        player.arrows = PlayerPrefs.GetInt("arrows", player.arrows);
+        player.totalExperience = PlayerPrefs.GetInt("totalExperience", player.totalExperience);
+        player.expMilestone = PlayerPrefs.GetFloat("expMilestone", (float)player.expMilestone);
         // Also load difficulty
         this.gameManager.setDifficulty(PlayerPrefs.GetString("difficulty", "normal"));
     }
@@ -43,6 +63,17 @@ public class SaveManager : MonoBehaviour {
             pickup.transform.parent = GameObject.Find("InventoryInven").transform;
             pickup.GetComponent<SpriteRenderer>().enabled = false;
             pickup.SetCharacter(player);
+
+            Transform inv = GameObject.Find("InventoryInven").transform;
+            int num_children = inv.childCount;
+            int i;
+            for (i = 0; i < num_children; i++) {
+                if (inv.GetChild(i).name == "invenDummy") {
+                    DestroyImmediate(inv.GetChild(i).gameObject);
+                    pickup.transform.SetSiblingIndex(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -51,7 +82,7 @@ public class SaveManager : MonoBehaviour {
         List<int> indices = new List<int>();
         foreach (Pickup pickup in inventory) {
             int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
-            Debug.Assert(index >= 0);
+            Debug.Assert(index >= 0 || pickup.name == "invenDummy");
             if (index >= 0) {
                 indices.Add(index);
             }
@@ -107,6 +138,7 @@ public class SaveManager : MonoBehaviour {
         string key = "_ilist:" + name + i.ToString();
         while (PlayerPrefs.HasKey(key)) {
             list.Add(PlayerPrefs.GetInt(key));
+            PlayerPrefs.DeleteKey(key);
             //Debug.Log("loading from _ilist:" + name + i.ToString());
             //Debug.Log("Value: " + list[i].ToString());
             i++;

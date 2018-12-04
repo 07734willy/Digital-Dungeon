@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapTile : GameTile {
+	public enum TrapDependency{
+		None, 
+		Health, 
+		Level, 
+		Gold
+	};
+	public TrapDependency trapDependency;
 
     public int damage = 0;
     public bool resetting = false;
@@ -15,6 +22,8 @@ public class TrapTile : GameTile {
 	public GameObject whatToSpawnNormal;
 	public GameObject whatToSpawnHard;
 	public GameObject whatToSpawnExtreme;
+	public int minDependency;
+	public int maxDependency;
     public string achievementShowcase = "";
     public bool test = false;
 
@@ -33,72 +42,98 @@ public class TrapTile : GameTile {
                 dialog.DisplayDialogMessage();
             }
 
-            if (achievement != "" && this.character is Player){
-                if(achievement == "Game Complete"){
-                    switch(curGm.difficulty){
-                        case GameManager.Difficulty.Extreme:
-                        ((Player)character).completeAchievement("Game Complete Extreme");
-                        goto case GameManager.Difficulty.Hard;
-                        case GameManager.Difficulty.Hard:
-                        ((Player)character).completeAchievement("Game Complete Hard");
-                        goto case GameManager.Difficulty.Normal;
-                        case GameManager.Difficulty.Normal:
-                        ((Player)character).completeAchievement("Game Complete Normal");
-                        goto case GameManager.Difficulty.Easy;                       
-                        case GameManager.Difficulty.Easy:
-                        ((Player)character).completeAchievement("Game Complete Easy");
-                        break;    
-                        default:
-                        break;
-                    }
-                }else{
-                    ((Player)character).completeAchievement(achievement);
-            }
-            }
-
-            if (damage > 0) {
-                character.ReceiveDamage(damage);
-            }
-
-            if (!resetting) {
-                this.sprung = true;
-            }
-
-            if (newLevel != "" && this.character is Player){
-            	curGm.loadNewLevel(newLevel);
-            }
-            
-            if(spawnLocation != null){
-            	if(spawnLocation.GetCharacter() == null && spawnLocation.IsWalkable()){
-            		switch (curGm.difficulty)
-					{
-						case GameManager.Difficulty.Easy:
-							Instantiate(whatToSpawnEasy, spawnLocation.GetCoordinates(), Quaternion.identity);
-							break;
-						case GameManager.Difficulty.Hard: 
-							Instantiate(whatToSpawnHard, spawnLocation.GetCoordinates(), Quaternion.identity);
-							break;
-						case GameManager.Difficulty.Extreme: 
-							Instantiate(whatToSpawnExtreme, spawnLocation.GetCoordinates(), Quaternion.identity);
-							break;
-						default: 
-							Instantiate(whatToSpawnNormal, spawnLocation.GetCoordinates(), Quaternion.identity);
-							break;
+			bool trapActive = false;
+            switch(trapDependency)
+			{
+				case TrapDependency.Health:
+					if(this.character.GetHealth() < minDependency || this.character.GetHealth() > maxDependency){
+						trapActive = true;
 					}
-            	}
-            }
+					break;
+				case TrapDependency.Level:
+					if(this.character.GetLevel() < minDependency || this.character.GetLevel() > maxDependency){
+						trapActive = true;
+					}
+					break;
+				case TrapDependency.Gold:
+					if(this.character.GetGold() < minDependency || this.character.GetGold() > maxDependency){
+						trapActive = true;
+					}
+					break;
+				default:
+					trapActive = true;
+					break;
+			}
+			
+			if (trapActive) {
+				
+				if (achievement != "" && this.character is Player){
+					if(achievement == "Game Complete"){
+						switch(curGm.difficulty){
+							case GameManager.Difficulty.Extreme:
+							((Player)character).completeAchievement("Game Complete Extreme");
+							goto case GameManager.Difficulty.Hard;
+							case GameManager.Difficulty.Hard:
+							((Player)character).completeAchievement("Game Complete Hard");
+							goto case GameManager.Difficulty.Normal;
+							case GameManager.Difficulty.Normal:
+							((Player)character).completeAchievement("Game Complete Normal");
+							goto case GameManager.Difficulty.Easy;                       
+							case GameManager.Difficulty.Easy:
+							((Player)character).completeAchievement("Game Complete Easy");
+							break;    
+							default:
+							break;
+						}
+					}else{
+						((Player)character).completeAchievement(achievement);
+					}
+				}
 
-            if(achievementShowcase != "" && this.character is Player){
-                ((Player)character).displayAchievement(achievementShowcase);
-            }
+				if (damage > 0) {
+					character.ReceiveDamage(damage);
+				}
 
-            if(test){
-                //These are test functions to run them easily somewhere, just
-                //make sure test is false for real game tiles
-                //also try to remember to comment out tests as a double safety
-                //((Player)character).wipeAchievements();
-            }
-        }
-        base.SetCharacter(character);
+				if (!resetting) {
+					this.sprung = true;
+				}
+			
+				if (newLevel != "" && this.character is Player){
+					curGm.loadNewLevel(newLevel);
+				}
+				
+				if(spawnLocation != null){
+					if(spawnLocation.GetCharacter() == null && spawnLocation.IsWalkable()){
+						switch (curGm.difficulty)
+						{
+							case GameManager.Difficulty.Easy:
+								Instantiate(whatToSpawnEasy, spawnLocation.GetCoordinates(), Quaternion.identity);
+								break;
+							case GameManager.Difficulty.Hard: 
+								Instantiate(whatToSpawnHard, spawnLocation.GetCoordinates(), Quaternion.identity);
+								break;
+							case GameManager.Difficulty.Extreme: 
+								Instantiate(whatToSpawnExtreme, spawnLocation.GetCoordinates(), Quaternion.identity);
+								break;
+							default: 
+								Instantiate(whatToSpawnNormal, spawnLocation.GetCoordinates(), Quaternion.identity);
+								break;
+						}
+					}
+				}
+
+				if(achievementShowcase != "" && this.character is Player){
+					((Player)character).displayAchievement(achievementShowcase);
+				}
+
+				if(test){
+					//These are test functions to run them easily somewhere, just
+					//make sure test is false for real game tiles
+					//also try to remember to comment out tests as a double safety
+					//((Player)character).wipeAchievements();
+				}
+			}
+		}
+		base.SetCharacter(character);
     }
 }

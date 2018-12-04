@@ -14,7 +14,7 @@ public class SaveLoadTest2b : SaveLoadTesting {
 
     public override IEnumerator Run() {
         status = TestManager.Status.running;
-        bool passed = (player.equipped.Length == 1) && (((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(player.equipped[0].gameObject)) == swordPrefab);
+        bool passed = (((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(player.equipped[0].gameObject)) == swordPrefab);
         status = passed ? TestManager.Status.passed : TestManager.Status.failed;
         yield return null;
     }

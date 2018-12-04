@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
         // it might be possible to update this in Update() with a `.isPlayer` check, but that's only necessary if we do multiplayer
         this.player = GameObject.Find("Player").GetComponent<Player>();
         this.saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+                Debug.Log(difficulty);
     }
 
 
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour {
 
     public void setDifficulty(String diffic)
     {
+        Debug.Log(difficulty);
         switch(diffic.ToLower())
         {
             case "easy":
@@ -120,9 +122,8 @@ public class GameManager : MonoBehaviour {
                 difficulty = Difficulty.Normal;
                 break;
         }
-
+        Debug.Log(difficulty);
         PlayerPrefs.SetString("difficulty", this.difficulty.ToString().ToLower());
-        Debug.Log(difficulty.ToString());
     }
 
     public Player GetPlayer() {
@@ -150,26 +151,29 @@ public class GameManager : MonoBehaviour {
     }
     
     public void loadNewLevel(string levelName) {
+        if (levelName == null || levelName == "") {
+            levelName = PlayerPrefs.GetString("levelname", null);
+            if (levelName == null || levelName == "") {
+                return;
+            }
+        }
         Debug.Assert(this.saveManager != null);
         this.saveManager.SaveData();
         PlayerPrefs.SetString("levelname", levelName);
         SceneManager.LoadScene("LoadingScene");
     }
 
-    public void loadNewLevel()
-    {
+    public void instantLoad(string levelName) {
         Debug.Assert(this.saveManager != null);
+        string oldname = PlayerPrefs.GetString("levelname", null);
         this.saveManager.SaveData();
-        SceneManager.LoadScene("LoadingScene");
-    }
-
-    public void instantLoad(string levelName)
-    {
+        PlayerPrefs.SetString("levelname", oldname);
         SceneManager.LoadScene(levelName);
     }
 
     public void quitGame()
     {
+        PlayerPrefs.DeleteAll();
         Application.Quit();
 #if UNITY_EDITOR
         //Stop playing the scene

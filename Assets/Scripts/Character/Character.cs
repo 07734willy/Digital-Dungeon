@@ -485,4 +485,8 @@ abstract public class Character : Physical {
 	public int GetLevel () {
 		return level;
 	}
+	
+	public int GetHealth () {
+		return health;
+	}
 }
