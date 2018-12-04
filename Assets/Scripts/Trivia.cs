@@ -48,9 +48,9 @@ public class Trivia : MonoBehaviour {
         }
 
         GameObject.Find("Trivia").GetComponent<Text>().text = trivmessage;
-        for (int i = 0; i < 270; i += 1) {
+        for (int i = 0; i < 270; i += 5) {
             GameObject.Find("Loading Bar").GetComponent<SpriteRenderer>().transform.localScale = new Vector3(i, 30, 1);
-            yield return new WaitForSeconds(0.01F*(Random.Range(0,8)));
+            yield return new WaitForSeconds(0.001F*(Random.Range(0,1)));
         }
 
         string leveltoload = PlayerPrefs.GetString("levelname", null);
