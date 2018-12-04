@@ -13,6 +13,7 @@ public class Pickup : Physical {
 	public int cost = -1;
 	public int baseLevel = 0;
     public Sprite itemSprite;
+	public string tag = "Pickup";
     protected GameManager gameManager;
     protected Character character;
 

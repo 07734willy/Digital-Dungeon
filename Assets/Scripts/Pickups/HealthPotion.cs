@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthPotion : Consumable {
 
     public int healValue = 30;
+	public string tag = "Health_Potion";
 
     public override void Select() {
         RefreshStatus();
