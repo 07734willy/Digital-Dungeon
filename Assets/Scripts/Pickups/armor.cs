@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class armor : Pickup {
     public int armorValue = 10;
-	public string tag = "Armor";
     public override void Select() {
         RefreshStatus();
     }
