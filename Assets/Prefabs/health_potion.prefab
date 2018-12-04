@@ -54,14 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackable: 0
+  isArmor: 0
   quantity: 1
   value: 0
-  isWeapon: 0
-  isArmor: 0
-  isConsumable: 1
   isConsumeNow: 0
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
   itemSprite: {fileID: 0}
+  tag: Pickup
   healValue: 30
+  tag: health_potion
 --- !u!114 &114863181662715358
 MonoBehaviour:
   m_ObjectHideFlags: 1

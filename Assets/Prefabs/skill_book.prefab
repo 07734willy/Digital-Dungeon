@@ -54,12 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackable: 0
+  isArmor: 0
   quantity: 1
   value: 0
-  isWeapon: 0
-  isArmor: 0
-  isConsumable: 0
+  isConsumeNow: 0
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
+  itemSprite: {fileID: 0}
+  tag: Pickup
   abilityClass: 1
+  tag: skill_book
 --- !u!114 &114903888423930942
 MonoBehaviour:
   m_ObjectHideFlags: 1

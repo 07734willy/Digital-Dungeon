@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: You picked up bow!
+  inspect: 
 --- !u!114 &114469174086655090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackable: 0
+  isArmor: 0
   quantity: 1
   value: 0
   isConsumeNow: 0
@@ -87,10 +89,12 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
+  tag: Pickup
   damage: 100
   accuracy: 1
   isRanged: 1
   range: 2
+  tag: Bow
 --- !u!212 &212478421350532504
 SpriteRenderer:
   m_ObjectHideFlags: 1
