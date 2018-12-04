@@ -5,7 +5,6 @@ using UnityEngine;
 public class SkillBook : Consumable {
 
     public Character.AbilityClass abilityClass = Character.AbilityClass.Spin;
-	public string tag = "Skill_Book";
 
     public override void Select() {
         RefreshStatus();

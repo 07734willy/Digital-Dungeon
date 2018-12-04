@@ -8,7 +8,6 @@ public class Weapon : Pickup {
     public float accuracy = 1f;
 	public bool isRanged;
 	public int range;
-	public string tag = "Weapon";
 
     public int GetDamageDealt() {
         return Random.Range(0, 1000) < 1000 * accuracy ? this.damage : 0;

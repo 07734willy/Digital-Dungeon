@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpecialKey : Consumable {
 
     public DoorTile door;
-	public string tag = "Special_Key";
 
     public override void Select() {
         RefreshStatus();
