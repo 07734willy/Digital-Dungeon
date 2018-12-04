@@ -466,6 +466,7 @@ abstract public class Character : Physical {
 			//Debug.Log(this.gameManager.GetPlayer().gold);
             foreach (Transform child in this.transform) {
                 if (child.GetComponent<Pickup>() != null) {
+                	child.GetComponent<SpriteRenderer>().enabled = true;
                     child.transform.position = this.transform.position;
                     child.SetParent(null);
                 }
