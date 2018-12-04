@@ -62,8 +62,8 @@ public class SaveManager : MonoBehaviour {
 			Debug.Log(prefab_string);
 			Debug.Log(Resources.Load(prefab_string, typeof(GameObject)));
 			GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
+			go.name = prefab_string;
 			Debug.Log(go);
-			go = null;
             Pickup pickup = go.GetComponent<Pickup>();
          
             pickup.transform.parent = GameObject.Find("InventoryInven").transform;
@@ -106,6 +106,7 @@ public class SaveManager : MonoBehaviour {
             //GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
             //go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
 			GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
+			go.name = prefab_string;
             Pickup pickup = go.GetComponent<Pickup>();
 
             pickup.transform.parent = GameObject.Find("EquippedInven").transform;
