@@ -89,12 +89,11 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag: Bow
   damage: 100
   accuracy: 1
   isRanged: 1
   range: 2
-  tag: Bow
 --- !u!212 &212478421350532504
 SpriteRenderer:
   m_ObjectHideFlags: 1
