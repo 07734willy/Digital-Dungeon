@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1219842840534796}
+  m_RootGameObject: {fileID: 1780351952284126}
   m_IsPrefabAsset: 1
---- !u!1 &1219842840534796
+--- !u!1 &1780351952284126
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4392876337165896}
-  - component: {fileID: 212541258041677102}
-  - component: {fileID: 61717586155912134}
-  - component: {fileID: 114095618065560982}
-  - component: {fileID: 114730842637580802}
+  - component: {fileID: 4945135849341580}
+  - component: {fileID: 212370205579728820}
+  - component: {fileID: 61982251885768306}
+  - component: {fileID: 114428757470860018}
+  - component: {fileID: 114822708346864576}
   m_Layer: 8
-  m_Name: lefttopcorner-inroom
-  m_TagString: Obstacle
+  m_Name: Nothingness
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &4392876337165896
+--- !u!4 &4945135849341580
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219842840534796}
+  m_GameObject: {fileID: 1780351952284126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -1, z: 0}
+  m_LocalPosition: {x: 5, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61717586155912134
+--- !u!61 &61982251885768306
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219842840534796}
+  m_GameObject: {fileID: 1780351952284126}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -68,12 +68,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114095618065560982
+--- !u!114 &114428757470860018
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219842840534796}
+  m_GameObject: {fileID: 1780351952284126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5a51f3fbbd784c95ad5eec549f22a, type: 3}
@@ -81,12 +81,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapToGrid: 1
   snapValue: 1
---- !u!114 &114730842637580802
+--- !u!114 &114822708346864576
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219842840534796}
+  m_GameObject: {fileID: 1780351952284126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c792666ae134a54c852e75cbfb08206, type: 3}
@@ -94,12 +94,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWalkable: 0
   fogPrefab: {fileID: 1170161442284678, guid: 945450e96a8e60c419761c77dbce3e21, type: 2}
---- !u!212 &212541258041677102
+--- !u!212 &212370205579728820
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219842840534796}
+  m_GameObject: {fileID: 1780351952284126}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -129,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: 1658303739
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: efd67a7faa7973c4590d165c817299c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 418025945433ed143a640b456d074c72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

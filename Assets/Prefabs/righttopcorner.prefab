@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114501136698086294}
   - component: {fileID: 114938586402092410}
   m_Layer: 8
-  m_Name: Wall (21)
+  m_Name: righttopcorner
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
