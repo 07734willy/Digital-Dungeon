@@ -67,13 +67,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackable: 0
+  isArmor: 0
   quantity: 1
   value: 0
-  isWeapon: 0
-  isArmor: 0
-  isConsumable: 0
   isConsumeNow: 1
+  isPurchasable: 0
+  cost: -1
+  baseLevel: 0
   itemSprite: {fileID: 0}
+  tag: key
   type: 1
   numGold: 0
 --- !u!212 &212172868871587928

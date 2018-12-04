@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackable: 0
+  isArmor: 0
   quantity: 1
   value: 0
   isConsumeNow: 0
@@ -75,10 +76,12 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
+  tag: Pickup
   damage: 100
   accuracy: 1
   isRanged: 0
   range: 0
+  tag: iron_sword
 --- !u!114 &114857128852153872
 MonoBehaviour:
   m_ObjectHideFlags: 1
