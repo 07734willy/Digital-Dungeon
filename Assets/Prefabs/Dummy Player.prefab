@@ -2639,7 +2639,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114043060867142822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2700,7 +2700,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114055416167166336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2786,7 +2786,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114079014741216716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2820,7 +2820,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114088058747994076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3046,7 +3046,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114129283608536198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3221,7 +3221,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114169189771377976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3619,7 +3619,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114328236809836698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3773,7 +3773,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114375780252697312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4022,7 +4022,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114431572010861636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4043,7 +4043,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114432349838784378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4358,7 +4358,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114518728000642804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4831,7 +4831,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114621874536524698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5669,6 +5669,7 @@ MonoBehaviour:
   - {fileID: 0}
   itemsEquipped: 0
   items: 0
+  isDummy: 1
   dialogText: {fileID: 114171613447144006}
   dialogBox: {fileID: 1840020337110248}
   fogDistance: 2
@@ -6144,7 +6145,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114807880360240718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6278,7 +6279,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114845492697641250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6390,7 +6391,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114891525097126718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6591,7 +6592,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114973376912383040
 MonoBehaviour:
   m_ObjectHideFlags: 1

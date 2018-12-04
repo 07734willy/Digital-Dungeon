@@ -76,7 +76,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 21300000, guid: 9971b07f763e1da498f31edcfe00d093, type: 3}
-  tag: armor
+  tag_name: armor
   armorValue: 10
 --- !u!114 &114444702585584834
 MonoBehaviour:

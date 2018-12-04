@@ -6,6 +6,7 @@ using System.Linq;
 
 public class Player : Character {
 
+    public bool isDummy = false;
     public Text dialogText;
     public GameObject dialogBox;
     public int fogDistance = 2;
@@ -41,7 +42,7 @@ public class Player : Character {
     }
     // Update is called once per frame
     override protected void Update () {
-        if (!loaded) {
+        if (!loaded && !this.isDummy) {
             gameManager.GetSaveManager().LoadData();
             loaded = true;
         }
@@ -64,8 +65,12 @@ public class Player : Character {
             } else if (Input.GetKeyDown(KeyCode.Alpha6)) {
                 UseAbility6();
             } else if (Input.GetKeyDown(KeyCode.Escape)) {
-                this.gameManager.GetSaveManager().SaveData();
-            	gameManager.instantLoad("MainMenuScene");
+                if (this.isDummy || !GameObject.Find("InventoryContainer").transform.GetChild(0).gameObject.activeSelf) {
+                    this.gameManager.GetSaveManager().SaveData();
+                    gameManager.instantLoad("MainMenuScene");
+                } else if (!this.isDummy && GameObject.Find("InventoryContainer").transform.GetChild(0).gameObject.activeSelf) {
+                    GameObject.Find("InventoryContainer").GetComponent<Inventory>().ToggleVisibility();
+                }
             } else {
                 Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 

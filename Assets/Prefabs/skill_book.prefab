@@ -62,7 +62,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: skill_book
+  tag_name: skill_book
   abilityClass: 1
 --- !u!114 &114903888423930942
 MonoBehaviour:

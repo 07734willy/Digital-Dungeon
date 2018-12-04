@@ -76,7 +76,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: iron_sword
+  tag_name: iron_sword
   damage: 100
   accuracy: 1
   isRanged: 0

@@ -89,9 +89,12 @@ public class SaveManager : MonoBehaviour {
         List<string> prefab_strings = new List<string>();
         foreach (Pickup pickup in inventory) {
             //int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));''
-			string prefab_string = pickup.tag;
+			string prefab_string = pickup.tag_name;
+            Debug.Log(prefab_string);
             Debug.Assert(prefab_string != "" || pickup.name == "invenDummy");
-            if (prefab_string != "Pickup" && prefab_string != "Pickup") {
+            if (prefab_string != "" && prefab_string != "Pickup") {
+                Debug.Log("saving:");
+                Debug.Log(prefab_string);
                 prefab_strings.Add(prefab_string);
             }
         }
@@ -105,18 +108,20 @@ public class SaveManager : MonoBehaviour {
         foreach (string prefab_string in prefab_strings) {
             //GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
             //go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
-			GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
-			go.name = prefab_string;
+            GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
+            go.name = prefab_string;
             Pickup pickup = go.GetComponent<Pickup>();
 
             pickup.transform.parent = GameObject.Find("EquippedInven").transform;
             pickup.GetComponent<SpriteRenderer>().enabled = false;
             pickup.SetCharacter(player);
             Weapon weapon = pickup.gameObject.GetComponent<Weapon>();
-            if (weapon.isRanged) {
-                player.SetRangedWeapon(weapon);
-            } else {
-                player.SetMeleeWeapon(weapon);
+            if (weapon != null) {
+                if (weapon.isRanged) {
+                    player.SetRangedWeapon(weapon);
+                } else {
+                    player.SetMeleeWeapon(weapon);
+                }
             }
         }
     }
@@ -126,13 +131,13 @@ public class SaveManager : MonoBehaviour {
         List<string> prefab_strings = new List<string>();
         foreach (Pickup pickup in equipped) {
             //int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
-			string prefab_string = pickup.tag;
+			string prefab_string = pickup.tag_name;
             /*Debug.Assert(index >= 0);
             if (index >= 0) {
                 indices.Add(index);
             }*/
 			Debug.Assert(prefab_string != "" || pickup.name == "invenDummy");
-            if (prefab_string != "Pickup" && prefab_string != "Pickup") {
+            if (prefab_string != "" && prefab_string != "Pickup") {
                 prefab_strings.Add(prefab_string);
             }
         }

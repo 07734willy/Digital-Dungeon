@@ -62,7 +62,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: health_potion
+  tag_name: health_potion
   healValue: 30
 --- !u!114 &114863181662715358
 MonoBehaviour:

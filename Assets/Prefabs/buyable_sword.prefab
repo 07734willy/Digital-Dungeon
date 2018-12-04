@@ -63,7 +63,7 @@ MonoBehaviour:
   cost: 50
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: buyable_sword
+  tag_name: Pickup
   damage: 100
   accuracy: 1
   isRanged: 0

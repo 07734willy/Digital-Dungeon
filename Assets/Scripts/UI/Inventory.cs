@@ -13,7 +13,7 @@
          }
      }
 
-    void ToggleVisibility() {
+    public void ToggleVisibility() {
         foreach (Transform child in this.transform) {
             child.gameObject.SetActive(!child.gameObject.activeSelf);
         }

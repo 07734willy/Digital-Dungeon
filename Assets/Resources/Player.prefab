@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 222322515583847176}
   - component: {fileID: 114422556980179108}
   - component: {fileID: 114910512969359002}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: ability_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 224149412028248190}
   - component: {fileID: 222520937117693646}
   - component: {fileID: 114367768655289278}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: CurrentAbility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4930229098908664}
   - component: {fileID: 212554284406542142}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: ability_cooldown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2473,7 +2473,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114072417942967000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2494,7 +2494,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114081027962395596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2632,7 +2632,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114168722924555908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2748,7 +2748,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114191400532203338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2984,7 +2984,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114266968712469576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3151,7 +3151,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114282836234709886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114297309076718776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4015,7 +4015,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114531815032413962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4220,7 +4220,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114580601624606916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4292,7 +4292,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114593010418442588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4324,7 +4324,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114599226009360248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4367,7 +4367,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114610790594401974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4859,6 +4859,7 @@ MonoBehaviour:
   - {fileID: 0}
   itemsEquipped: 0
   items: 0
+  isDummy: 0
   dialogText: {fileID: 114037321005927228}
   dialogBox: {fileID: 1870777717735486}
   fogDistance: 2
@@ -4940,7 +4941,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114729779077919704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5228,7 +5229,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114793542931173796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5370,7 +5371,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114834848028191410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5623,7 +5624,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: Pickup
+  tag_name: Pickup
 --- !u!114 &114882906041579138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8153,7 +8154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3, y: -220}
+  m_AnchoredPosition: {x: 0, y: -228.3}
   m_SizeDelta: {x: -978, y: -682.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224149412028248190

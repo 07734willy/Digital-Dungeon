@@ -58,7 +58,7 @@ public class Trivia : MonoBehaviour {
         Debug.Log(PlayerPrefs.GetString("levelname", null));
         Debug.Assert(leveltoload != null);
 		
-		GameObject.Find("SaveManager").GetComponent<SaveManager>().SaveData();
+		//GameObject.Find("SaveManager").GetComponent<SaveManager>().SaveData();
 
         SceneManager.LoadScene(leveltoload);
     }

@@ -76,7 +76,7 @@ MonoBehaviour:
   cost: -1
   baseLevel: 0
   itemSprite: {fileID: 0}
-  tag: stack_of_arrows
+  tag_name: stack_of_arrows
   type: 2
   numGold: 0
 --- !u!114 &114297481179534242
