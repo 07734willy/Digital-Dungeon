@@ -158,17 +158,23 @@ public class GameManager : MonoBehaviour {
             }
         }
         Debug.Assert(this.saveManager != null);
-        this.saveManager.SaveData();
-        PlayerPrefs.SetString("levelname", levelName);
+        //this.saveManager.SaveData();
+        //PlayerPrefs.SetString("levelname", levelName);
         SceneManager.LoadScene("LoadingScene");
     }
 
     public void instantLoad(string levelName) {
         Debug.Assert(this.saveManager != null);
-        string oldname = PlayerPrefs.GetString("levelname", null);
-        this.saveManager.SaveData();
-        PlayerPrefs.SetString("levelname", oldname);
+        //string oldname = PlayerPrefs.GetString("levelname", null);
+        //this.saveManager.SaveData();
+        //PlayerPrefs.SetString("levelname", oldname);
         SceneManager.LoadScene(levelName);
+    }
+
+    public void NewGame(){
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetString("levelname", "Tutorial");
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void quitGame()

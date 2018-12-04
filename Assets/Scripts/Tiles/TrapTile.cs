@@ -99,6 +99,9 @@ public class TrapTile : GameTile {
 				}
 			
 				if (newLevel != "" && this.character is Player){
+					curGm.GetSaveManager().SaveData();
+					PlayerPrefs.SetString("levelname", newLevel);
+					Debug.Log(newLevel);
 					curGm.loadNewLevel(newLevel);
 				}
 				
