@@ -37,7 +37,7 @@ public class SaveManager : MonoBehaviour {
 
     public void LoadData() {
         LoadInventory();
-        LoadEqipped();
+        LoadEquipped();
 
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.health = PlayerPrefs.GetInt("health", player.maxHealth);
@@ -55,10 +55,15 @@ public class SaveManager : MonoBehaviour {
 
     public void LoadInventory() {
         Player player = gameManager.GetPlayer();
-        List<int> indices = LoadIntList("inventory");
-        foreach (int index in indices) {
-            GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
-            go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
+        List<string> prefab_strings = LoadStringList("inventory");
+        foreach (string prefab_string in prefab_strings) {
+            //GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
+            //go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
+			Debug.Log(prefab_string);
+			Debug.Log(Resources.Load(prefab_string, typeof(GameObject)));
+			GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
+			Debug.Log(go);
+			go = null;
             Pickup pickup = go.GetComponent<Pickup>();
          
             pickup.transform.parent = GameObject.Find("InventoryInven").transform;
@@ -75,28 +80,32 @@ public class SaveManager : MonoBehaviour {
                     break;
                 }
             }
+			Debug.Log(go);
         }
     }
 
     public void SaveInventory() {
         Pickup[] inventory = this.gameManager.GetPlayer().inventory;
-        List<int> indices = new List<int>();
+        List<string> prefab_strings = new List<string>();
         foreach (Pickup pickup in inventory) {
-            int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
-            Debug.Assert(index >= 0 || pickup.name == "invenDummy");
-            if (index >= 0) {
-                indices.Add(index);
+            //int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));''
+			string prefab_string = pickup.tag;
+            Debug.Assert(prefab_string != "" || pickup.name == "invenDummy");
+            if (prefab_string != "Pickup" && prefab_string != "Pickup") {
+                prefab_strings.Add(prefab_string);
             }
         }
-        SaveIntList(indices, "inventory");
+        SaveStringList(prefab_strings, "inventory");
     }
 
-    public void LoadEqipped() {
+    public void LoadEquipped() {
         Player player = gameManager.GetPlayer();
-        List<int> indices = LoadIntList("equipped");
-        foreach (int index in indices) {
-            GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
-            go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
+        List<string> prefab_strings = LoadStringList("equipped");
+        //List<int> indices = LoadIntList("equipped");
+        foreach (string prefab_string in prefab_strings) {
+            //GameObject go = Instantiate<GameObject>(prefabs[index]) as GameObject;
+            //go = PrefabUtility.ConnectGameObjectToPrefab(go, prefabs[index]);
+			GameObject go = Instantiate(Resources.Load(prefab_string, typeof(GameObject))) as GameObject;
             Pickup pickup = go.GetComponent<Pickup>();
 
             pickup.transform.parent = GameObject.Find("EquippedInven").transform;
@@ -113,32 +122,37 @@ public class SaveManager : MonoBehaviour {
 
     public void SaveEquipped() {
         Pickup[] equipped = this.gameManager.GetPlayer().equipped;
-        List<int> indices = new List<int>();
+        List<string> prefab_strings = new List<string>();
         foreach (Pickup pickup in equipped) {
-            int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
-            Debug.Assert(index >= 0);
+            //int index = prefabs.IndexOf((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(pickup.gameObject));
+			string prefab_string = pickup.tag;
+            /*Debug.Assert(index >= 0);
             if (index >= 0) {
                 indices.Add(index);
+            }*/
+			Debug.Assert(prefab_string != "" || pickup.name == "invenDummy");
+            if (prefab_string != "Pickup" && prefab_string != "Pickup") {
+                prefab_strings.Add(prefab_string);
             }
         }
-        SaveIntList(indices, "equipped");
+        SaveStringList(prefab_strings, "equipped");
     }
 
-    public void SaveIntList(List<int> list, string name) {
+    public void SaveStringList(List<string> list, string name) {
         int i;
         for (i = 0; i < list.Count; i++) {
-            PlayerPrefs.SetInt("_ilist:" + name + i.ToString(), list[i]);
+            PlayerPrefs.SetString("_ilist:" + name + i.ToString(), list[i]);
             //Debug.Log("saving to _ilist:" + name + i.ToString());
             //Debug.Log("Value: " + list[i].ToString());
         }
     }
 
-    public List<int> LoadIntList(string name) {
-        List<int> list = new List<int>();
+    public List<string> LoadStringList(string name) {
+        List<string> list = new List<string>();
         int i = 0;
         string key = "_ilist:" + name + i.ToString();
         while (PlayerPrefs.HasKey(key)) {
-            list.Add(PlayerPrefs.GetInt(key));
+            list.Add(PlayerPrefs.GetString(key));
             PlayerPrefs.DeleteKey(key);
             //Debug.Log("loading from _ilist:" + name + i.ToString());
             //Debug.Log("Value: " + list[i].ToString());
