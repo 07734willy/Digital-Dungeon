@@ -5,8 +5,6 @@ using UnityEngine;
 public class Boss : Enemy {
     public int healLevel = 1;
     public int spinLevel = 1;
-
-
     override protected void Awake()
     {
         base.Awake();
@@ -62,6 +60,8 @@ public class Boss : Enemy {
                 switch (n) {
                     case 0:
                         Debug.Log("Enemy used heal ability!");
+                        this.gameManager.GetPlayer().shiftLogBox();
+                        this.gameManager.GetPlayer().logs[0]="Enemy used heal ability!";
                         return new HealAbilityAction(this);
                     default:
                         Debug.Log("Enemy attacked!");
