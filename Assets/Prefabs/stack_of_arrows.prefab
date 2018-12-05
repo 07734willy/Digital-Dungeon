@@ -69,11 +69,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stackable: 0
   isArmor: 0
-  quantity: 1
+  quantity: 50
   value: 0
   isConsumeNow: 1
   isPurchasable: 0
-  cost: -1
+  cost: 10
   baseLevel: 0
   itemSprite: {fileID: 0}
   tag_name: stack_of_arrows

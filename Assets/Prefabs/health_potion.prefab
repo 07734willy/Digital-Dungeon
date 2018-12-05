@@ -59,7 +59,7 @@ MonoBehaviour:
   value: 0
   isConsumeNow: 0
   isPurchasable: 0
-  cost: -1
+  cost: 15
   baseLevel: 0
   itemSprite: {fileID: 0}
   tag_name: health_potion

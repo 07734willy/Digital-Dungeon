@@ -53,4 +53,9 @@ public class ConsumeNow : Pickup {
 
 		return consumeNow;
 	}
+	
+	public override string GetStats () {
+		string message = "Cost: " + this.cost + "  \tLevel Required: " + this.GetBaseLevel() +  "\nSell: " + (int)(this.cost*0.8) + "     \tQuantity: 50";
+		return message;
+	}
 }

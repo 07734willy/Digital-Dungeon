@@ -60,7 +60,7 @@ MonoBehaviour:
   value: 0
   isConsumeNow: 0
   isPurchasable: 1
-  cost: 50
+  cost: 5
   baseLevel: 0
   itemSprite: {fileID: 0}
   tag_name: Pickup
